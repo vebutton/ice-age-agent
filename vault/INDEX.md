@@ -9,6 +9,7 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 ## Skills & MCPs
 
 - [2026-05-18 — Git commits need a Claude skill, not per-project HEREDOC rediscovery](2026-05-18-git-commit-skill-needed.md) — file-based commit messages over inline / HEREDOC; build a `git-commit` skill. *Status: seed*
+- [2026-05-20 — CLAUDE.md stays lean — let the harness lazy-load skills and MCP tools](2026-05-20-claude-md-stays-lean-lazy-loading.md) — don't enumerate MCP tool inventories or full skill descriptions in CLAUDE.md; the harness already lazy-loads both. *Status: seed*
 
 *(other seeds named in `prompts/system_prompt.md` "Patterns Vince has already named" still to capture: skills-complement-MCPs, master-agents-self-architect, Context-Seven)*
 
