@@ -70,46 +70,48 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - [ ] Absorb Robin's intelligence from `del-infra` (one-time pass) — on hold per Vince
 - [ ] Wire up Evernote MCP
 - [x] Wire up Slack MCP for the work channel — confirmed in-session 2026-05-19 evening. 30d of history pulled successfully; slack tools visible as `mcp__slack__*`.
+- [x] Slack MCP hardening — pinned `slack-mcp-server@1.3.0`, source audit (trust-with-caveats), live network observation confirming Slack-owned endpoints. Binary sha256 recorded in `vault/2026-05-20-third-party-mcp-wireup-pattern.md`.
 - [ ] First Kickstart pack — deferred until Sage has real intelligence to differentiate the pack
 - [ ] AgentMail Python helper (address decision + wiring)
 - [ ] First template-upgrade PR against `claude-agent-template`
 
 ## Session State
-**Last session:** 2026-05-20 morning — internal AI meeting at work happened. Short post-meeting turn: captured initial preso feedback (MCP build-vs-buy stance); more feedback still to debrief.
+**Last session:** 2026-05-20 evening — full post-meeting debrief, MCP hardening end-to-end, two vault entries, two commits pushed. Clean state at close.
 
-**What got done this session (brief post-meeting turn):**
-- Discussed how to trust the community `korotovsky/slack-mcp-server` vs writing our own. Risk model: bot-token exposure, blast radius = channels the bot is invited to, `@latest` auto-update is the biggest live attack vector.
-- Cheap mitigations identified (pin version, one-time source audit, network observation, scope discipline) — **none executed yet, all deferred.**
-- Captured Vince's stance after preso feedback as memory `project-mcp-build-vs-buy-stance`:
-  - For Sage: community MCPs only, no in-house build.
-  - For future kickstart packs: MCP choice is per-project fit, not a default.
-  - General principle: project-fit drives the decision (parallels the cost-frugality memory).
+**What got done this session:**
+- **Debriefed the rest of the preso feedback.** Refined the MCP build-vs-buy rule into a clean split: our own products → build our own MCP; 3rd-party apps → Anthropic-official first, well-supported community second. Memory `project-mcp-build-vs-buy-stance` rewritten with the new structure.
+- **Sharpened the personal-first rule with a two-part bar:** enough learnings AND a path where externalizing doesn't become a new job. Vince's reasoning: in a small company, internal AI evangelism = an actual additional job assignment; AI is a multiplier for current work, not a new function. Memory `project-sage-stays-personal-first` updated.
+- **New feedback memory `feedback-no-company-name-in-checkins`** — never write the employer name in commits or committed files; use "work" or "internal". `CLAUDE.local.md` is the only place for brand names. Portfolio-wide rule.
+- **Two new vault entries:**
+  - `vault/2026-05-20-claude-md-stays-lean-lazy-loading.md` — don't enumerate skills/MCPs in CLAUDE.md; the harness lazy-loads both.
+  - `vault/2026-05-20-third-party-mcp-wireup-pattern.md` — env-var token + version pin + four-step audit + binary-vs-source caveat. Worked example with Slack MCP includes a full verification log (source audit summary, network observation result with captured IP + TLS-cert proof, binary sha256 hash for drift detection).
+- **Slack MCP hardening fully closed:**
+  - Pinned `slack-mcp-server@1.3.0` in `.mcp.json` (was `@latest`).
+  - Source audit by subagent → trust-with-caveats: clean for our use, but npm ships a Go binary with no SLSA provenance, so source review only validates if binary == source.
+  - Live network observation during a real `mcp__slack__conversations_history` call → captured `18.169.61.189:443` (AWS eu-west-2). Verified Slack-owned via TLS cert (`*.slack.com`, Let's Encrypt R13) and forward DNS (`slack-files.com` resolves to it).
+  - Binary sha256 recorded: `8f0ba1fff09d61d51a090ef447995f778c0fd7234d6f1d6c568cb2fba0e7da83`.
+- **Two commits pushed to `origin/main`** (Slack MCP wireup + Session State + lazy-loading vault entry; then this end-of-session commit with the hardening vault entry + CLAUDE.md update).
 
 **Decisions Vince articulated this session:**
-- Stay on `korotovsky/slack-mcp-server` for Sage. Don't maintain our own.
-- For kickstarted projects, MCP build-vs-buy is part of the per-project fit assessment, not a default answer.
+- MCP build-vs-buy rule has structure now: our products = build, 3rd-party = buy. Not "case-by-case."
+- Personal-first bar is two-part (learnings + non-job structure), not just track record.
+- Employer name never enters committed content or commit messages. Portfolio-wide.
+- Pin + audit + observe is the standing discipline for any third-party MCP, codified in the wireup vault entry. Two strong template-upgrade-PR candidates against `claude-agent-template`: lazy-loading discipline + third-party MCP wireup defaults.
 
-**Carried forward / open — IMPORTANT, several items unresolved across multiple sessions:**
-- **🔴 More preso feedback to debrief.** Vince said *"I had some feedback during the preso about using community MCP servers vs writing my own"* and explicitly signaled there's more beyond what's in the MCP memory. **Next session should start by asking Vince for the full feedback list from the meeting.** This likely affects Sage's direction.
-- **Sage-attribution sections in yesterday's advisory docs** — outcome unknown. Vince didn't say whether he stripped them, used them as-is, or skipped the docs. Ask, don't assume.
-- **Uncommitted work piling up.** All of the following are still uncommitted:
-  - `output/advisory-20260520-trilio-ai-meeting.md` (yesterday)
-  - `output/skills-library-seed-20260520.md` (yesterday)
-  - `output/howto-claude-code-slack-readonly.md` (yesterday)
-  - `CLAUDE.md` updates (yesterday + today)
-  - 4 new memory files + MEMORY.md (yesterday + today)
-- **MCP hardening tasks deferred:** pin `slack-mcp-server@<version>` in `.mcp.json` (currently `@latest`), one-time source audit of the repo, one-time network observation. Worth doing before bot scope expands beyond one public channel.
-- **Vault entry for Slack MCP wireup pattern** — still deferred. Source material already in `output/howto-claude-code-slack-readonly.md`.
-- Robin/del-infra absorption — still on hold.
-- Seed patterns from system prompt (skills-complement-MCPs, master-agents-self-architect, Context Seven) — still pending vault capture.
-- Two hot personal projects to name (when Vince is ready) — informs kickstart-pack prioritization.
+**Carried forward / open:**
+- Remaining seed patterns from system prompt (skills-complement-MCPs, master-agents-self-architect, Context Seven) — still pending vault capture.
+- Robin/del-infra absorption — still on hold per Vince.
+- Two hot personal projects to name — when Vince is ready. Informs kickstart-pack prioritization.
+- Evernote MCP wireup — not yet started.
+- AgentMail Python helper — deferred.
+- First template-upgrade PR against `claude-agent-template` — two strong candidates now: lazy-loading discipline + third-party MCP wireup defaults (gitignored `.env.local`, `${VAR}`-referenced `.mcp.json`, version pin, audit checklist).
+- **Small breadcrumb worth noticing next session:** Vince posted twice in the work AI channel today about output-tooling friction — MD→PDF export chaos this morning ("it's a mess!"), Cowork's multimodal SVG-from-.eml capability this evening. Two data points in one day hinting at an output-rendering problem area. Could be a vault candidate or an advisory.
 
 **Next session — pick up here:**
-1. **First thing: debrief the rest of the preso feedback.** Don't dive into other work until that's captured — it likely informs everything else. Ask Vince openly: *"You mentioned more feedback from the meeting — what else came up?"*
-2. Ask whether the advisory docs were used as-is or stripped.
-3. Commit + push the pile (4 memory files, MEMORY.md, CLAUDE.md, 3 output docs).
-4. Execute MCP hardening: pin korotovsky version, source audit, network observation.
-5. Write the Slack MCP wireup vault entry from the existing how-to source material.
-6. Revisit "Sage stays personal-first" rule based on meeting outcome.
+1. Cold start — re-read CLAUDE.md first.
+2. No outstanding blockers. Reasonable next moves if Vince doesn't specify:
+   - Capture one of the remaining seed patterns from `prompts/system_prompt.md`.
+   - Surface the output-tooling-friction breadcrumb (above) as either an advisory or a vault candidate.
+   - Move toward scaffolding the first kickstart pack.
 
 **Session continuity:** Vince is closing this session and restarting. **Next session is a cold start — re-read CLAUDE.md before doing anything.** Launch from project root: `source .env.local && claude` (the `source` is required — without it the Slack MCP token won't be in env and Slack tools will silently disappear).
