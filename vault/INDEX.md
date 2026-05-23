@@ -17,10 +17,11 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 ## Tooling & External References
 
 - [2026-05-18 — Bootstrap templates shouldn't ship their own process doc to children](2026-05-18-template-shouldnt-ship-process-doc-to-children.md) — `project-bootstrap-process.md` belongs in `claude-agent-template`, not every child repo. Candidate template-upgrade PR. *Status: seed*
+- [2026-05-22 — Gitignored repo-local configs need tracked `.sample` companions](2026-05-22-gitignored-configs-need-tracked-samples.md) — gitignoring a config without shipping its `.sample` makes fresh clones archaeology. Generalizes `.env.local.example` to any proprietary config (CLAUDE.md, vars/main.yml, etc.). Candidate template-upgrade PR. *Status: seed*
 
 ## Agent Architecture
 
-*(no entries yet)*
+- [2026-05-23 — Handoff documents: structured context transfer when fresh context beats accumulated context](2026-05-23-handoff-pattern-structured-context-transfer.md) — 10-section handoff doc + fresh second-session pattern; "What's been ruled out" is the highest-value section. Sourced from an internal infra/ops project review + Matt Pocock convergent-discovery footnote. *Status: seed*
 
 ## Work-specific
 
