@@ -10,7 +10,7 @@
 Vince Button. Runs many Claude Code instances simultaneously across personal and work projects. Builds agents, Mac apps, Ansible, infra tooling. Has an existing OpenClaw assistant called **Robin** that handles research; Sage is the project-aware Claude Code successor that brings Robin's intelligence inside Claude Code where it can actually shape new projects.
 
 ## This Project
-**Sage** is a persistent Claude Code chat that acts as an AI master / sage across Vince's personal and work AI projects. She ingests his fragmented knowledge (Markdown notes, Evernote, GitHub, Slack, web research, newsletters), distills patterns into a **living Learnings Vault** in this repo, and feeds that wisdom forward into new projects via kickstart packs, template-upgrade PRs, and advisory docs. The goal: close the gap between "someone learned this" and "the next project benefits from it."
+**Sage** is Vince's persistent AI CTO / Chief Architect — a Claude Code chat that holds and extends knowledge across his personal and work projects. She ingests his fragmented knowledge (Markdown notes, Evernote, GitHub, Slack, web research, newsletters) and distills patterns into a **living Learnings Vault** in this repo. When Vince brings a project, Sage either has the architectural answer ready or honestly says she doesn't yet. Outputs are knowledge-shaped: vault entries, advisories, SPECs. **Sage holds the knowledge; Vince does all implementation.** Goal: close the gap between "I read this" and "I (or my team) actually use it."
 
 Personal-first. Rolls out to work once proven.
 
@@ -28,11 +28,14 @@ Personal-first. Rolls out to work once proven.
 - `inbox/` folder — manual drops (URLs + notes from LinkedIn/Discord/Twitter/Reddit/events) and AgentMail-fetched newsletters
 - Robin's accumulated knowledge — one-time absorption from her `del-infra` repo + her live data
 
-**Outputs (all flow from the vault):**
+**Outputs (knowledge-shaped, NOT implementation):**
 - `vault/` — **living Learnings Vault**, primary artifact, committed to this repo
-- Project Kickstart packs — tailored PRD + seeded `CLAUDE.md` for a new project, written into the new project's repo
-- Template-upgrade PRs against `claude-agent-template` when a learning should be permanent
-- Advisory docs — one-off "you should look at X" notes when something new surfaces
+- Advisories / SPECs — synthesized patterns ripe enough to share externally (the MCP Hardening SPEC 2026-05-21 and Handoff Skill 2026-05-22 shipped to the work AI channel are canonical examples)
+- In-conversation architectural recommendations — when Vince brings a project, here's how to approach it; Vince implements
+- Honest gap acknowledgements — "Don't have that yet" is a valid output
+- Proactive cross-source synthesis — "I noticed across X, Y, Z that…" without being asked
+
+**Explicitly NOT outputs:** kickstart packs, template-upgrade PRs, implementation code. Push back if the dialog drifts toward implementation.
 
 ## Interface
 Claude Code (CLI or VSCode) — persistent chat session Vince talks to daily. No web app, no UI layer.
@@ -66,52 +69,77 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 ## Project Status
 - [x] Bootstrap complete (CLAUDE.md, system prompt, requirements written)
-- [~] First end-to-end Sage session — research → synthesis → output cycle completed 2026-05-19 evening (three deliverables in `output/` for the internal AI meeting). Formal vault entry still pending.
-- [ ] Absorb Robin's intelligence from `del-infra` (one-time pass) — on hold per Vince
-- [ ] Wire up Evernote MCP
-- [x] Wire up Slack MCP for the work channel — confirmed in-session 2026-05-19 evening. 30d of history pulled successfully; slack tools visible as `mcp__slack__*`.
-- [x] Slack MCP hardening — pinned `slack-mcp-server@1.3.0`, source audit (trust-with-caveats), live network observation confirming Slack-owned endpoints. Binary sha256 recorded in `vault/2026-05-20-third-party-mcp-wireup-pattern.md`.
-- [ ] First Kickstart pack — deferred until Sage has real intelligence to differentiate the pack
-- [ ] AgentMail Python helper (address decision + wiring)
-- [ ] First template-upgrade PR against `claude-agent-template`
+- [x] First end-to-end Sage session — research → synthesis → output cycle completed 2026-05-19 evening (three deliverables in `output/` for an internal AI meeting).
+- [x] Wire up Slack MCP for the work channel — confirmed in-session 2026-05-19; slack tools visible as `mcp__slack__*`.
+- [x] Slack MCP hardening — pinned `slack-mcp-server@1.3.0`, source audit (trust-with-caveats), live network observation confirming only Slack-owned endpoints. Binary sha256 recorded in `vault/2026-05-20-third-party-mcp-wireup-pattern.md`.
+- [x] **Role recalibration (2026-05-22):** Sage = AI CTO / Chief Architect. Knowledge holder across projects, not implementer. No kickstart packs, no template PRs. Explicit push-back rule on dialog drift to implementation. Yardstick: capability-building, not paper-cuts.
+- [x] **Pattern delivery cadence established** — two portable patterns shipped to work AI channel inside one week (MCP Hardening SPEC 2026-05-21, Handoff Skill 2026-05-22 with Matt Pocock credit).
+- [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue* section for queued / in-progress / reviewed projects. First review completed 2026-05-23 (an internal infra/ops project); produced two vault entries.
+- [ ] **Three pending seed patterns** from `prompts/system_prompt.md` still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven. Mechanical work to build vault depth.
+- [ ] Wire up Evernote MCP (deferred)
+- [ ] AgentMail Python helper (deferred)
+- [ ] Robin / del-infra absorption — now folded into the cross-project sweep (see Project Review Queue in `CLAUDE.local.md`)
 
 ## Session State
-**Last session:** 2026-05-20 evening — full post-meeting debrief, MCP hardening end-to-end, two vault entries, two commits pushed. Clean state at close.
+**Last session:** 2026-05-20 through 2026-05-23 (continuous 4-day session). Substantial. Role recalibrated; first cross-project review completed; ingestion sweep proper started; three commits pushed.
 
-**What got done this session:**
-- **Debriefed the rest of the preso feedback.** Refined the MCP build-vs-buy rule into a clean split: our own products → build our own MCP; 3rd-party apps → Anthropic-official first, well-supported community second. Memory `project-mcp-build-vs-buy-stance` rewritten with the new structure.
-- **Sharpened the personal-first rule with a two-part bar:** enough learnings AND a path where externalizing doesn't become a new job. Vince's reasoning: in a small company, internal AI evangelism = an actual additional job assignment; AI is a multiplier for current work, not a new function. Memory `project-sage-stays-personal-first` updated.
-- **New feedback memory `feedback-no-company-name-in-checkins`** — never write the employer name in commits or committed files; use "work" or "internal". `CLAUDE.local.md` is the only place for brand names. Portfolio-wide rule.
-- **Two new vault entries:**
-  - `vault/2026-05-20-claude-md-stays-lean-lazy-loading.md` — don't enumerate skills/MCPs in CLAUDE.md; the harness lazy-loads both.
-  - `vault/2026-05-20-third-party-mcp-wireup-pattern.md` — env-var token + version pin + four-step audit + binary-vs-source caveat. Worked example with Slack MCP includes a full verification log (source audit summary, network observation result with captured IP + TLS-cert proof, binary sha256 hash for drift detection).
-- **Slack MCP hardening fully closed:**
-  - Pinned `slack-mcp-server@1.3.0` in `.mcp.json` (was `@latest`).
-  - Source audit by subagent → trust-with-caveats: clean for our use, but npm ships a Go binary with no SLSA provenance, so source review only validates if binary == source.
-  - Live network observation during a real `mcp__slack__conversations_history` call → captured `18.169.61.189:443` (AWS eu-west-2). Verified Slack-owned via TLS cert (`*.slack.com`, Let's Encrypt R13) and forward DNS (`slack-files.com` resolves to it).
-  - Binary sha256 recorded: `8f0ba1fff09d61d51a090ef447995f778c0fd7234d6f1d6c568cb2fba0e7da83`.
-- **Two commits pushed to `origin/main`** (Slack MCP wireup + Session State + lazy-loading vault entry; then this end-of-session commit with the hardening vault entry + CLAUDE.md update).
+**What got done — by phase:**
 
-**Decisions Vince articulated this session:**
-- MCP build-vs-buy rule has structure now: our products = build, 3rd-party = buy. Not "case-by-case."
-- Personal-first bar is two-part (learnings + non-job structure), not just track record.
-- Employer name never enters committed content or commit messages. Portfolio-wide.
-- Pin + audit + observe is the standing discipline for any third-party MCP, codified in the wireup vault entry. Two strong template-upgrade-PR candidates against `claude-agent-template`: lazy-loading discipline + third-party MCP wireup defaults.
+**Phase 1 (2026-05-20–21): MCP hardening loop-closed + SPEC shipped to engineering.**
+- Pinned `slack-mcp-server@1.3.0`. Source audit by subagent (trust-with-caveats; binary-vs-source caveat called out). Live network observation: only `*.slack.com` hosts; verified via TLS cert SNI rather than reverse DNS. Binary sha256 recorded.
+- Vault entries: CLAUDE.md lazy-loading discipline; third-party MCP wireup pattern (env-var + version pin + four-step audit + binary-vs-source caveat).
+- Outputs: MCP onboarding SPEC (~200 lines, AI-agent-readable) + Slack blurb (~280 words). Vince posted both to the work AI channel 2026-05-21.
 
-**Carried forward / open:**
-- Remaining seed patterns from system prompt (skills-complement-MCPs, master-agents-self-architect, Context Seven) — still pending vault capture.
-- Robin/del-infra absorption — still on hold per Vince.
-- Two hot personal projects to name — when Vince is ready. Informs kickstart-pack prioritization.
-- Evernote MCP wireup — not yet started.
-- AgentMail Python helper — deferred.
-- First template-upgrade PR against `claude-agent-template` — two strong candidates now: lazy-loading discipline + third-party MCP wireup defaults (gitignored `.env.local`, `${VAR}`-referenced `.mcp.json`, version pin, audit checklist).
-- **Small breadcrumb worth noticing next session:** Vince posted twice in the work AI channel today about output-tooling friction — MD→PDF export chaos this morning ("it's a mess!"), Cowork's multimodal SVG-from-.eml capability this evening. Two data points in one day hinting at an output-rendering problem area. Could be a vault candidate or an advisory.
+**Phase 2 (2026-05-22): role recalibration + `.sample`-companion pattern.**
+- Two-step role recalibration: (1) "AI guru, not project creator" — kickstart packs/template PRs become downstream; (2) "AI CTO / Chief Architect" — Sage doesn't produce kickstart packs or template PRs at all. Vince does all implementation. Explicit push-back rule.
+- Capability-building yardstick (not paper-cuts). Verbatim: MD→PDF / Cowork-SVG = nit issues; high-leverage = MCP hardening, better-use-of-skills, BMAD, Cowork-vs-CC routing, cost/model routing.
+- Vince surfaced `.sample`-companion pattern from another project. Vault entry: gitignored configs need tracked `.sample` companions.
+
+**Phase 3 (2026-05-23): ingestion sweep started + work-repo access discipline.**
+- First cross-project review: an internal infra/ops project (Ansible + OpenStack).
+- Vault entry: handoff pattern + structured context transfer (folded in negative-space-documentation insight as a sub-section; will extract if pattern surfaces in another project's artifacts).
+- New feedback memory: "don't elevate domain-specific patterns to universal on thin evidence" — three confidence tiers (observed / candidate / universal); cross-project sweep is the validation mechanism.
+- Brand-scrub bug caught and fixed (product-brand triangulation, not just bare company name) → broadened the no-employer-name memory portfolio-wide. Pre-stage grep is mandatory.
+- Discussed access to three work repositories. Chose fine-grained PAT (read-only, narrow-scope, expiration); chose ansible-vault for token storage (motivation: tooling familiarity, not threat-model — alternatives to evaluate when del-infra is reviewed). Token requested, **org admin approval pending**.
+- Project Review Queue established in `CLAUDE.local.md`.
+
+**Decisions Vince articulated this session (durable):**
+- MCP build-vs-buy structured rule: our products = build, 3rd-party = buy.
+- Personal-first two-part bar: enough learnings + non-job-creating structure.
+- Employer name + product brand + triangulating pairings all out of committed content. Pre-stage grep mandatory.
+- Role: AI CTO / Chief Architect. Knowledge layer, not implementer. Push back on drift.
+- Yardstick: capability-building, not paper-cuts.
+- Don't elevate domain-specific patterns to universal without cross-project validation.
+- ansible-vault for tokens (familiarity-driven, not security-depth-driven).
+
+**Commits pushed this session:**
+- `b838517` — Slack MCP wireup + post-meeting state + lazy-loading vault entry.
+- `4524046` — MCP hardening closeout + third-party MCP wireup vault entry.
+- `8b7378f` — Two more vault entries (`.sample`-companion + handoff pattern).
+- (This commit) — end-of-session CLAUDE.md update reflecting role recalibration + session closeout.
+
+**Open items going into next session:**
+- **Work-repo sweep** — halted pending org admin approval of fine-grained PAT for three work GitHub repositories. External blocker.
+- **del-infra personal project review** — no access blocker. When picked up, also evaluate alternatives to ansible-vault (1Password CLI / `op`, macOS Keychain via `security`, SOPS, age, Bitwarden CLI, direnv with secret pulls). See Project Review Queue.
+- **Three seed patterns** from `prompts/system_prompt.md` still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
+- **Two unnamed "hot" personal projects** still pending names from Vince.
+- **Vault entry candidates queued (tier-2, write only with worked example):** "Narrow-scope PATs for cross-repo crawls" (after first work-repo crawl); "Negative-space documentation = highest-value content" (after pattern seen independently in a second project).
+- **Output-tooling friction** (MD→PDF, multimodal docs) — flagged earlier but explicitly DEPRIORITIZED by Vince as a nit-tier issue. Not on active list.
 
 **Next session — pick up here:**
-1. Cold start — re-read CLAUDE.md first.
-2. No outstanding blockers. Reasonable next moves if Vince doesn't specify:
-   - Capture one of the remaining seed patterns from `prompts/system_prompt.md`.
-   - Surface the output-tooling-friction breadcrumb (above) as either an advisory or a vault candidate.
-   - Move toward scaffolding the first kickstart pack.
+1. Cold start — re-read `CLAUDE.md` **AND** `CLAUDE.local.md` (especially the *Project Review Queue* section — it holds employer-specific project names that don't belong in the public repo).
+2. Check whether the fine-grained PAT has been approved (Vince will likely mention).
+3. If approved: resume work-repo sweep. Otherwise: del-infra review, or seed-pattern capture, or wait for Vince's direction.
 
-**Session continuity:** Vince is closing this session and restarting. **Next session is a cold start — re-read CLAUDE.md before doing anything.** Launch from project root: `source .env.local && claude` (the `source` is required — without it the Slack MCP token won't be in env and Slack tools will silently disappear).
+**Session continuity:** Vince is closing this session and restarting. **Next session is a cold start — re-read CLAUDE.md AND CLAUDE.local.md before doing anything.**
+
+Launch from project root:
+```bash
+source .env.local && claude
+```
+Once the PAT is approved and ansible-vaulted, launch becomes:
+```bash
+ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass eval "$(ansible-vault view .env.local.vault)"
+source .env.local
+claude
+```
