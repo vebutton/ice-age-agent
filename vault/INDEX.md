@@ -22,6 +22,7 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 ## Agent Architecture
 
 - [2026-05-23 — Handoff documents: structured context transfer when fresh context beats accumulated context](2026-05-23-handoff-pattern-structured-context-transfer.md) — 10-section handoff doc + fresh second-session pattern; "What's been ruled out" is the highest-value section. Sourced from an internal infra/ops project review + Matt Pocock convergent-discovery footnote. *Status: seed*
+- [2026-05-24 — Agent-mediated structured writeup: encode domain conventions, accelerate first draft](2026-05-24-agent-mediated-structured-writeup.md) — dedicated agent encodes section structure + phrasing conventions + reviewer expectations for a recurring writeup type; author moves from "writing from scratch" to iterating on a strong first draft. Worked example: 30 min vs ~2 weeks on a vendor questionnaire. HITL calibration is the open question — candidate harness experiment to provide data. *Status: seed*
 
 ## Work-specific
 
