@@ -28,10 +28,12 @@ Thumbs.db
 
 # Project-specific local-only directories — never commit
 # (customer/sample docs in collateral/; generated drafts in output/;
-#  unprocessed inbound content in inbox/, including AgentMail-fetched newsletters)
+#  unprocessed inbound content in inbox/, including AgentMail-fetched newsletters;
+#  routed deep-context files paired with CLAUDE.local.md pointers in local/)
 collateral/
 output/
 inbox/
+local/
 
 # Local-only files — backlog, scratch pads, meta notes — never commit
 TODO.md
