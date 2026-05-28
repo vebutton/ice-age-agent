@@ -74,78 +74,116 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - [x] Slack MCP hardening — pinned `slack-mcp-server@1.3.0`, source audit (trust-with-caveats), live network observation confirming only Slack-owned endpoints. Binary sha256 recorded in `vault/2026-05-20-third-party-mcp-wireup-pattern.md`.
 - [x] **Role recalibration (2026-05-22):** Sage = AI CTO / Chief Architect. Knowledge holder across projects, not implementer. No kickstart packs, no template PRs. Explicit push-back rule on dialog drift to implementation. Yardstick: capability-building, not paper-cuts.
 - [x] **Pattern delivery cadence established** — two portable patterns shipped to work AI channel inside one week (MCP Hardening SPEC 2026-05-21, Handoff Skill 2026-05-22 with Matt Pocock credit).
-- [x] **Mobile-app research baseline (2026-05-24):** Matt Pocock's 7-step workflow synthesized from `collateral/HOW do you engineer with AI_.eml` + `mattpocock/skills` open-source catalogue mapped. 5/7 steps directly covered by skills; Step 6 (Ralph loops / execution) is the cohort's residual value as a *pattern*, not a skill. Mobile substitutions identified for the two side projects: Expo before Step 4; slices-not-walk-away at Step 6; vendor-API reconnaissance at Step 2 for the Android solar/EV-charging app.
-- [x] **AI notebook one-shot ingestion (2026-05-24):** 21 Evernote notes synthesized to `output/20260524-ai-notebook-synthesis.md` via sub-agent; 32-item drop list at `output/20260524-ai-notebook-drop-list.md` pending Vince's review. Evernote MCP remains correctly deferred — notebook is input-dump not memory, no value in live sync yet.
-- [x] **Structured-writeup pattern vaulted (2026-05-24):** `vault/2026-05-24-agent-mediated-structured-writeup.md` — domain-conventions-encoding agent + multiplicative compression vs. a manual baseline (worked-example details kept in gitignored memory). HITL calibration listed as the open question feeding the harness experiment.
-- [~] **Work harness experiment scoped (2026-05-24):** primary deliverable is the *process writeup* (cost-per-output / HITL calibration / 7-step application notes), NOT the final tool. MVP candidate selected and held in gitignored memory + synthesis output, pending Vince's confirmation. Operational Qs on the work CC access path tracked in memory.
-- [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue* section for queued / in-progress / reviewed projects. First review completed 2026-05-23 (an internal infra/ops project); produced two vault entries.
-- [ ] **Three pending seed patterns** from `prompts/system_prompt.md` still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven. Mechanical work to build vault depth.
+- [x] **Mobile-app research baseline (2026-05-24):** Matt Pocock's 7-step workflow synthesized from `collateral/HOW do you engineer with AI_.eml` + `mattpocock/skills` open-source catalogue mapped. 5/7 steps directly covered by skills; Step 6 (Ralph loops / execution) is the cohort's residual value as a *pattern*, not a skill. Mobile substitutions identified for the two side projects.
+- [x] **AI notebook one-shot ingestion (2026-05-24):** 21 Evernote notes synthesized to `output/20260524-ai-notebook-synthesis.md` via sub-agent; 32-item drop list at `output/20260524-ai-notebook-drop-list.md` pending Vince's review.
+- [x] **Structured-writeup pattern vaulted (2026-05-24):** `vault/2026-05-24-agent-mediated-structured-writeup.md` — domain-conventions-encoding agent + multiplicative compression vs. a manual baseline. HITL calibration listed as the open question feeding the harness experiment.
+- [x] **Handoff vault entry promoted to confirmed (2026-05-26):** third independent inventor (Steinberger via `steipete/agent-scripts`) triggered promotion. Section #3 (Live state / running processes) added from his version. Negative-space-insight isolated as distinctive to the Vince/Pocock branch. Committed as `13124c3`.
+- [x] **Hybrid on-demand routing adopted for Sage itself (2026-05-26):** `local/` directory (gitignored) for deep content files, paired with one-line CLAUDE.local.md pointers + time-sensitive callouts. First instance: `local/skill-watchlist.md`. Eating own work-repo-pattern dog food.
+- [x] **Work-repo GitHub crawl — partial review done (2026-05-26):** fine-grained PAT for the work GH org working; AI-marker scan across 42 visible repos; read CLAUDE.md, both SKILL.md files, and on-demand context for architecture + webhooks in the primary K8s-operator repo. Full review (remaining context files, source) pending.
+- [x] **Work AI initiative captured (2026-05-27):** decision direction, Vince's TODOs, team commitments, open architectural questions all in CLAUDE.local.md. First meeting transcript + continuation notes in `collateral/`.
+- [x] **Sage scope reframed (2026-05-28):** v1 "personal-first → rolls out to work" framing replaced with current cross-context operating practice. Companion memory captures the attribution discipline. Committed as `1c47578`.
+- [~] **Work harness experiment scoped (2026-05-24):** primary deliverable is the *process writeup*. MVP candidate selected and held in gitignored memory, pending Vince's confirmation.
+- [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue*. Reviewed: internal infra/ops project (2026-05-23); primary K8s-operator work repo partial (2026-05-26). Priority-bumped: del-infra / Robin absorption (Robin = Vince's OpenClaw research assistant; lives in `del-infra`). Two other work repos still uncertain — confirm access with admin.
+- [ ] **Three pending seed patterns** still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
+- [ ] **Two tier-2 vault candidates ready for write:** on-demand context routing, negative-space documentation (both have worked examples now).
+- [ ] **iOS skill review window: June 2026** — three Apple-platform skills queued (per `local/skill-watchlist.md`).
 - [ ] Wire up Evernote MCP (deferred)
 - [ ] AgentMail Python helper (deferred)
-- [ ] Robin / del-infra absorption — now folded into the cross-project sweep (see Project Review Queue in `CLAUDE.local.md`)
+- [ ] Auto Dream — not yet in current CC install; check after upgrade. Revisit enable decision when memory crosses ~30 entries.
 
 ## Session State
-**Last session:** 2026-05-24 (single day; substantial). Four phases — Matt Pocock 7-step research, memory hygiene + cost-model clarification, Evernote AI notebook one-shot ingestion, work harness experiment scoping + structured-writeup pattern vaulted. **6 new memories** banked.
+**Last session:** 2026-05-26 through 2026-05-28 (multi-day; substantial). Five threads — work-repo GitHub crawl, handoff vault entry promotion, hybrid on-demand routing adopted for Sage itself, work AI initiative captured, Robin cross-agent exchange + Sage scope reframe. **Four new memories banked**, plus a fifth (`project_sage_low_profile_at_work`) replacing an outdated one.
 
-**What got done — by phase:**
+**What got done — by thread:**
 
-**Phase 1: Matt Pocock 7-step research baseline.**
-- Read `collateral/HOW do you engineer with AI_.eml` (the AI Hero cohort pitch). Synthesized the 7-step workflow (Idea → Research → Prototype → PRD → Kanban → Execution → QA). Thesis: "people problems" don't change with AI; explicit rebuttal of Sean Grove's "Specs Over Code" as waterfall-rebranded.
-- For the two side projects (Android solar/EV-charging + iOS storyteller / Mum's stories), identified three mobile-specific substitutions: pick Expo before Step 4; treat Step 6 as "slices not walk-away" on mobile (no Simulator-driving agent yet); vendor-API-access reconnaissance at Step 2 is the real gate for the solar/EV app.
-- Investigated whether Matt's skills are open-source. They are — `mattpocock/skills` is canonical (one-line install). 17 skills total; 9 engineering. Mapped to the 7 steps: 5/7 directly covered (Idea / PRD / Kanban / QA via tdd+diagnose+triage, plus bonus `improve-codebase-architecture`). NOT skills: Research, Prototype, Execution (Ralph loops). Step 6 is the cohort's residual value as a *pattern*. Matt explicitly critiques BMAD/GSD/Spec-Kit in the README.
-- Initial recommendation: install Matt's skills as-is (free), write own ~50-line headless loop instead of the $1K cohort. That recommendation got revised in Phase 4 once Vince noted `claude -p` is API-billed.
+**Thread 1: Work-repo GitHub crawl (2026-05-26).**
+- Fine-grained PAT for the work GH org approved + working. AI-marker scan across 42 visible repos returned exactly 1 CLAUDE.md (in the primary K8s-operator repo), 0 other markers (no AGENTS.md, no .cursorrules, no .mcp.json, no copilot-instructions.md).
+- Read that repo's CLAUDE.md (~3.5KB, lean), both SKILL.md files (a Go/operator-development skill, a PR-workflow skill), and two on-demand context files (architecture overview, webhook architecture). Pending for full review: remaining context files (CRDs, flows), skill reference docs, repo source.
+- **Discovery:** the PR-workflow skill in that repo = the canonical PR shape the team is converging on per the 2026-05-27 internal AI meeting recap.
+- Two tier-2 vault candidates surfaced (not yet written): **on-demand context routing** (worked example: lean CLAUDE.md routing table + matching "When to load" headers in each context file) and **negative-space documentation** (worked example: the webhook context file — dense, irreplaceable).
+- Two other work repos still not visible with current PAT — different org or different names; verify with admin.
 
-**Phase 2: memory hygiene + cost-model clarified.**
-- Banked new memories this session, several driven by Vince's explicit corrections:
-  - `feedback-vault-vs-memory-distinction` — Vault = concrete portable artifacts; memory = behavioral rules. Cataloguing concrete artifacts is single-source-OK vault content, exempt from the cross-validation rule in [[feedback-pattern-domain-specificity]].
-  - `feedback-cc-subscription-vs-api-cost` — `claude -p` is API-billed; interactive CC + Task sub-agents are subscription-included. For unmonetized projects = interactive only. Per-project monetization is the flag.
-  - `feedback-filename-date-convention` — Compact `YYYYMMDD-topic.ext`. Vault keeps existing dashed convention.
-  - `feedback-personal-business-info-out-of-checkins` — Personal-business / monetization-plan details stay out of committed content. Same pre-commit grep discipline as [[feedback-no-company-name-in-checkins]].
-  - `feedback-no-company-name-in-checkins` was *broadened* this session: internal infrastructure topology + subscription tier/account specifics + internal artifact/agent names + internal MVP candidate names also belong out of committed files. Memory + `CLAUDE.local.md` hold the fidelity.
+**Thread 2: Handoff vault entry promoted to confirmed (committed as `13124c3`).**
+- Steinberger's `/handoff` slash-command in `steipete/agent-scripts` is the third independent inventor (Vince informally, Matt Pocock named/structured, now Steinberger) — triggered promotion from seed to confirmed.
+- Added section #3 "Live state / running processes" borrowed from Steinberger's checklist (tmux attach commands, dev servers, debuggers, background scripts).
+- **Negative-space-insight isolation:** Steinberger's checklist does NOT have "What's been ruled out" as headline-value — only 2 of 3 inventors share that insight. Strengthens the case for promoting negative-space-documentation to its own standalone vault entry.
+- `vault/INDEX.md` updated to match.
 
-**Phase 3: Evernote AI notebook one-shot ingestion.**
-- Vince exported AI notebook as `.enex` (21 notes); dropped at `inbox/20260524-AI-notebook.enex` (gitignored).
-- Sub-agent extracted structured summary → `output/20260524-ai-notebook-synthesis.md` (gitignored). Index + 4 warmup MVP candidates scored + side-project context dumps + 9 research-debt clusters + 10 surprise patterns.
-- Drop list written to `output/20260524-ai-notebook-drop-list.md` — ~32 items across R1 (agentic-runners FOMO), R4 (on-prem GPU, by Vince's own prior ruling), R8 (lifestyle agent stubs), R9 (webinar attendance logs). Pending Vince's checkbox-review pass.
-- Cross-cutting observation: **voice/transcription is a unifying primitive** under multiple captured ideas (Mum stories + several voice-capture workflows whose specifics stay in gitignored memory). Recommendation: standardize on one (superwhisper is the front-runner by mention-count).
-- Meta-observation: **Evernote lags this repo** — the last two weeks of Sage work didn't make it back to Evernote. Confirms Evernote is input-dump, not memory. Evernote MCP wireup remains correctly deferred.
+**Thread 3: Hybrid on-demand routing adopted for Sage itself.**
+- Created `local/` directory (gitignored). Per-topic deep content files paired with one-line CLAUDE.local.md pointers + time-sensitive callouts. Eating our own on-demand-routing dog food from the work-repo crawl.
+- First instance: `local/skill-watchlist.md` for third-party skill watchlist (steipete/agent-scripts + Robin's recommendations + clawhub.ai sources). Pointed at from CLAUDE.local.md's new "Back-burner watchlists" section with iOS June 2026 priority callout in the always-loaded reminder line.
+- Pattern generalizes — next watchlist topic (newsletters, talks, events) gets the same shape: add `local/<topic>-watchlist.md` + one more line to CLAUDE.local.md.
 
-**Phase 4: work harness experiment scoped + structured-writeup pattern vaulted.**
-- Vince surfaced internal-context corrections that reshaped both the experiment design and the MVP candidate selection. Details kept in gitignored memory + `CLAUDE.local.md` per the broadened [[feedback-no-company-name-in-checkins]] rule.
-- Experiment design sharpened: it's not "does the loop work" — it's **"what's the cost-per-output curve as HITL relaxes?"** Instrument from day one (per-call token logs + intervention count + wall-clock). Pre-declare manual baseline before runs. Time-box harness runs (overnight/weekend) to separate signal from everyday CC usage.
-- MVP recommendation finalized; candidate held in gitignored memory + synthesis output. Repo-archive-triage stays optional as a half-day harness shakedown.
-- Vault entry: `vault/2026-05-24-agent-mediated-structured-writeup.md` — pattern shape (encode domain conventions → accelerate first draft); portable to blogs, briefs, security reviews, CFPs, etc.; HITL calibration listed as the open question. Indexed under Agent Architecture.
+**Thread 4: Work AI initiative captured (all in gitignored files).**
+- First meeting transcript already in `collateral/` (received same day). Second meeting (post-Zoom-boot continuation) notes captured in `collateral/`.
+- Full work-AI-initiative section added to CLAUDE.local.md: shared-repo decision direction (Phase 1: work GH org repo organized by team folder; Phase 2: enterprise plugin later), Vince's TODOs (create repo, upload handoff skill, continue skill search, try plugins, try hooks), team-member commitments, open architectural questions (skill-upload mechanics, two hook types, plugin vs skill distinction).
+- **Discovery:** the "skill-finding tool" demoed at the first meeting was Sage (gist conveyed in recap, name withheld) — confirms the low-profile attribution rule is operating naturally.
+- Cross-reference: a deterministic-hooks approach in the .eml = the "feature hooks (no tokens)" type from Vince's continuation notes (same thing, two vantage points).
+
+**Thread 5: Robin cross-agent exchange + Sage scope reframe.**
+- Robin (Vince's OpenClaw research assistant) sent 4 skill suggestions. Evaluated: `skill-creator` (best fit — would accelerate the "vault → shared work repo" pipeline), `taskflow` (worth a look if it complements Session State pattern), GitHub Spec-Kit templates (with the "spec-first = waterfall rebranded" caveat from the structured-writeup vault entry), `coding-agent` (skip — wrong fit for Sage's knowledge-holder role). All three viable plus clawhub.ai source added to `local/skill-watchlist.md`.
+- del-infra/Robin priority-bumped in CLAUDE.local.md Project Review Queue. Robin's accumulated knowledge is the one-time-absorption target named in CLAUDE.md Inputs since v1 bootstrap.
+- **Sage scope reframe:** Vince corrected the v1 "personal-first" framing. Memory file renamed with updated framing capturing current cross-context operating practice + low-profile attribution discipline. CLAUDE.md scope line updated to match (committed as `1c47578`).
 
 **Decisions Vince articulated this session (durable):**
-- **Filename date convention is compact `YYYYMMDD`** (vault exception keeps dashes).
-- **Vault vs. memory rule:** vault = concrete portable artifacts; memory = behavioral rules. Cataloguing concrete artifacts is exempt from the cross-validation tier-rule.
-- **`claude -p` cost model:** API-billed per token; for unmonetized projects = interactive only. For work, check the existing CC subscription's API-credit allowance before framing as a new budget ask.
-- **"Process value > tool value"** for the harness experiment — primary deliverable is the *process writeup* (cost-per-output / HITL calibration / 7-step application notes), not the artifact built along the way.
-- **Don't pay $1K for Matt's cohort.** Skills are open-source; the residual value is the Step 6 (Ralph loops) pattern, which is well-understood orchestration over CC headless and writeable in-house.
+- **Hybrid routing pattern for Sage itself:** CLAUDE.local.md = lean reminders + routing pointers; `local/*.md` = deep content loaded on demand. Mirrors the work-repo pattern.
+- **Sage scope is current cross-context operating practice**, not personal-first-experimental. Low-profile attribution at work — outputs ship under Vince's name; gist visibility OK in casual peer conversations; no formal pitch / no evangelism.
+- **Commit-message discipline:** substantive bodies expected (the `13124c3` handoff body is the gold standard); personal-life specifics stay OUT regardless of file changed. Personal-repo amplifier rule: stricter for personal repos, not looser. Even when specifics appear in the diff file itself, do not amplify in commit-message body.
+- **Skill watchlist priorities:** iOS app skills priority window is June 2026. `skill-creator` from Robin's batch is the strongest near-term fit because it accelerates the work shared-repo upload pipeline.
+
+**New memories banked this session:**
+- `feedback-plain-language-for-new-material` — lead with plain words + concrete examples when introducing material Vince hasn't worked on yet.
+- `feedback-partial-coverage-is-fine-in-research` — ~60–70% coverage with a surfaced "still TBD" bucket beats burning tool calls to chase 100%.
+- `project-sage-low-profile-at-work` — replaces `project-sage-stays-personal-first`; captures current cross-context practice + low-profile attribution discipline.
+- `feedback-personal-life-specifics-out-of-commit-messages` — personal-life specifics stay out of commits regardless of file; substantive project-technical bodies are expected.
 
 **Commits pushed this session:**
-- (Pending at session close — committable changes are `vault/2026-05-24-agent-mediated-structured-writeup.md` NEW, `vault/INDEX.md` modified, `CLAUDE.md` modified. Awaiting Vince's go-ahead.)
+- `13124c3` — Promote handoff vault entry to confirmed; gitignore `local/` for routed context.
+- `1c47578` — CLAUDE.md "This Project" scope description refreshed.
 
 **Open items going into next session:**
-- **MVP decision for the work harness experiment** — Vince said "Let me think this over a bit." Candidates and rankings held in gitignored memory + synthesis output. One gets picked.
-- **Operational Qs on the work CC access path** — tracked in memory. One DM (not a meeting) once Vince is ready.
-- **32-item drop list at `output/20260524-ai-notebook-drop-list.md`** — pending Vince's checkbox-review pass.
-- **One aged internal-tool TODO** (Evernote note 1, carried over from earlier work-account migration; specifics held in gitignored memory) — explicit decision whether to fold into the harness experiment or drop.
-- **Mum stories / Mind Maker app** — needs a 30-min brain-dump before any scoping. One line of Evernote context exists; not enough.
-- **Voice/transcription unifier** — chase & standardize. superwhisper front-runner.
-- **Sage's Evernote stub (note 3) lags the repo definition** — update Evernote or treat as time-capsule of the original "find reusable AI skills" framing.
-- **Work-repo sweep** (carried from prior session) — still halted pending org admin approval of fine-grained PAT. External blocker.
-- **del-infra personal project review** (carried) — no access blocker; queued. Evaluate ansible-vault alternatives when picked up.
-- **Three seed patterns** (carried) still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
-- **Two unnamed "hot" personal projects** (carried) — **likely now named:** Android solar/EV-charging app + Mum stories iOS app surfaced in this session's Evernote ingestion. Confirm with Vince.
-- **Vault entry candidates queued (tier-2):** "Narrow-scope PATs for cross-repo crawls" (after first work-repo crawl); "Negative-space documentation = highest-value content" (after pattern seen independently); "Two-phase de-risking for harness experiments at work" (after the harness MVP completes).
+
+*Work AI initiative (tracked in CLAUDE.local.md):*
+- Vince's TODOs: create shared work GH repo, upload handoff skill as first validated entry, try plugins, try hooks.
+- Wait for team deliverables tracked in CLAUDE.local.md (enterprise-skill-packaging research, repo-binding admin steps).
+
+*Skill watchlist (`local/skill-watchlist.md`):*
+- iOS app skill review window: **June 2026**.
+- Strongest near-term candidates from Robin batch: `skill-creator` (strongest), `taskflow`, GitHub Spec-Kit templates.
+- Verify clawhub.ai CC vs OpenClaw coverage.
+- 9 unclassified Steinberger skills available for deeper pass on request.
+
+*Work-repo crawl:*
+- Full review pending: remaining context files (CRDs, flows), skill reference docs, repo source.
+- Two other work repos still uncertain — verify access with admin.
+- Tier-2 vault candidates queued for write: on-demand context routing, negative-space documentation (both have worked examples now).
+
+*Robin / del-infra (priority-bumped):*
+- Vince to point Sage at Robin's data when ready for the one-time absorption.
+- del-infra original review goals: ansible-vault alternatives evaluation.
+
+*Auto Dream:*
+- Not yet in current CC install (confirmed via `/memory`). Check after next CC upgrade.
+- Sage memory currently ~18 entries; revisit Auto Dream enable decision when it crosses ~30.
+
+*From earlier sessions (carried):*
+- MVP decision for work harness experiment.
+- 32-item drop list at `output/20260524-ai-notebook-drop-list.md` pending checkbox review.
+- Mum stories / Mind Maker app — 30-min brain-dump needed.
+- Voice/transcription unifier standardization (superwhisper front-runner).
+- Three seed patterns still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
+
+**Inbox saved this session:**
+- `inbox/20260527-arps18-claude-code-mastery.md` — Arpan Patel's "Beyond the Prompt: Claude Code" guide (community Slack share). Substantial overlap with active Sage threads (CLAUDE.md style, skills, plugins, hooks, MCPs). Closer reading still pending.
 
 **Next session — pick up here:**
-1. Cold start — re-read `CLAUDE.md` **AND** `CLAUDE.local.md` (Project Review Queue + work channel name live there).
-2. Check (a) Vince's warmup MVP pick, (b) credit-pool answers if he asked the admin, (c) PAT approval status (carried from prior session).
-3. If MVP picked: scope first slice. Otherwise: drop-list review, Mum stories brain-dump, seed-pattern capture, or wait for direction.
+1. Cold start — re-read `CLAUDE.md` **AND** `CLAUDE.local.md` (both have substantive updates).
+2. Check Vince's progress on: (a) shared work GH repo creation, (b) plugins + hooks experimentation, (c) any team-deliverable arrivals.
+3. If work-repo crawl access still working, consider continuing the review.
+4. If del-infra/Robin absorption is the next priority, Vince to point Sage at her data.
+5. Tier-2 vault candidates (on-demand context routing, negative-space documentation) are ready for write if Vince wants to clear that backlog.
 
-**Session continuity:** Vince is closing this session and restarting. **Next session is a cold start — re-read CLAUDE.md AND CLAUDE.local.md before doing anything.**
+**Session continuity:** Vince is closing this session. **Next session is a cold start — re-read CLAUDE.md AND CLAUDE.local.md before doing anything** (per Vince's global rule).
 
 Launch from project root:
 ```bash
