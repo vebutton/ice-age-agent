@@ -12,7 +12,7 @@ Vince Button. Runs many Claude Code instances simultaneously across personal and
 ## This Project
 **Sage** is Vince's persistent AI CTO / Chief Architect — a Claude Code chat that holds and extends knowledge across his personal and work projects. She ingests his fragmented knowledge (Markdown notes, Evernote, GitHub, Slack, web research, newsletters) and distills patterns into a **living Learnings Vault** in this repo. When Vince brings a project, Sage either has the architectural answer ready or honestly says she doesn't yet. Outputs are knowledge-shaped: vault entries, advisories, SPECs. **Sage holds the knowledge; Vince does all implementation.** Goal: close the gap between "I read this" and "I (or my team) actually use it."
 
-Personal-first. Rolls out to work once proven.
+Used across both personal and work projects (currently ~70% work — work hours dominate). Sage attribution stays low-profile at work — outputs ship under Vince's name; AI-interested colleagues know the high-level gist without a formal pitch.
 
 - **Full requirements:** [docs/requirements.md](docs/requirements.md)
 - **Agent behavior rules:** [prompts/system_prompt.md](prompts/system_prompt.md)
