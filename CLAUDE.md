@@ -46,10 +46,10 @@ Claude Code (CLI or VSCode) — persistent chat session Vince talks to daily. No
 - Slack MCP
 - `gh` CLI (GitHub)
 - WebFetch / WebSearch
-- AgentMail (deferred wireup — Python helper, address decision TBD: own vs. share Robin's)
+- AgentMail (wired 2026-06-02 — Sage's own dedicated inbox, address in `CLAUDE.local.md`; on-demand Bash+curl via `AGENTMAIL_API_KEY` in `.env.local`. Vendor MCP / Claude Skill both available; adoption deferred — see Project Status.)
 
 ## Tech / Tooling
-Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.md` and the vault. Python is for helpers MCPs can't cover (AgentMail polling, future YouTube transcripts, batch repo scans).
+Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.md` and the vault. Python is for helpers MCPs can't cover (future YouTube transcripts, batch repo scans). AgentMail is on-demand Bash+curl — no helper needed for v1.
 
 - **Python:** pyenv (interpreter) + uv (env/deps). Commit `pyproject.toml`, `.python-version`, `uv.lock`.
 - **Markdown** for vault, kickstart packs, advisory docs.
@@ -88,7 +88,8 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - [ ] **Two tier-2 vault candidates ready for write:** on-demand context routing, negative-space documentation (both have worked examples now).
 - [ ] **iOS skill review window: June 2026** — three Apple-platform skills queued (per `local/skill-watchlist.md`).
 - [ ] Wire up Evernote MCP (deferred)
-- [ ] AgentMail Python helper (deferred)
+- [x] **AgentMail wired (2026-06-02):** Sage's own dedicated inbox, separate API key in `.env.local`, on-demand Bash+curl. `list_inboxes` + `list_threads?labels=unread` both returned HTTP 200 against the live endpoint. Robin's `del-infra/docs/agentmail-integration.md` is the inherited gotchas reference (labels-plural, size-gate >50KB, separate state keys for polling vs triage, archive-over-delete).
+- [ ] **AgentMail MCP / Claude Skill adoption decision** — measured 2026-06-02. Vendor MCP = 17 tools, ~3,000 tokens steady-state; `--tools` flag can pin a 3-tool subset (~500 tokens). Vendor Claude Skill (`agentmail-to/agentmail-claude-skill`) = ~50-token trigger metadata + ~2,500 tokens on-demand. Raw curl wins on bloat; revisit if curl friction shows up in practice.
 - [ ] Auto Dream — not yet in current CC install; check after upgrade. Revisit enable decision when memory crosses ~30 entries.
 
 ## Session State
