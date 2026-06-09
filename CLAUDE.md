@@ -83,113 +83,55 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - [x] **Work AI initiative captured (2026-05-27):** decision direction, Vince's TODOs, team commitments, open architectural questions all in CLAUDE.local.md. First meeting transcript + continuation notes in `collateral/`.
 - [x] **Sage scope reframed (2026-05-28):** v1 "personal-first → rolls out to work" framing replaced with current cross-context operating practice. Companion memory captures the attribution discipline. Committed as `1c47578`.
 - [~] **Work harness experiment scoped (2026-05-24):** primary deliverable is the *process writeup*. MVP candidate selected and held in gitignored memory, pending Vince's confirmation.
-- [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue*. Reviewed: internal infra/ops project (2026-05-23); primary K8s-operator work repo partial (2026-05-26). Priority-bumped: del-infra / Robin absorption (Robin = Vince's OpenClaw research assistant; lives in `del-infra`). Two other work repos still uncertain — confirm access with admin.
+- [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue*. Reviewed: internal infra/ops project (2026-05-23); primary K8s-operator work repo partial (2026-05-26). Priority-bumped: del-infra / Robin absorption (Robin = Vince's OpenClaw research assistant; lives in `del-infra`). Two additional work repos: PAT request submitted 2026-06-09 for both; awaiting org-admin approval. A third repo originally in scope was cut due to approval-timing risk.
 - [ ] **Three pending seed patterns** still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
 - [ ] **Two tier-2 vault candidates ready for write:** on-demand context routing, negative-space documentation (both have worked examples now).
 - [ ] **iOS skill review window: June 2026** — three Apple-platform skills queued (per `local/skill-watchlist.md`).
 - [ ] Wire up Evernote MCP (deferred)
 - [x] **AgentMail wired (2026-06-02):** Sage's own dedicated inbox, separate API key in `.env.local`, on-demand Bash+curl. `list_inboxes` + `list_threads?labels=unread` both returned HTTP 200 against the live endpoint. Robin's `del-infra/docs/agentmail-integration.md` is the inherited gotchas reference (labels-plural, size-gate >50KB, separate state keys for polling vs triage, archive-over-delete).
+- [x] **First plugin install + first skill-creator run (2026-06-05):** Installed Anthropic `anthropic-agent-skills` marketplace + `example-skills` plugin (12 skills incl. `skill-creator`, `mcp-builder`). Used `skill-creator` to build `setup-github-pat` skill from earned scars across two prior PAT setups. Skill global at `~/.claude/skills/setup-github-pat/` (out of repo scope). Knocks out one "try plugins" TODO; `git-commit-from-file` named as the next natural candidate.
+- [x] **Pocock 7-step engineering workflow vaulted (2026-06-02):** `vault/2026-06-02-pocock-7-step-engineering-workflow.md` — lightweight alternative to spec-first / waterfall-rebranded approaches. 5/7 steps backed by skills in `mattpocock/skills`. First executed worked example (Step 1, `grill-with-docs`) recorded with positive outcome on a personal-track project (2026-06-05/06). Status: seed (single-source).
+- [x] **Skill-extraction methodology vaulted (2026-06-09):** `vault/2026-06-09-skills-extracted-not-anticipated.md` — Vince's articulated principle: skills are extracted from demonstrated reuse, not anticipated reuse. Two trigger axes — cross-project (spatial) + same-project temporal. Worked examples on the cross-project axis (`handoff`, `access-openstack`); same-project axis pre-worked-example with `git-commit-from-file` named as likely first. Source for the meeting-prep doc (`output/20260610-skills-when-to-use.md`, gitignored).
 - [ ] **AgentMail MCP / Claude Skill adoption decision** — measured 2026-06-02. Vendor MCP = 17 tools, ~3,000 tokens steady-state; `--tools` flag can pin a 3-tool subset (~500 tokens). Vendor Claude Skill (`agentmail-to/agentmail-claude-skill`) = ~50-token trigger metadata + ~2,500 tokens on-demand. Raw curl wins on bloat; revisit if curl friction shows up in practice.
 - [ ] Auto Dream — not yet in current CC install; check after upgrade. Revisit enable decision when memory crosses ~30 entries.
 
 ## Session State
-**Last session:** 2026-06-02 (single-day; AgentMail wireup + MCP-bloat measurement + first real inbox roundtrip). Five threads. **No new memories banked** — existing memories sufficient and all applied (build-vs-buy stance, vault-vs-memory distinction, pattern-domain-specificity, partial-coverage-OK, plain-language-first).
 
-**What got done — by thread:**
+> Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Thread 1: AgentMail wired end-to-end (committed as `c7a7c19`).**
-- Sage's own dedicated AgentMail inbox stood up (literal address in `CLAUDE.local.md`), separate API key from Robin's stored in `.env.local`. Template entry added to `.env.local.example`.
-- Retrieval pattern: on-demand Bash+curl only. No auto-poll, no cron. The Python helper v1 had earmarked is unnecessary for this access pattern — Tech/Tooling line updated accordingly.
-- Robin's `del-infra/docs/agentmail-integration.md` is the inherited gotchas reference (labels=PLURAL, size-gate >50KB, separate polling vs triage state keys, archive-over-delete) — referenced rather than copied to avoid drift.
-- Live confirmation across the canonical flow: `list_inboxes` (200), `list_threads?labels=unread` (200, with plural-labels gotcha respected on first call), `get_thread` (200), PATCH archive with snake_case `{"remove_labels":["unread"],"add_labels":["archived"]}` (200). Robin's gotchas held on the first try.
-- CLAUDE.md updated in three places (Key Integrations, Tech/Tooling, Project Status); `CLAUDE.local.md` got a new "AgentMail (Sage's own inbox)" section above the Slack section.
-
-**Thread 2: AgentMail MCP / Skill bloat measured.**
-- Vendor MCP (`agentmail-to/agentmail-mcp`) thin-wraps `agentmail-toolkit` and exposes **17 tools**. Estimated ~3,000 tokens steady-state when fully loaded (Zod schemas serialized as JSONSchema in the wire format). `--tools` flag can pin a 3-tool subset (`list_threads`, `get_thread`, `update_message`) → ~500 tokens steady-state.
-- Vendor Claude Skill (`agentmail-to/agentmail-claude-skill`) ≈ ~50 tokens steady-state (trigger metadata only) + ~2,500 tokens on demand when invoked. SKILL.md packaged for `.cursor/skills/`; format is identical to `.claude/skills/`.
-- Raw curl baseline = 0 steady-state. **Won for Sage's on-demand pattern.** MCP/Skill adoption deferred until curl friction shows up in real practice — logged as an open `[ ]` in Project Status.
-
-**Thread 3: Argosbrain captured in MCP watchlist (Robin-sourced).**
-- New `local/mcp-watchlist.md` companion to `local/skill-watchlist.md` (same hybrid on-demand routing pattern — pointer in `CLAUDE.local.md` Back-burner watchlists).
-- Argosbrain summary: local Rust daemon parsing repos into queryable graphs (tree-sitter/SCIP/LSP, 28 languages, 51 MCP tools). Vendor claims ~73% reduction in "re-read tax" input tokens on large repos via sub-millisecond graph queries. Pricing: free 1-project / $19/mo / enterprise.
-- Single-source, vendor-claimed numbers — pending real-codebase validation before any vault entry. Likely-real-fit candidates: deep-call-graph repos (TVK, TSR, del-infra). Likely-poor-fit: prose-heavy projects like Sage itself.
-
-**Thread 4: First inbox synthesis output (AgentNews #14, fetched and archived).**
-- The forwarded newsletter Vince sent to test the wireup carried the **MCP 101 link** he flagged: `aibuilderclub.com/blog/mcp-101-build-mcp-servers` — directly relevant to his in-flight Salesforce-MCP build (Thread 5).
-- Four other cross-thread items surfaced:
-  1. **AgentMail just shipped IMAP** (this week per the newsletter). Settings: `imap.agentmail.to:993`, SSL, password = API key. Adds a *fourth* retrieval option (curl / MCP / Skill / IMAP) — human-side mail-client monitoring becomes possible without going through the API.
-  2. **LangGraph 1.2 — durable runtimes.** Hot take: durability solves *internal* agent state; *external* state ("the internet has no checkpointer") stays unsolved. Single-source observation; worth tracking for any long-running agent design, not vault material yet.
-  3. **OpenClaw Pancake** (startup spotlight) — AI Co-founder in Slack+Browser, *Powered by OpenClaw*. Direct connection to Robin / `del-infra` / `clawhub.ai` ecosystem.
-  4. **LangChain vs CrewAI vs Raw API** (AI Builder Club) — not-a-winner decision tree. Raw SDK for single-loop, CrewAI for role-based crews, LangChain for tool/RAG ecosystem. Reasonable framing if/when Sage advises on a framework choice.
-- The 50KB triage-threshold was breached *deliberately* on this fetch — curated forward, not heartbeat traffic, and Vince explicitly asked. Rule's reason (don't pay HTML-newsletter token cost on every hourly poll) doesn't apply to one-off on-demand reads.
-
-**Thread 5: Salesforce MCP for Cowork — observation parked.**
-- Vince is building a local Salesforce MCP because the official one is read-only. **Cowork** = Claude Desktop feature (post-training-cutoff for me; Vince clarified). MCP lives outside Sage's blast radius — different consumer.
-- Build-vs-buy stance ([[project-mcp-build-vs-buy-stance]]) already has slack for this edge case: when the buy-path is missing the write surface you need, the stance auto-routes to build. Single instance; vault refinement deferred until a second data point per [[feedback-pattern-domain-specificity]].
-
-**Decisions Vince articulated this session (durable):**
-- **AgentMail = on-demand curl baseline.** No auto-poll, no cron. Address is Sage's own (not shared with Robin), separate API key. Python helper deferred indefinitely; not needed for this access pattern.
-- **MCP/Skill adoption for AgentMail: deferred.** Raw curl wins on bloat; revisit only if curl friction is real in practice.
-- **Robin's AgentMail gotchas → vault entry deferred** until Sage's own usage gives a second data point (tier-1 → tier-2 discipline).
-- **Hybrid on-demand routing pattern generalized** — `local/mcp-watchlist.md` proved the watchlist pattern from skill-watchlist transfers cleanly. Next watchlist topic gets the same shape (pointer in `CLAUDE.local.md`, deep content in `local/*-watchlist.md`).
-- **Personal-repo GH access path established:** `GITHUB_TOKEN= gh ...` prefix lets the keyring token (`repo` scope) override the active work-PAT for personal-repo reads. No new PAT needed.
-
-**New memories banked this session:** none.
-
-**Commits pushed this session:**
-- `c7a7c19` — Wire AgentMail for Sage; defer MCP/Skill adoption.
+**Last:** 2026-06-05..09. First plugin install (`anthropic-agent-skills` marketplace + `example-skills`); first `skill-creator` run (built `setup-github-pat`); three new vault entries (Pocock 7-step, skill-extraction methodology, on-demand context routing); restructured this CLAUDE.md to move thread-level archaeology to `docs/session-state.md`; meeting prep for the 2026-06-10 AI call.
 
 **Open items going into next session:**
 
-*From this session (held for write/decision):*
-- **AgentMail MCP / Skill adoption decision** — revisit when curl friction shows up, or proactively after a few real usages give a friction baseline.
-- **Argosbrain validation** — try against a real codebase (TVK or del-infra most likely) before any vault entry.
-- **Robin's AgentMail gotchas vault entry** — write once Sage hits any of the four landmines naturally.
+*From this session (held for action):*
+- Run `skill-creator` on `git-commit-from-file` as the next natural skill candidate. Intake brief writes itself (earned scars + workflow shape already known).
+- Report-back after the 2026-06-10 AI call — what landed with the CTO, what the team committed to next.
+- PAT approval status for two work repos in flight (request submitted 2026-06-09). If landed, kick off the AI-marker scan against both.
+- Apply `grill-with-docs` to a second personal-track project (Vince's next planned use).
+- Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit; each project does it at its next session-end housekeeping.
 
-*Skill watchlist (`local/skill-watchlist.md`):*
-- iOS app skill review window: **June 2026 — this month**. Three queued: `instruments-profiling`, `native-app-performance`, `hopper-debugger`.
-- `skill-creator` (strongest near-term skill candidate), `taskflow`, GitHub Spec-Kit templates from Robin's batch.
-- 9 unclassified Steinberger skills available for deeper pass.
-- Verify clawhub.ai CC vs OpenClaw coverage.
-
-*MCP watchlist (`local/mcp-watchlist.md`):*
-- `argosbrain` pending validation pass.
-
-*Work AI initiative (tracked in `CLAUDE.local.md`):*
-- Vince's TODOs: create shared work GH repo, upload handoff skill as first validated entry, try plugins, try hooks.
-- Wait for team deliverables tracked in `CLAUDE.local.md`.
-
-*Work-repo crawl (carried):*
-- Full review pending: remaining context files, skill reference docs, repo source.
-- Two other work repos still uncertain — verify access with admin.
-
-*Robin / del-infra (priority-bumped, carried):*
-- Vince to point Sage at Robin's data when ready for the one-time absorption.
-- ansible-vault alternatives evaluation still on the original goals list.
-
-*Tier-2 vault candidates ready for write (carried):*
-- On-demand context routing (TVK = worked example, TSR = monolithic-counter-example).
-- Negative-space documentation (TVK `webhooks.md` = worked example).
-
-*From earlier sessions (carried, unchanged):*
+*Carried from earlier sessions:*
 - MVP decision for work harness experiment.
-- 32-item drop list at `output/20260524-ai-notebook-drop-list.md` pending checkbox review.
+- 32-item drop list at `output/20260524-ai-notebook-drop-list.md` (gitignored) pending checkbox review.
 - Mum stories / Mind Maker app — 30-min brain-dump needed.
 - Voice/transcription unifier standardization (superwhisper front-runner).
 - Three seed patterns still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
-- Auto Dream: not yet in current CC install. Sage memory ~18 entries; revisit enable decision when it crosses ~30.
+- Auto Dream: not yet in current CC install. Memory now ~20 entries; revisit enable decision when it crosses ~30.
+- Robin / del-infra absorption pending Vince's go; ansible-vault alternatives evaluation queued.
+- Tier-2 vault candidates: negative-space documentation; fine-grained PAT scope discipline (now has the `setup-github-pat` skill as a worked-example sibling).
 
-**Inbox saved this session:** none new — Sage's *email* inbox got its first real message (AgentNews #14) and processed it inline; no `inbox/` folder saves needed.
+**Task list state:**
+- Task #3 (qualitative test for `setup-github-pat`) — in progress; live PAT validation awaiting approval.
+- Task #4 (optional description optimization + package) — pending.
 
 **Next session — pick up here:**
-1. Cold start — re-read `CLAUDE.md` **AND** `CLAUDE.local.md` (both touched this session).
-2. AgentMail is wired and warm. Sage can fetch on-demand via `source .env.local && curl -H "Authorization: Bearer $AGENTMAIL_API_KEY" ...`. The `?labels=unread` plural gotcha and snake_case PATCH fields are the two patterns to remember (or consult Robin's `del-infra/docs/agentmail-integration.md`).
-3. For personal-repo GH reads, use the `GITHUB_TOKEN= gh ...` prefix so the keyring token (not the work-scoped PAT) is in play.
-4. If next session is **del-infra / Robin absorption**: `docs/agentmail-integration.md` already read; rest of `docs/`, source, and Robin's live data still pending.
-5. If next session involves **iOS skills**, the priority window is open now (June 2026) — start with the three queued.
-6. Tier-2 vault candidates (on-demand context routing, negative-space documentation) remain write-ready if Vince wants to clear that backlog.
+1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand.
+2. The 2026-06-10 morning AI call happened — ask Vince how it landed (CTO present; skills-overblown reframe was on the agenda).
+3. PAT approval status for two work repos in flight.
+4. `git-commit-from-file` skill = next natural `skill-creator` run.
+5. A second personal-track project queued for `grill-with-docs`.
 
-**Session continuity:** Vince is closing this session. **Next session is a cold start — re-read CLAUDE.md AND CLAUDE.local.md before doing anything** (per Vince's global rule).
+**Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 
 Launch from project root:
 ```bash
