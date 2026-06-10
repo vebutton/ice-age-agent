@@ -33,7 +33,7 @@
 
 ---
 
-**The negative-space insight** (folded in from candidate C, may extract later):
+**The negative-space insight** (folded in from candidate C; **extracted 2026-06-10** to `vault/2026-06-10-negative-space-documentation.md` — that entry is now canonical; this block kept as origin record):
 
 The handoff skill explicitly names **"What's been ruled out"** as the *highest-value* section — above what was done, above open hypotheses, above the reproduction steps. This is a deep claim, and it generalizes far beyond handoffs:
 

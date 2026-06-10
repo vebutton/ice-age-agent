@@ -85,7 +85,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - [~] **Work harness experiment scoped (2026-05-24):** primary deliverable is the *process writeup*. MVP candidate selected and held in gitignored memory, pending Vince's confirmation.
 - [~] **Cross-project sweep in progress** — see `CLAUDE.local.md` *Project Review Queue*. Reviewed: internal infra/ops project (2026-05-23); primary K8s-operator work repo partial (2026-05-26). Priority-bumped: del-infra / Robin absorption (Robin = Vince's OpenClaw research assistant; lives in `del-infra`). Two additional work repos: PAT approved + working 2026-06-10; AI-marker scan done same day — both greenfield for AI tooling (findings in `CLAUDE.local.md` Project Review Queue). A third repo originally in scope was cut due to approval-timing risk.
 - [ ] **Three pending seed patterns** still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
-- [ ] **Two tier-2 vault candidates ready for write:** on-demand context routing, negative-space documentation (both have worked examples now).
+- [x] **Both tier-2 vault candidates written:** on-demand context routing (`vault/2026-06-09-on-demand-context-routing.md`, landed with the 2026-06-09 restructure) and negative-space documentation (`vault/2026-06-10-negative-space-documentation.md`, extracted from the handoff entry's insight block). Both seed (multi-source observed).
 - [ ] **iOS skill review window: June 2026** — three Apple-platform skills queued (per `local/skill-watchlist.md`).
 - [ ] Wire up Evernote MCP (deferred)
 - [x] **AgentMail wired (2026-06-02):** Sage's own dedicated inbox, separate API key in `.env.local`, on-demand Bash+curl. `list_inboxes` + `list_threads?labels=unread` both returned HTTP 200 against the live endpoint. Robin's `del-infra/docs/agentmail-integration.md` is the inherited gotchas reference (labels-plural, size-gate >50KB, separate state keys for polling vs triage, archive-over-delete).
@@ -107,8 +107,8 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - **Fable 5 bootstrap window — free through June 22, then usage-credit.** Vince has `claude-fable-5` via Pro for ~2 weeks and is bootstrapping/advancing several projects in the free window using the on-demand-routing template. Capability profile vaulted (`vault/2026-06-10-claude-fable-5-capability-profile.md`). **Project priorities + roadmap are in `CLAUDE.local.md` → "Fable 5 bootstrap window"** (kept local — names a work-product POC). Front-load before June 22.
 - On-demand Session State routing added to Vince's `claude-agent-template` bootstrapping agent (2026-06-10, confirmed implemented) — future bootstrapped projects ship with the brief+`docs/session-state.md` split from day one. Global rule is now self-propagating at project creation.
 - Run `skill-creator` on `git-commit-from-file` as the next natural skill candidate. Intake brief writes itself (earned scars + workflow shape already known).
-- Report-back after the 2026-06-10 AI call — what landed with the CTO, what the team committed to next.
-- ~~PAT approval for two work repos~~ DONE 2026-06-10 — approved + AI-marker scan run; both greenfield for AI tooling (findings in `CLAUDE.local.md` Project Review Queue). Full source review of both still open if depth is wanted.
+- ~~Report-back after the 2026-06-10 AI call~~ DONE 2026-06-10 — engineers onboard with building skills (trained); CTO now gets the repeatability case. Skills-overblown objection resolved; shared-repo workstream proceeds (detail in `CLAUDE.local.md` → AI call outcome).
+- ~~PAT approval for two work repos~~ DONE 2026-06-10 — approved + AI-marker scan run; both greenfield for AI tooling (findings in `CLAUDE.local.md` Project Review Queue). Vince declined a full source review — these two repos are closed out.
 - Apply `grill-with-docs` to a second personal-track project (Vince's next planned use).
 - Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit; each project does it at its next session-end housekeeping.
 - Audit follow-ups from 2026-06-09 routing restructure: Project Status checklist (this CLAUDE.md) has the same forward-vs-backward shape problem one level up; `CLAUDE.local.md` review-queue + AI-initiative sections same in the gitignored file. Canonical schema for `docs/session-state.md` across projects deferred until a second project migrates. Minor: `docs/session-state.md` "this commit" placeholder is now `54aaafe`.
@@ -121,7 +121,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - Three seed patterns still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
 - Auto Dream: not yet in current CC install. Memory now ~20 entries; revisit enable decision when it crosses ~30.
 - Robin / del-infra absorption pending Vince's go; ansible-vault alternatives evaluation queued.
-- Tier-2 vault candidates: negative-space documentation; fine-grained PAT scope discipline (now has the `setup-github-pat` skill as a worked-example sibling).
+- Tier-2 vault candidate remaining: fine-grained PAT scope discipline (now has the `setup-github-pat` skill as a worked-example sibling). Negative-space documentation written 2026-06-10.
 
 **Task list state:**
 - Task #3 (qualitative test for `setup-github-pat`) — in progress; live PAT validation awaiting approval.
@@ -130,9 +130,8 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand. **Sage now runs on Fable 5** (model pin in `.claude/settings.local.json`) — confirm in-session if it matters.
 2. **Coding harness** — Vince bootstrapped/worked it in another project this session. Ask how it went; it's the dependency for the top-priority build named in `CLAUDE.local.md` → "Fable 5 bootstrap window". Front-load the Fable work before the **June 22** free-window close.
-3. The 2026-06-10 morning AI call happened — ask Vince how it landed (CTO present; skills-overblown reframe was on the agenda).
-4. `git-commit-from-file` skill = next natural `skill-creator` run; a second personal-track project queued for `grill-with-docs`.
-5. **Revert reminder:** delete the `claude-fable-5` model pin from `.claude/settings.local.json` after June 22.
+3. `git-commit-from-file` skill = next natural `skill-creator` run; a second personal-track project queued for `grill-with-docs`.
+4. **Revert reminder:** delete the `claude-fable-5` model pin from `.claude/settings.local.json` after June 22.
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 
