@@ -109,6 +109,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - PAT approval status for two work repos in flight (request submitted 2026-06-09). If landed, kick off the AI-marker scan against both.
 - Apply `grill-with-docs` to a second personal-track project (Vince's next planned use).
 - Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit; each project does it at its next session-end housekeeping.
+- Audit follow-ups from 2026-06-09 routing restructure: Project Status checklist (this CLAUDE.md) has the same forward-vs-backward shape problem one level up; `CLAUDE.local.md` review-queue + AI-initiative sections same in the gitignored file. Canonical schema for `docs/session-state.md` across projects deferred until a second project migrates. Minor: `docs/session-state.md` "this commit" placeholder is now `54aaafe`.
 
 *Carried from earlier sessions:*
 - MVP decision for work harness experiment.
