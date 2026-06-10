@@ -8,6 +8,12 @@
 
 ## What got done — by thread
 
+### Thread 0: On-demand Session State routing added to the bootstrapping agent (2026-06-10)
+
+- Vince asked for paste-ready instructions for his `claude-agent-template` session (separate project, used to bootstrap new projects) to bake the brief+archaeology Session State split into the template, so future bootstrapped projects ship with on-demand routing from day one.
+- Instructions delivered self-contained (carried the forward-vs-backward routing principle, not just the file shapes) since the template session doesn't have access to this repo. Included: CLAUDE.md brief skeleton, `docs/session-state.md` placeholder, the standardized pointer line, bootstrap-only scope (no migration of existing projects), and a verify step.
+- **Vince confirmed implemented.** The bootstrapping agent now seeds on-demand Session State routing into every new project. This makes the global `~/.claude/CLAUDE.md` rule self-propagating at project creation rather than retrofitted per project.
+
 ### Thread 1: First plugin install — Anthropic skills marketplace + example-skills plugin (2026-06-05)
 
 - Confirmed install commands from the repo README: `/plugin marketplace add anthropics/skills` then `/plugin install example-skills@anthropic-agent-skills`.

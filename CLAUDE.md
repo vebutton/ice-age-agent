@@ -104,6 +104,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 **Open items going into next session:**
 
 *From this session (held for action):*
+- On-demand Session State routing added to Vince's `claude-agent-template` bootstrapping agent (2026-06-10, confirmed implemented) — future bootstrapped projects ship with the brief+`docs/session-state.md` split from day one. Global rule is now self-propagating at project creation.
 - Run `skill-creator` on `git-commit-from-file` as the next natural skill candidate. Intake brief writes itself (earned scars + workflow shape already known).
 - Report-back after the 2026-06-10 AI call — what landed with the CTO, what the team committed to next.
 - PAT approval status for two work repos in flight (request submitted 2026-06-09). If landed, kick off the AI-marker scan against both.
