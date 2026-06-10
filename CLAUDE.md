@@ -99,7 +99,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-06-05..09. First plugin install (`anthropic-agent-skills` marketplace + `example-skills`); first `skill-creator` run (built `setup-github-pat`); three new vault entries (Pocock 7-step, skill-extraction methodology, on-demand context routing); restructured this CLAUDE.md to move thread-level archaeology to `docs/session-state.md`; meeting prep for the 2026-06-10 AI call.
+**Last:** 2026-06-10. On-demand Session State routing baked into Vince's bootstrapping agent (confirmed implemented — self-propagating to future projects); researched + vaulted the Claude Fable 5 capability profile (`vault/2026-06-10-claude-fable-5-capability-profile.md`); set the Fable 5 bootstrap roadmap (`CLAUDE.local.md`); pinned Sage to `claude-fable-5` for the free window via `.claude/settings.local.json`. Two commits (`51858c6`, `dc4a7e2`). Vince left to bootstrap + work the **coding harness** in another project.
 
 **Open items going into next session:**
 
@@ -128,11 +128,12 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - Task #4 (optional description optimization + package) — pending.
 
 **Next session — pick up here:**
-1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand.
-2. The 2026-06-10 morning AI call happened — ask Vince how it landed (CTO present; skills-overblown reframe was on the agenda).
-3. PAT approval status for two work repos in flight.
-4. `git-commit-from-file` skill = next natural `skill-creator` run.
-5. A second personal-track project queued for `grill-with-docs`.
+1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand. **Sage now runs on Fable 5** (model pin in `.claude/settings.local.json`) — confirm in-session if it matters.
+2. **Coding harness** — Vince bootstrapped/worked it in another project this session. Ask how it went; it's the dependency for the top-priority build named in `CLAUDE.local.md` → "Fable 5 bootstrap window". Front-load the Fable work before the **June 22** free-window close.
+3. The 2026-06-10 morning AI call happened — ask Vince how it landed (CTO present; skills-overblown reframe was on the agenda).
+4. PAT approval status for two work repos in flight.
+5. `git-commit-from-file` skill = next natural `skill-creator` run; a second personal-track project queued for `grill-with-docs`.
+6. **Revert reminder:** delete the `claude-fable-5` model pin from `.claude/settings.local.json` after June 22.
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 

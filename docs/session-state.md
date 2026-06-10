@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-06-05..09 (multi-day; first plugin install + first skill-creator run + cross-source skill methodology articulated and vaulted + meeting prep for the 2026-06-10 morning AI call + late-session restructure of CLAUDE.md per on-demand routing). Eight threads. **Two new memories banked** (`project_pocock_grill_me_deprecated` + `feedback_session_state_forward_vs_backward`).
+**Last session:** 2026-06-10. Short session. On-demand routing baked into the bootstrapping agent (Thread 0); Claude Fable 5 capability research + vault + bootstrap roadmap + model pin (Thread 0b). Two commits (`51858c6`, `dc4a7e2`). No new memories banked. Vince left to bootstrap + work the coding harness in another project.
+
+**Prior session:** 2026-06-05..09 (multi-day; first plugin install + first skill-creator run + cross-source skill methodology articulated and vaulted + meeting prep for the 2026-06-10 morning AI call + late-session restructure of CLAUDE.md per on-demand routing). Eight threads. **Two memories banked** (`project_pocock_grill_me_deprecated` + `feedback_session_state_forward_vs_backward`).
 
 ## What got done — by thread
 
