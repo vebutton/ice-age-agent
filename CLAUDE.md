@@ -104,6 +104,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 **Open items going into next session:**
 
 *From this session (held for action):*
+- **Fable 5 bootstrap window — free through June 22, then usage-credit.** Vince has `claude-fable-5` via Pro for ~2 weeks and is bootstrapping/advancing several projects in the free window using the on-demand-routing template. Capability profile vaulted (`vault/2026-06-10-claude-fable-5-capability-profile.md`). **Project priorities + roadmap are in `CLAUDE.local.md` → "Fable 5 bootstrap window"** (kept local — names a work-product POC). Front-load before June 22.
 - On-demand Session State routing added to Vince's `claude-agent-template` bootstrapping agent (2026-06-10, confirmed implemented) — future bootstrapped projects ship with the brief+`docs/session-state.md` split from day one. Global rule is now self-propagating at project creation.
 - Run `skill-creator` on `git-commit-from-file` as the next natural skill candidate. Intake brief writes itself (earned scars + workflow shape already known).
 - Report-back after the 2026-06-10 AI call — what landed with the CTO, what the team committed to next.

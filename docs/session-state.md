@@ -14,6 +14,14 @@
 - Instructions delivered self-contained (carried the forward-vs-backward routing principle, not just the file shapes) since the template session doesn't have access to this repo. Included: CLAUDE.md brief skeleton, `docs/session-state.md` placeholder, the standardized pointer line, bootstrap-only scope (no migration of existing projects), and a verify step.
 - **Vince confirmed implemented.** The bootstrapping agent now seeds on-demand Session State routing into every new project. This makes the global `~/.claude/CLAUDE.md` rule self-propagating at project creation rather than retrofitted per project.
 
+### Thread 0b: Claude Fable 5 capability research + vault (2026-06-10)
+
+- Vince got `claude-fable-5` access via Pro for ~2 weeks; free through June 22, usage-credit after. Available in Claude Code + Cowork. Dropped a benchmark screenshot in `collateral/` (filename has a U+202F narrow-no-break-space — needed glob/loop to read, not quoted path) + the announcement URL.
+- Researched: read screenshot benchmark table + WebFetch'd the Anthropic announcement. Synthesized a capability brief angled at Vince's bootstrapping use.
+- Key findings: SWE-Bench Pro 80.3% / Terminal-Bench 88% / FrontierCode 29.3% (agentic coding standout); file-based memory 3× over Opus 4.8 (independent validation of [[on-demand context routing]] — Sage's own architecture); vision→code from screenshots; auto-fallback to Opus 4.8 on cyber/bio/distillation queries (the starred benchmark rows).
+- Vaulted as `vault/2026-06-10-claude-fable-5-capability-profile.md` (reference / single-source) + INDEX row. **Kept project names out of the committed vault entry** — the bootstrap roadmap (which names a work-product POC) went to gitignored `CLAUDE.local.md` → "Fable 5 bootstrap window" instead, with a scrubbed pointer in committed `CLAUDE.md`.
+- Bootstrap roadmap for the free window (in CLAUDE.local.md): new "coding harness" project first → top priority is the work-product POC leveraging that harness → solar-sync (personal) → Sage itself runs on Fable 5 next session.
+
 ### Thread 1: First plugin install — Anthropic skills marketplace + example-skills plugin (2026-06-05)
 
 - Confirmed install commands from the repo README: `/plugin marketplace add anthropics/skills` then `/plugin install example-skills@anthropic-agent-skills`.

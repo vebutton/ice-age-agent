@@ -19,6 +19,7 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 
 - [2026-05-18 — Bootstrap templates shouldn't ship their own process doc to children](2026-05-18-template-shouldnt-ship-process-doc-to-children.md) — `project-bootstrap-process.md` belongs in `claude-agent-template`, not every child repo. Candidate template-upgrade PR. *Status: seed*
 - [2026-05-22 — Gitignored repo-local configs need tracked `.sample` companions](2026-05-22-gitignored-configs-need-tracked-samples.md) — gitignoring a config without shipping its `.sample` makes fresh clones archaeology. Generalizes `.env.local.example` to any proprietary config (CLAUDE.md, vars/main.yml, etc.). Candidate template-upgrade PR. *Status: seed*
+- [2026-06-10 — Claude Fable 5 capability profile + free-window deadline](2026-06-10-claude-fable-5-capability-profile.md) — `claude-fable-5`, Mythos-class, SOTA agentic coding (SWE-Bench Pro 80.3%, Terminal-Bench 88%); file-based memory 3× over Opus 4.8 (validates on-demand routing); free on Pro June 9–22 then usage-credit. Auto-fallback to Opus 4.8 on cyber/bio/distillation. *Status: reference (single-source)*
 
 ## Agent Architecture
 
