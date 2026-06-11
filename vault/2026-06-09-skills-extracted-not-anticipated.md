@@ -41,7 +41,7 @@ A subtler anti-pattern: building skills *because skills are a thing now*. Skill 
 
 **Same-project axis:**
 
-- *No worked example yet.* Candidate: the planned `git-commit-from-file` skill (per `vault/2026-05-18-git-commit-skill-needed.md`). The lesson is a portfolio-wide directive that already lives as a memory line ([[feedback-git-commits]]), but the workflow shape (write file → `git commit -F` → grep-for-secrets → cleanup discipline) keeps re-paying in individual projects when memory alone isn't enough. The first build of this skill will be the first worked example of same-project axis extraction. Note: this candidate is also portfolio-wide, so it sits at the *intersection* of both axes — it's a same-project recurrence that happens to recur in many projects.
+- *No worked example yet.* The previously named candidate (`git-commit-from-file`, per `vault/2026-05-18-git-commit-skill-needed.md`) was **deliberately NOT skill-ified** on 2026-06-10 — Vince's call: a single tweak, however valuable, lacks the capability mass to carry a skill; the rule went to global `~/.claude/CLAUDE.md` instead, and the skill waits for a fuller `git-ops` bundle. That decision is itself a demonstration of this entry's anti-pattern discipline (declining to skill-ify for the sake of skill-ifying), and it surfaces a **placement spectrum** this entry should name: *one-line universal rule → global CLAUDE.md; project-specific rule → project CLAUDE.md; multi-step workflow with gotchas → skill.* Demonstrated reuse is necessary but not sufficient — the artifact also needs enough body to justify the trigger machinery. First same-project worked example still pending; the future `git-ops` bundle remains a candidate.
 
 ## When to violate this
 

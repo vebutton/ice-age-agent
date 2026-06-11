@@ -14,4 +14,15 @@
 - **Later:** Audit adjacent git/gh operations Claude routinely reinvents — PR creation with body files, conflict resolution flow, force-push safety. This is the seed of a `git-ops` skill bundle.
 - **Sage-specific:** When Sage produces Kickstart packs for new projects, the seeded `CLAUDE.md` should reference this skill (or its replacement) so the receiving project starts already wired for it.
 
-**Status:** seed
+**Resolution (2026-06-10):** The "Now" step was promoted to a rule in global
+`~/.claude/CLAUDE.md` (General Preferences) — every project's agent now gets
+file-based commit messages, hook-failure-means-new-commit, and no-`--no-verify`
+at cold start. The **skill is deliberately deferred**: Vince's judgment is that
+a single tweak, however valuable, is too small to carry a skill — promotion
+waits until more git capabilities accrete around it (the "Later" `git-ops`
+bundle above is the real skill candidate). This is the
+skills-extracted-not-anticipated discipline applied to our own backlog: the
+rule already pays everywhere via the global file; the skill happens when the
+capability mass demonstrates itself.
+
+**Status:** resolved — promoted to global-CLAUDE.md rule (2026-06-10); skill deferred pending git-ops capability mass

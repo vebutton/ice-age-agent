@@ -8,7 +8,7 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 
 ## Skills & MCPs
 
-- [2026-05-18 — Git commits need a Claude skill, not per-project HEREDOC rediscovery](2026-05-18-git-commit-skill-needed.md) — file-based commit messages over inline / HEREDOC; build a `git-commit` skill. *Status: seed*
+- [2026-05-18 — Git commits need a Claude skill, not per-project HEREDOC rediscovery](2026-05-18-git-commit-skill-needed.md) — file-based commit messages over inline / HEREDOC. Rule promoted to global `~/.claude/CLAUDE.md` 2026-06-10; skill deferred until a `git-ops` bundle has capability mass (single tweak too small to carry a skill). *Status: resolved — promoted-to-global-rule; skill deferred*
 - [2026-05-20 — CLAUDE.md stays lean — let the harness lazy-load skills and MCP tools](2026-05-20-claude-md-stays-lean-lazy-loading.md) — don't enumerate MCP tool inventories or full skill descriptions in CLAUDE.md; the harness already lazy-loads both. *Status: seed*
 - [2026-05-20 — Third-party MCP wireup pattern: env-var token, version pin, audit-then-trust](2026-05-20-third-party-mcp-wireup-pattern.md) — `${VAR}` from gitignored `.env.local` + pin (never `@latest`) + four-step audit + binary-vs-source caveat. Worked example: Slack MCP `1.3.0`. *Status: seed*
 - [2026-06-09 — Skills are extracted from demonstrated reuse, not anticipated reuse](2026-06-09-skills-extracted-not-anticipated.md) — build capabilities concretely; recognize skill-shape only when a second project needs the same thing; extract then. Rule-of-three discipline applied to skill creation. Worked examples: `handoff`, `access-openstack`. Anti-pattern: skill-ifying for the sake of skill-ifying. *Status: seed (single-source)*

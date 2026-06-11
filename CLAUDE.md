@@ -106,7 +106,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 *From this session (held for action):*
 - **Fable 5 bootstrap window — free through June 22, then usage-credit.** Vince has `claude-fable-5` via Pro for ~2 weeks and is bootstrapping/advancing several projects in the free window using the on-demand-routing template. Capability profile vaulted (`vault/2026-06-10-claude-fable-5-capability-profile.md`). **Project priorities + roadmap are in `CLAUDE.local.md` → "Fable 5 bootstrap window"** (kept local — names a work-product POC). Front-load before June 22.
 - On-demand Session State routing added to Vince's `claude-agent-template` bootstrapping agent (2026-06-10, confirmed implemented) — future bootstrapped projects ship with the brief+`docs/session-state.md` split from day one. Global rule is now self-propagating at project creation.
-- Run `skill-creator` on `git-commit-from-file` as the next natural skill candidate. Intake brief writes itself (earned scars + workflow shape already known).
+- ~~Run `skill-creator` on `git-commit-from-file`~~ SUPERSEDED 2026-06-10 — Vince's call: single tweak lacks skill mass. Rule promoted to global `~/.claude/CLAUDE.md` instead; skill deferred until a `git-ops` bundle accretes (hook recovery, PR-body files, force-push safety, etc.).
 - ~~Report-back after the 2026-06-10 AI call~~ DONE 2026-06-10 — engineers onboard with building skills (trained); CTO now gets the repeatability case. Skills-overblown objection resolved; shared-repo workstream proceeds (detail in `CLAUDE.local.md` → AI call outcome).
 - ~~PAT approval for two work repos~~ DONE 2026-06-10 — approved + AI-marker scan run; both greenfield for AI tooling (findings in `CLAUDE.local.md` Project Review Queue). Vince declined a full source review — these two repos are closed out.
 - Apply `grill-with-docs` to a second personal-track project (Vince's next planned use).
@@ -130,7 +130,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand. **Sage now runs on Fable 5** (model pin in `.claude/settings.local.json`) — confirm in-session if it matters.
 2. **Coding harness** — Vince bootstrapped/worked it in another project this session. Ask how it went; it's the dependency for the top-priority build named in `CLAUDE.local.md` → "Fable 5 bootstrap window". Front-load the Fable work before the **June 22** free-window close.
-3. `git-commit-from-file` skill = next natural `skill-creator` run; a second personal-track project queued for `grill-with-docs`.
+3. A second personal-track project queued for `grill-with-docs`. (The `git-commit-from-file` skill idea was retired 2026-06-10 — rule went global instead.)
 4. **Revert reminder:** delete the `claude-fable-5` model pin from `.claude/settings.local.json` after June 22.
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
