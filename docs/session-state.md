@@ -4,11 +4,71 @@
 
 ---
 
-**Last session:** 2026-06-10. Short session. On-demand routing baked into the bootstrapping agent (Thread 0); Claude Fable 5 capability research + vault + bootstrap roadmap + model pin (Thread 0b). Two commits (`51858c6`, `dc4a7e2`). No new memories banked. Vince left to bootstrap + work the coding harness in another project.
+**Last session:** 2026-06-10 evening. Five threads: two new work repos scanned + review closed; scrub rule broadened; AI-call outcome recorded (skills objection resolved); negative-space documentation vaulted; git-commit skill plan retired in favor of a global rule. Five commits (`3ab2999`, `d0da8e0`, `795b0d3`, `42bdcd2`, plus the session-close commit). Two memories *updated* (none newly banked).
 
-**Prior session:** 2026-06-05..09 (multi-day; first plugin install + first skill-creator run + cross-source skill methodology articulated and vaulted + meeting prep for the 2026-06-10 morning AI call + late-session restructure of CLAUDE.md per on-demand routing). Eight threads. **Two memories banked** (`project_pocock_grill_me_deprecated` + `feedback_session_state_forward_vs_backward`).
+**Prior sessions:** 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads for both retained below under *Earlier archaeology*.
 
-## What got done — by thread
+## What got done — 2026-06-10 evening session
+
+### Thread A: Two additional work repos — PAT landed, AI-marker scan, review closed
+
+- The org-admin approval for the PAT request (submitted 2026-06-09) landed; both repos readable. First action: full recursive tree scan of each default branch (both untruncated) grepping for AI markers — CLAUDE.md, AGENTS.md, `.claude/`, `.cursor*`, `.mcp.json`, copilot/GEMINI files, skills, prompt/LLM paths.
+- Result: both repos are greenfield for AI tooling. Classic pre-AI-era OpenStack codebases. Caveat recorded: default branch only (~90–100 branches each unswept — acceptable per the partial-coverage-is-fine discipline).
+- **Vince closed the review**: no full source pass. The scan is the complete review for these two; the Project Review Queue (CLAUDE.local.md, where the repo names live) records the closure.
+- This also completes the live PAT validation that Task #3 (qualitative test of the `setup-github-pat` skill) was waiting on.
+
+### Thread B: Scrub rule broadened — scan findings about work repos stay out of committed content
+
+- Vince rejected a draft commit message containing the explicit scan finding (the literal asset-count result) while accepting the neutral "greenfield for AI tooling" phrasing; he then confirmed the same scrub for CLAUDE.md file content (commit `d0da8e0` applied it).
+- New scrub category appended to the `feedback-no-company-name-in-checkins` memory: explicit audit/scan results characterizing the state of work codebases don't belong in ANY committed content. Neutral forward-looking characterization is the acceptable substitute; specifics live in CLAUDE.local.md.
+- Note: commit `3ab2999` retains the original phrasing in history; Vince explicitly let it stand ("that's fine").
+
+### Thread C: AI-call outcome recorded — skills objection resolved
+
+- Vince's report-back from the 2026-06-10 morning call: engineers are onboard with building skills and have been trained in it; the CTO now understands the repeatability case. The pre-call "skills are overblown" stance is superseded — the prepared scale-with-project-count frame never needed to be argued as a fight.
+- CLAUDE.local.md call-prep section converted to an outcome record (prep frame kept as a collapsed historical footnote).
+- Practical consequence noted: the Phase-1 shared skills repo workstream is now politically unblocked AND has trained supply. Open threads deliberately left open: any new team commitments from the call; shared-repo creation date.
+
+### Thread D: Negative-space documentation vaulted — tier-2 pair complete
+
+- While preparing to write both queued tier-2 entries, discovered on-demand context routing was *already vaulted* (`vault/2026-06-09-on-demand-context-routing.md`, landed with the restructure) — the Project Status checklist was stale. Corrected.
+- Wrote `vault/2026-06-10-negative-space-documentation.md`: record what was ruled out / rejected / deliberately absent, not just what was done. Agent-era double rationale: fresh contexts re-explore undocumented dead ends at full cost; positive-only docs are hallucination bait. Boundary rule: record the absences someone would plausibly assume or re-attempt, not every absence.
+- Sources: handoff "What's been ruled out" section (Vince + Pocock; extraction was pre-announced in that entry), a standing agent-context doc observed in the 2026-05-26 work-repo review, Sage's own session archaeology schema. Steinberger's omission documented as the counter-signal. Status: seed (multi-source observed). Handoff entry now points here as canonical for the insight.
+
+### Thread E: git-commit skill plan retired — rule promoted to global CLAUDE.md
+
+- Vince clarified after a terminology mix-up: the `-F` commit-message tweak is too small to carry a skill ("I need more git capabilities than just the commit message file before we promote it to a skill"); since everything he does uses repos, it belongs in global `~/.claude/CLAUDE.md`.
+- Done: rule added to global General Preferences (file-based message via `git commit -F`, no inline `-m`/HEREDOC, new-commit-not-`--amend` on hook failure, no `--no-verify` unasked). Reaches every project at cold start — previously the rule lived only in Sage's private memory.
+- Vault `2026-05-18-git-commit-skill-needed.md` → status *resolved — promoted-to-global-rule; skill deferred* pending a `git-ops` bundle (hook recovery, PR-body files, force-push safety).
+- The skills-extracted methodology entry gained a **placement spectrum** from this decision: one-line universal rule → global CLAUDE.md; project-specific rule → project CLAUDE.md; multi-step workflow with gotchas → skill. Demonstrated reuse is necessary but not sufficient — the artifact needs enough body to justify trigger machinery. The declined skill-ification is recorded there as a demonstration of the entry's own discipline.
+
+## Decisions Vince articulated (2026-06-10 evening, durable)
+
+- **No full source review** for the two newly-accessible work repos — the AI-marker scan closes them out.
+- **Scan/audit findings about work repos' internals stay out of all committed content** — commit messages and file content alike; neutral characterization only.
+- **Skill mass threshold**: a single valuable tweak is not a skill; it's a global-CLAUDE.md rule. Skills wait for demonstrated capability mass (the placement spectrum above).
+- **AI-call outcome stands as recorded** — engineers trained + onboard; CTO gets repeatability; no further advocacy needed.
+
+## Memories updated (2026-06-10 evening)
+
+- `feedback_no_company_name_in_checkins` — new scrub category (scan findings), broadened to all committed content.
+- `feedback_git_commits` — global rule now exists (memory is belt-and-braces); skill deferred; placement-spectrum principle noted.
+
+## Commits (2026-06-10 evening)
+
+- `3ab2999` — PAT + scan marked complete in Project Status.
+- `d0da8e0` — scrubbed scan-finding detail from CLAUDE.md.
+- `795b0d3` — negative-space vault entry + status closeouts (AI-call outcome, repo closeout, tier-2 checklist).
+- `42bdcd2` — git-commit skill plan retired; vault + INDEX + Session State updates.
+- *session-close commit* — this archaeology entry + brief refresh.
+
+## Inbox saved (2026-06-10 evening)
+
+None new.
+
+---
+
+## Earlier archaeology — 2026-06-10 midday + 2026-06-05..09 sessions
 
 ### Thread 0: On-demand Session State routing added to the bootstrapping agent (2026-06-10)
 
@@ -98,7 +158,7 @@
 
 ## Commits pushed this session
 
-- *this commit* — vault accretion + CLAUDE.md restructure + Session State refresh.
+- `54aaafe` — vault accretion + CLAUDE.md restructure + Session State refresh.
 
 ## Inbox saved this session
 
