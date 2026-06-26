@@ -35,6 +35,9 @@ output/
 inbox/
 local/
 
+# Atlas overview — always internal context, never commit
+.atlas/
+
 # Local-only files — backlog, scratch pads, meta notes — never commit
 TODO.md
 *-conversation.md
