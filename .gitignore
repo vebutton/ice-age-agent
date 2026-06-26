@@ -38,6 +38,11 @@ local/
 # Atlas overview — always internal context, never commit
 .atlas/
 
+# Claude Code local/personal settings — never commit (shared settings.json is fine to track)
+.claude/settings.local.json
+.claude/*.local.json
+*~
+
 # Local-only files — backlog, scratch pads, meta notes — never commit
 TODO.md
 *-conversation.md

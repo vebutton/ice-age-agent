@@ -1,5 +1,12 @@
 # Claude Fable 5 — capability profile and bootstrap-window note
 
+> **STATUS: RESTRICTED (2026-06-26).** Fable 5 was withdrawn at US-Government
+> direction and is **not currently available** — restricted for now until Anthropic
+> can secure it better; not permanently obsolete. Vince reverted all projects to
+> **Opus 4.8 (1M)** as the standard. The capability profile and bootstrap-window
+> deadlines below are **historical** — kept for reference and for when/if Fable is
+> restored. See memory [[project-fable5-pulled-opus48-standard]].
+
 **What it is:** Mythos-class Claude model released 2026-06-09. API ID `claude-fable-5`. State-of-the-art on nearly every benchmark Anthropic published. Available everywhere day one, including Claude Code and Cowork.
 
 **Fable 5 vs. Mythos 5:** identical underlying model. Mythos 5 has safeguards lifted for authorized cyber/biomedical users (trusted-access enrollment). For general agentic/coding/knowledge work, **Fable 5 is the relevant one** — no Mythos enrollment needed.

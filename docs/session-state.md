@@ -4,9 +4,69 @@
 
 ---
 
-**Last session:** 2026-06-10 evening. Five threads: two new work repos scanned + review closed; scrub rule broadened; AI-call outcome recorded (skills objection resolved); negative-space documentation vaulted; git-commit skill plan retired in favor of a global rule. Five commits (`3ab2999`, `d0da8e0`, `795b0d3`, `42bdcd2`, plus the session-close commit). Two memories *updated* (none newly banked).
+**Last session:** 2026-06-26. Re-investigated a work repo's coding-subagent + MEMORY.md mechanism and researched the Karpathy skills; distilled both into the **in-repo coding harness** vault entry + a shareable scaffolding spec for the Inception project. Confirmed the shared work skills repo is live (3 skills shipped). Created the project's **Atlas overview**. Recorded that **Fable 5 was restricted (US-Govt direction, temporary) and all projects reverted to Opus 4.8 (1M)**. Set the **inception** decomposition plan (build tvo-skyline's harness by hand, then extract — Vince accepted). Two memories banked.
 
-**Prior sessions:** 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads for both retained below under *Earlier archaeology*.
+**Prior sessions:** 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-06-26 session
+
+### Thread A: Re-investigated a work repo's coding-subagent + MEMORY.md mechanism
+
+- Trigger: Vince's weekly AI call — one work dev team (a Go/Kubernetes-controller repo) is ahead of the others, showing on-demand routing for MEMORY.md driven by their *coding subagents*. Vince asked how the subagents are kicked off.
+- Findings (the full setup is on an unmerged feature branch — prototype-stage, one engineer's experiment; the default branch still runs a monolithic CLAUDE.md + a single skill):
+  - **Subagent kickoff = standard Agent/Task tool with `subagent_type`.** No slash command, no orchestration script. The agent's `description` + `<example>` blocks ARE the delegate-or-not logic the main loop reads (multi-file domain work → subagent; small edit → main loop + skill).
+  - **MEMORY.md loading is prompt/frontmatter-driven, NOT hook-injected.** `memory: project` frontmatter binds a project-scoped agent-memory dir; the agent's own prompt declares MEMORY.md as an *index* of one-line pointers, read on demand ("when relevant / user references prior work / explicit recall"), with a mandatory staleness re-check before acting on recall. Structurally identical to Sage's own on-demand routing, one level down.
+  - Companion **runtime/conventions skill** holds the standards (the subagent delegates to it; main loop uses it as the lite path). A **`karpathy-guidelines` guardrail skill** is vendored in. Four `code-simplifier` **hooks** implement an exit-2-on-Stop "did you simplify after editing?" gate.
+
+### Thread B: Researched the Karpathy skills
+
+- Source: community repo `andrej-karpathy-skills` (Forrest Chang; ~177k stars) — NOT authored by Karpathy, distilled from his viral post on LLM coding failure modes.
+- Despite the plural, it's **one skill = four principles**: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution. ~65 lines, pure behavioral guardrail (no new capability). Most additive piece for Vince: the "Think Before Coding" clause.
+
+### Thread C: Distilled both into deliverables
+
+- **Vault entry** `vault/2026-06-17-in-repo-coding-harness.md` (seed, single-source) — the five-component in-repo coding harness, scrubbed of the work-repo identity. INDEX row added.
+- **Inception scaffolding spec** `output/20260617-coding-harness-scaffolding-spec.md` (gitignored) — implementation-grade, parameterizable, with the load-bearing caveat: ship the conventions skill as a *skeleton*, not fully-formed (pre-writing it = anticipated reuse). For Vince's Inception project to productize into reusable bootstrap scaffolding.
+
+### Thread D: Created the project's Atlas overview
+
+- Ran `/atlas-overview`. Pre-flight clean (no existing overview; remote matches; commits present; CLAUDE.md present). Created `.atlas/overview.md` (gitignored — always internal) and added `.atlas/` to `.gitignore`. Created `~/.atlas-host` = `mac-m4-pro` (Vince corrected from the derived `work-m4-pro`). Identity values (slug `ice-age-agent`, visibility `internal`, role_fit `ai-lead`) confirmed with Vince. Resolved all [NEEDS] markers. At session-end, refreshed it lean per Vince's instruction: **deliverables + key todos only, no minutia.**
+
+### Thread E: Shared work skills repo confirmed LIVE
+
+- The shared work skills repo is live with three skills: `access-openstack`, `handoff`, and `share-skill-with-team` (a meta-skill for creating team skills). `handoff` and `access-openstack` trace to Sage's vault work. Phase 1 of the skill-sharing initiative is realized. Repo name + remaining upload candidates kept in CLAUDE.local.md (employer-identifying); CLAUDE.md updated generically.
+
+### Thread F: Fable 5 pulled → standardized on Opus 4.8
+
+- Vince reported **Fable 5 was withdrawn at US-Government direction** — **restricted, not retired** (his framing: "restricted for now until Anthropic can secure it better"). He reverted ALL projects (personal + work) to **Opus 4.8 (1M context)** and removed the `claude-fable-5` pin from this project's `.claude/settings.local.json`. Sage now runs on Opus 4.8. This supersedes the entire "Fable 5 bootstrap window / free-through-June-22 / model-pin-revert" thread — those project priorities still stand, only the model changed. The `vault/2026-06-10-claude-fable-5-capability-profile.md` entry + INDEX row were marked **RESTRICTED/historical** this session (not obsolete).
+
+### Thread G: Inception (scaffolding-builder) stalled — decomposition plan set
+
+- Vince is applying `grill-with-docs` to his **inception** project (the one meant to productize the harness into reusable bootstrap scaffolding) but is struggling — feels it's "too advanced and needed Fable," unsure how to proceed.
+- Sage's reframe + recommendation, which **Vince accepted**: the "needed Fable" read is a misdiagnosis (Opus 4.8 is top-tier; the blocker is under-decomposition of a meta/abstract project). Don't design the generator top-down. Build ONE concrete harness BY HAND — the `tvo-skyline` harness (confirmed top priority) — using the scaffolding spec as a checklist, then have inception **extract** the reusable scaffolding from that worked example. This is Vince's own extracted-not-anticipated principle applied to the project itself, and it reorders the dependency so inception follows tvo-skyline rather than blocking it.
+- Vince will **share the harness framework with inception positioned exactly this way.** Banked as memory.
+
+### Decisions Vince articulated this session (durable)
+
+- **Atlas overview stays lean** — only useful deliverables and key todos; no minutia. (Drove the session-end trim from 7 todos to 3.)
+- **Fable 5 is restricted (not retired); Opus 4.8 (1M) is the portfolio-wide standard.** "Needs Fable" is not a valid blocker. Banked as memory.
+- **Inception decomposes from a concrete worked example, not top-down.** Build tvo-skyline's harness by hand first; inception extracts from it. Accepted by Vince. Banked as memory.
+- Confidentiality split reaffirmed: work-org repo names (`trilioData/...`) and employer-named skills (`trilio-jira-...`) stay in gitignored files (CLAUDE.local.md, `.atlas/`); committed content (CLAUDE.md, vault, this file) uses generic phrasing.
+
+### New memories banked this session
+
+- `project_fable5_pulled_opus48_standard` (later reframed restricted-not-retired).
+- `project_inception_stalled_decompose_via_tvo_skyline`.
+
+### Commits pushed this session
+
+- `1036b91` — vault: in-repo coding harness entry + INDEX; CLAUDE.md session-state (shared skills repo live).
+- `3a69c01` — gitignore the `.atlas/` overview directory.
+- Session-close refresh — CLAUDE.md + docs/session-state.md (Fable→restricted, inception plan, next-session pickup) + Fable vault/INDEX restricted marking.
+
+### Inbox saved this session
+
+None new.
 
 ## What got done — 2026-06-10 evening session
 
