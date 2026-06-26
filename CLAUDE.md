@@ -105,7 +105,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 *From this session (held for action):*
 - **Fable 5 bootstrap window — free through June 22, then usage-credit.** Vince has `claude-fable-5` via Pro for ~2 weeks and is bootstrapping/advancing several projects in the free window using the on-demand-routing template. Capability profile vaulted (`vault/2026-06-10-claude-fable-5-capability-profile.md`). **Project priorities + roadmap are in `CLAUDE.local.md` → "Fable 5 bootstrap window"** (kept local — names a work-product POC). Front-load before June 22.
-- **Shared work skills repo + `handoff` upload — now unblocked** (2026-06-10 call outcome: engineers trained + onboard, CTO gets repeatability). Vince's standing TODO from the 5/27 meeting; upload order in `CLAUDE.local.md` → Skill upload candidates. Open threads from the call: any new team commitments? shared-repo creation date?
+- **Shared work skills repo — now LIVE; Phase 1 realized.** `handoff`, `access-openstack`, and `share-skill-with-team` (the meta-skill for creating team skills) are shipped to it. Repo name + remaining upload candidates kept in `CLAUDE.local.md` → Skill upload candidates. This closes the standing 5/27 TODO; the unblock came from the 2026-06-10 call (engineers trained, CTO repeatability case landed).
 - Apply `grill-with-docs` to a second personal-track project (Vince's next planned use).
 - Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit; each project does it at its next session-end housekeeping.
 - Audit follow-ups from 2026-06-09 routing restructure: Project Status checklist (this CLAUDE.md) has the same forward-vs-backward shape problem one level up; `CLAUDE.local.md` review-queue + AI-initiative sections same in the gitignored file. Canonical schema for `docs/session-state.md` across projects deferred until a second project migrates.
@@ -127,7 +127,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand. **Sage now runs on Fable 5** (model pin in `.claude/settings.local.json`) — confirm in-session if it matters.
 2. **Coding harness** — Vince bootstrapped/worked it in another project this session. Ask how it went; it's the dependency for the top-priority build named in `CLAUDE.local.md` → "Fable 5 bootstrap window". Front-load the Fable work before the **June 22** free-window close.
-3. Shared work skills repo + `handoff` upload — politically unblocked as of the 2026-06-10 call; ask Vince when he wants to move.
+3. Shared work skills repo — LIVE with 3 skills shipped (`handoff`, `access-openstack`, `share-skill-with-team`). Next: continue uploading remaining validated candidates — see `CLAUDE.local.md` → Skill upload candidates.
 4. A second personal-track project queued for `grill-with-docs`.
 5. **Revert reminder:** delete the `claude-fable-5` model pin from `.claude/settings.local.json` after June 22.
 
