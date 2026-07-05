@@ -99,39 +99,41 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-06-26. Re-investigated a work repo's coding-subagent + MEMORY.md mechanism (feature-branch prototype: subagent via Task tool with delegate-logic in its description; MEMORY.md loaded prompt/frontmatter-driven via on-demand index routing; companion runtime skill; Karpathy-guidelines guardrail skill; simplifier-gate hooks) and researched the Karpathy skills (community `andrej-karpathy-skills` — one skill, four principles). Distilled both into a new vault entry — **the in-repo coding harness pattern** — plus a shareable scaffolding spec (`output/`) for the Inception project to productize into reusable bootstrap scaffolding. Confirmed the **shared work skills repo is now LIVE** (3 skills shipped). Created the project's **Atlas overview** (`.atlas/`, gitignored; `~/.atlas-host` = `mac-m4-pro`). Three commits pushed. **Fable 5 was pulled at US-Govt direction — Vince reverted all projects to Opus 4.8 (1M); Sage now runs on Opus 4.8.**
+**Last:** 2026-07-05. Vince reported **inception built the coding harness and it's PROVEN OUT on `tvo-skyline`** (tvo-skyline was the test bed) — inception is unstalled and producing; Vince's next focus on tvo-skyline is **optimizing the UI work**. Evaluated `apoorvjain25/frontier` (21-craft quality-loop skill, incl. a Design craft) for that UI work — **ruled out** (reasoning in archaeology). First real AgentMail triage: **Homecrew** (open-source package manager for agent skills) logged to the skill watchlist; AgentNews #15 checklist distilled to `inbox/`; both threads archived. **This session ran on Fable 5 — access is back**; `.claude/settings.local.json` still pins Opus 4.8 (1M) at restart.
 
 **Open items going into next session:**
 
 *From this session (held for action):*
-- **Fable 5 RESTRICTED (US-Govt direction) — standardized on Opus 4.8 (1M) across all projects.** Restricted-not-retired: temporary, pending Anthropic securing it better. Vince removed the `claude-fable-5` pin from `.claude/settings.local.json` this session; Sage runs on Opus 4.8. Capability-profile vault entry + INDEX already marked RESTRICTED/historical (not obsolete). Bootstrap-window project priorities in `CLAUDE.local.md` still stand; only the model changed. **Guard:** "needs Fable" is not a valid blocker — Opus 4.8 (1M) is top-tier; a stall is scope/approach, not model.
-- **Shared work skills repo — now LIVE; Phase 1 realized.** `handoff`, `access-openstack`, and `share-skill-with-team` (the meta-skill for creating team skills) are shipped to it. Repo name + remaining upload candidates kept in `CLAUDE.local.md` → Skill upload candidates. This closes the standing 5/27 TODO; the unblock came from the 2026-06-10 call (engineers trained, CTO repeatability case landed).
-- **In-repo coding harness pattern captured + Inception spec drafted.** Vault entry `vault/2026-06-17-in-repo-coding-harness.md` (seed, single-source) + a shareable scaffolding spec at `output/20260617-coding-harness-scaffolding-spec.md` (gitignored) for the Inception project to build reusable, bootstrappable scaffolding from. This is the productization path for the top-priority coding-harness build.
-- **Atlas overview now exists** (`.atlas/overview.md`, gitignored; `.atlas/` added to `.gitignore`; `~/.atlas-host` = `mac-m4-pro`). Refresh at session-end with deliverables + key todos only — no minutia (Vince's instruction).
-- **Inception (scaffolding-builder) was STALLED — plan now set (Vince accepted 2026-06-26).** Vince felt it was "too advanced and needed Fable." Accepted approach: don't design the abstract generator top-down — build the concrete **tvo-skyline** harness BY HAND first (using the scaffolding spec as a checklist), then have inception *extract* the reusable scaffolding from that one worked example (extracted-not-anticipated applied to the project itself). Vince will share the harness framework with inception positioned exactly that way. This reorders the dependency so inception follows tvo-skyline instead of blocking it. **tvo-skyline harness build = confirmed top priority.** (Memory: [[project-inception-stalled-decompose-via-tvo-skyline]].)
-- Apply `grill-with-docs` to a second personal-track project (Vince is trying it on **inception** — see stalled-inception item above).
-- Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit; each project does it at its next session-end housekeeping.
-- Audit follow-ups from 2026-06-09 routing restructure: Project Status checklist (this CLAUDE.md) has the same forward-vs-backward shape problem one level up; `CLAUDE.local.md` review-queue + AI-initiative sections same in the gitignored file. Canonical schema for `docs/session-state.md` across projects deferred until a second project migrates.
+- **Model reconcile at next cold start.** This session ran on Fable 5 (Vince set it via `/model`, saved as his default for new sessions), but this project's `.claude/settings.local.json` pins Opus 4.8 (1M), which wins on restart. Decide: keep the Opus pin (the 2026-06-26 portfolio standard) or drop it to follow the Fable default. Memory [[project-fable5-pulled-opus48-standard]] updated — access restored 2026-07-05; the "'needs Fable' is not a valid blocker" guard still stands.
+- **Harness proven (2026-07-05): inception BUILT it, tvo-skyline TESTED it → two consequences:** (1) tvo-skyline's next phase is **UI-work optimization** — frontier was evaluated for this and ruled out; toolset stays built-in `frontend-design`/`dataviz` + the harness's own review step. (2) **Inception is unstalled** — it delivered the harness and now has a validated worked example to generalize the reusable scaffolding from (the 2026-06-26 decompose-then-extract framing played out with inception doing the building; memory [[project-inception-stalled-decompose-via-tvo-skyline]] updated).
+- **Homecrew — trust pass pending** before any team recommendation (source audit per the MCP-hardening pattern; exact repo URL still to verify — newsletter links were tracking redirects). Details: `local/skill-watchlist.md` → Ecosystem tooling; pointer added under the WORKFLOW-skill-mechanics open question in `CLAUDE.local.md`. Candidate answer to that question.
+- AgentNews #15 note is background only (`inbox/20260604-agentnews15-ai-employees-checklist.md`, gitignored — deliberately uncommitted); becomes actionable if the work AI initiative moves from sharing skills to deploying agents.
 
 *Carried from earlier sessions:*
+- Shared work skills repo LIVE (3 skills shipped: `handoff`, `access-openstack`, `share-skill-with-team`). Continue uploading validated candidates — `CLAUDE.local.md` → Skill upload candidates.
+- Apply `grill-with-docs` to a second personal-track project (in progress on **inception**).
+- Atlas overview (`.atlas/`, gitignored): refresh at session-end, deliverables + key todos only — no minutia (refreshed 2026-07-05).
+- Migrate other projects to the brief+detail Session State pattern opportunistically — no forced retrofit.
+- Audit follow-ups from 2026-06-09 routing restructure: Project Status checklist (this CLAUDE.md) has the same forward-vs-backward shape problem one level up; `CLAUDE.local.md` review-queue + AI-initiative sections same in the gitignored file. Canonical `docs/session-state.md` schema deferred until a second project migrates.
 - MVP decision for work harness experiment.
 - 32-item drop list at `output/20260524-ai-notebook-drop-list.md` (gitignored) pending checkbox review.
 - Mum stories / Mind Maker app — 30-min brain-dump needed.
 - Voice/transcription unifier standardization (superwhisper front-runner).
 - Three seed patterns still uncaptured: skills-complement-MCPs, master-agents-self-architect, Context Seven.
-- Auto Dream: not yet in current CC install. Memory now ~20 entries; revisit enable decision when it crosses ~30.
+- Auto Dream: not yet in current CC install. Memory ~20 entries; revisit enable decision when it crosses ~30.
 - Robin / del-infra absorption pending Vince's go; ansible-vault alternatives evaluation queued.
-- Tier-2 vault candidate remaining: fine-grained PAT scope discipline (now has the `setup-github-pat` skill as a worked-example sibling). Negative-space documentation written 2026-06-10.
+- Tier-2 vault candidate remaining: fine-grained PAT scope discipline (has the `setup-github-pat` skill as a worked-example sibling).
 
 **Task list state:**
-- Task #3 (qualitative test for `setup-github-pat`) — the live PAT validation it was waiting on landed 2026-06-10 (approval came through; authenticated reads worked first try). Assess and likely close next session.
+- Task #3 (qualitative test for `setup-github-pat`) — the live PAT validation it was waiting on landed 2026-06-10. Assess and likely close next session.
 - Task #4 (optional description optimization + package) — pending.
 
 **Next session — pick up here:**
-1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`. Consult `docs/session-state.md` for thread-level archaeology on demand. **Sage runs on Opus 4.8 (1M)**; Fable 5 restricted (US-Govt direction, temporary); the `claude-fable-5` pin was removed from `.claude/settings.local.json` this session.
-2. **TOP PRIORITY — build the `tvo-skyline` harness BY HAND**, using the scaffolding spec (`output/20260617-coding-harness-scaffolding-spec.md`) as a checklist. This is the concrete worked example that inception will extract its reusable scaffolding from.
-3. **Inception** — Vince is sharing the harness framework with it, positioned as "extract from the tvo-skyline harness, don't build the generator top-down." Check progress / unblock as needed; `grill-with-docs` is being applied here.
-4. Shared work skills repo — LIVE with 3 skills shipped (`handoff`, `access-openstack`, `share-skill-with-team`). Next: continue uploading remaining validated candidates — see `CLAUDE.local.md` → Skill upload candidates.
+1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. **First: model reconcile** (Fable 5 default vs this project's Opus 4.8 pin — see open item).
+2. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
+3. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
+4. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
+5. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 

@@ -4,9 +4,47 @@
 
 ---
 
-**Last session:** 2026-06-26. Re-investigated a work repo's coding-subagent + MEMORY.md mechanism and researched the Karpathy skills; distilled both into the **in-repo coding harness** vault entry + a shareable scaffolding spec for the Inception project. Confirmed the shared work skills repo is live (3 skills shipped). Created the project's **Atlas overview**. Recorded that **Fable 5 was restricted (US-Govt direction, temporary) and all projects reverted to Opus 4.8 (1M)**. Set the **inception** decomposition plan (build tvo-skyline's harness by hand, then extract — Vince accepted). Two memories banked.
+**Last session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
-**Prior sessions:** 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+**Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-07-05 session
+
+### Thread A: Inception's coding harness proven out on tvo-skyline (Vince's report)
+
+- Vince opened with: he "proved out the inception-project coding harness on tvo-skyline," and clarified at session close the direction of the work: **inception built the harness; it was then applied to tvo-skyline to test it**. (Sage initially recorded this backwards — as a hand-built tvo-skyline harness awaiting inception's extraction — and Vince corrected it.) So inception is **unstalled and producing**: it delivered the harness, and tvo-skyline is the validated worked example. What remains for inception is generalizing that validated instance into the reusable scaffolding deliverable. Vince's stated next focus on tvo-skyline itself: **optimizing the UI work**. Memory [[project-inception-stalled-decompose-via-tvo-skyline]] updated to the proven/unstalled state.
+
+### Thread B: frontier evaluated for UI work — ruled out
+
+- Repo: `apoorvjain25/frontier` (MIT, prompt-files-only Claude Code plugin). Not a UI tool — a **quality-loop skill**: write a concrete rubric first, generate 3–5 independent candidates for creative work, run fresh-eyes judge passes until two consecutive clean sweeps. 21 "craft standards" incl. Design. Modes: `full` (~5–9× tokens), `quick` (~1.5–2×), `gate` (judge-only).
+- Design craft file read in full: strong, concrete anti-AI-slop rubric (4/8px rhythm, modular type ramps, contrast minimums, 44px touch targets, mandatory empty/loading/error states, 360/768/1440px screenshot verification, "could this appear unchanged on any other product's site?" kill test) — but landing-page-shaped. Weak fit for tvo-skyline, where the host dashboard (Skyline) dictates the design system; only the UX-mechanics half transfers.
+- Sage's assessment: useful only as an on-demand gate for greenfield UI; design knowledge overlaps built-in `frontend-design` + `dataviz`; `full`-mode cost profile conflicts with work-account frugality. The distinctive part is the procedure ("quality is a procedure, not a property"), same shape as adversarial-verify.
+- **Vince passed on it entirely** — no install, no watchlist entry, no vault entry, no checklist crib. Recorded here as a **ruled-out path** so it isn't re-evaluated.
+
+### Thread C: First real AgentMail triage — Homecrew + AgentNews #15
+
+- Vince asked whether email was set up (yes — AgentMail, 2026-06-02), then had Sage check the inbox: two unread threads, both his early-June forwards.
+- **Homecrew** (AI Tinkerers deep dive by Steve Krenzel of Logic, 2026-06-03): open-source **package manager for agent skills**. A "tap" is a plain git repo of skills — no registry, no publish step; `crew install` syncs a skill into every agent on the machine (Claude Code, Codex, Cursor, gemini-cli, Factory); team updates propagate PR → main → `crew update`. Directly relevant: the shared work skills repo is already tap-shaped — candidate answer to the open WORKFLOW-skill-mechanics question and input to the enterprise-packaging research. Logged to `local/skill-watchlist.md` (new **Ecosystem tooling** section) + pointer in `CLAUDE.local.md` under that open question. Exact repo URL still to verify (newsletter links were tracking redirects). **Trust pass required** before any team recommendation.
+- **AgentNews #15** (AgentMail's own newsletter, 2026-06-04; Vince had forwarded it to Robin, then Sage): six-point agents-as-coworkers operational checklist (per-agent identity; job-scoped, short-lived permissions; append-only audit trail; escalation rules as *testable config*; offboarding as a default; a comms channel). Distilled to `inbox/20260604-agentnews15-ai-employees-checklist.md` (gitignored), marked background — rhymes with MCP-hardening/PAT-scope patterns; the genuinely new angle is escalation-as-testable-config.
+- Both threads archived via label PATCH (`unread` removed, `archived` added — archive-over-delete per Robin's inherited gotchas). First live triage ran friction-free on raw curl, supporting the deferred-MCP/Skill decision.
+
+### Thread D: Model observation
+
+- This session ran on **Fable 5** — access evidently restored (Vince set it via `/model`; saved as his default for *new* sessions). This project's `.claude/settings.local.json` still pins Opus 4.8 (1M), which applies at restart — reconcile flagged as the first item next session. Memory [[project-fable5-pulled-opus48-standard]] updated: the unavailability is over as of 2026-07-05; the "'needs Fable' is not a valid blocker" guard retained.
+
+### Decisions Vince articulated this session (durable)
+
+- **Pass on frontier** — no adoption in any form.
+- **Leave the AgentNews inbox note gitignored** — no commit; it earns a vault entry later or not at all.
+
+### Memories updated
+
+- `project_fable5_pulled_opus48_standard` — Fable 5 access restored 2026-07-05; guard retained.
+- `project_inception_stalled_decompose_via_tvo_skyline` — inception built the harness, proven on tvo-skyline; unstalled.
+
+### Commits
+
+- One session-close commit (CLAUDE.md brief + this file). The content changes themselves (watchlist, CLAUDE.local.md, inbox note) live in gitignored paths and are deliberately uncommitted.
 
 ## What got done — 2026-06-26 session
 
