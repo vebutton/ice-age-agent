@@ -1,21 +1,23 @@
 # Claude Fable 5 — capability profile and bootstrap-window note
 
-> **STATUS: RESTRICTED (2026-06-26).** Fable 5 was withdrawn at US-Government
-> direction and is **not currently available** — restricted for now until Anthropic
-> can secure it better; not permanently obsolete. Vince reverted all projects to
-> **Opus 4.8 (1M)** as the standard. The capability profile and bootstrap-window
-> deadlines below are **historical** — kept for reference and for when/if Fable is
-> restored. See memory [[project-fable5-pulled-opus48-standard]].
+> **STATUS: available again (access RESTORED 2026-07-05).** Fable 5 was withdrawn at
+> US-Government direction on 2026-06-26 and restored on 2026-07-05 — that restriction
+> episode is now history. **The dated free-window material below is expired:** the
+> June 9–22 free period, the "front-load before June 22" implication, and the
+> bootstrap-window framing no longer apply (reviewed 2026-09-18). Treat this entry as a
+> **capability profile only** — the benchmark, file-based-memory and safeguard-fallback
+> content still stands; every deadline in it does not. Sage itself pins `opus[1m]`.
+> See memory [[project-fable5-pulled-opus48-standard]].
 
 **What it is:** Mythos-class Claude model released 2026-06-09. API ID `claude-fable-5`. State-of-the-art on nearly every benchmark Anthropic published. Available everywhere day one, including Claude Code and Cowork.
 
 **Fable 5 vs. Mythos 5:** identical underlying model. Mythos 5 has safeguards lifted for authorized cyber/biomedical users (trusted-access enrollment). For general agentic/coding/knowledge work, **Fable 5 is the relevant one** — no Mythos enrollment needed.
 
-## The time-sensitive bit (deadline)
+## Pricing / access history (EXPIRED — kept as record)
 
 - **Free on Pro/Max/Team/seat-based Enterprise from June 9 to June 22, 2026.** From **June 23** it shifts to usage-credit-based with gradual restoration.
 - Interactive Claude Code is subscription-included, so bootstrapping during this window costs nothing extra (see [[CC subscription vs API cost]] calculus — no headless `claude -p` loops needed to get the benefit).
-- **Implication:** front-load any Fable-5 bootstrap work before June 22. After that, the cost calculus changes (usage credits) and per-project monetization flags matter again.
+- ~~**Implication:** front-load any Fable-5 bootstrap work before June 22.~~ **Expired** — the window closed 2026-06-22; usage-credit pricing has applied since, so per-project monetization flags govern any Fable use now.
 - Post-window API pricing for reference: **$10/M input, $50/M output** (~half of Mythos Preview).
 
 ## Capability profile (vs Opus 4.8 unless noted)

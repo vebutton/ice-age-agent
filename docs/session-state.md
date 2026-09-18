@@ -4,9 +4,37 @@
 
 ---
 
-**Last session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
+**Last session:** 2026-09-18. Housekeeping pass after a ~10-week gap (no commits between 2026-07-05 and 2026-09-18) — cleared every expired date-gated item across the brief, the local file, the watchlist, the vault entry + INDEX row, and the model memory. No project work advanced; the queue is unchanged apart from the prunes.
+
+**Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-09-18 session
+
+### Thread A: Expired-item housekeeping pass (Vince's call: "housekeeping first")
+
+Context: session opened as a cold-start catch-up after ~10 weeks idle. Nothing had moved in the repo since `7d4a9a2`, so several date-gated items had silently gone stale. Vince chose the housekeeping pass over resuming tvo-skyline or inception.
+
+Prunes applied (all verified by exact-string replacement, one match each):
+
+- **`CLAUDE.local.md` — "Fable 5 bootstrap window (2026-06-10 → June 22)" section replaced** by "Personal-track project priorities". The free-window rationale, the `claude-fable-5` pin instruction and the "REVERT after June 22" reminder are gone; the four-way priority ordering survived and was **re-stated against current reality** — tvo-skyline's harness is built and proven (phase = UI-work optimization, frontier ruled out), and the old item 2 "Coding harness (NEW project) — bootstrap this first" became "inception — built the harness; next is generalizing it".
+- **iOS/Apple skills re-gated from a date to a dependency.** The "Priority — review within June 2026 (iOS app prep — Mum stories)" window lapsed unworked — the app's 30-min brain-dump is still owed, so there is nothing to profile. Re-scoped in three places: the `local/skill-watchlist.md` heading (now "Gated on the Mum-stories app starting"), the `CLAUDE.local.md` back-burner callout (the time-sensitive marker removed), and the `CLAUDE.md` Project Status checkbox. **Decision recorded:** dependency gates beat date gates for work that can't start until a prerequisite lands — a re-dated window would just lapse again.
+- **Model reconcile closed.** `.claude/settings.local.json` now pins `"model": "opus[1m]"` (was Opus 4.8 at last session's close), so the reconcile open item was factually obsolete. Narrowed in the brief to the one live question — keep the project-level Opus pin, or delete the line so Sage follows Vince's global `/model` default. The "First: model reconcile" step was removed from the next-session pickup list.
+- **Vault entry `2026-06-10-claude-fable-5-capability-profile.md` un-stuck from RESTRICTED.** Its status block still claimed Fable was withdrawn, which stopped being true on 2026-07-05. Header rewritten to: access restored, restriction episode historical, **dated free-window material expired** — capability content (benchmarks, 3× file-based memory, safeguard auto-fallback) still stands. Section heading "The time-sensitive bit (deadline)" → "Pricing / access history (EXPIRED — kept as record)"; the front-load-before-June-22 bullet struck through with the expiry noted. `vault/INDEX.md` row retitled and its status moved from *reference — restricted* to *reference*.
+
+### Decisions Vince articulated this session (durable)
+
+- **Housekeeping before project work** after a long gap — clear stale state first so the queue can be trusted.
+
+### Memories updated
+
+- `project_fable5_pulled_opus48_standard` — reconcile closed 2026-09-18; description rewritten; body records the `opus[1m]` pin and that all date-bound Fable framing has been pruned. MEMORY.md index line updated to match.
+
+### Deliberately NOT touched
+
+- **`.claude/settings.local.json` allow-list cruft** (one-off paths from the completed Slack MCP audit, one-off `gh api` calls from the June AgentMail review). Expired in spirit, but harmless — removing them only buys future permission prompts. Left in place by Sage's judgment; flagged to Vince.
+- **The `.atlas/` overview** — refreshed at session-end per the standing rule, not as part of this pass.
 
 ## What got done — 2026-07-05 session
 
