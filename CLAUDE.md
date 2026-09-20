@@ -99,15 +99,22 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-09-18. **Housekeeping pass after a ~10-week idle gap** (no commits 2026-07-05 → 2026-09-18). Every expired date-gated item cleared: the Fable-5 bootstrap-window section in `CLAUDE.local.md` replaced by a plain priority list; the June-2026 iOS skill window re-gated to "when the Mum-stories app actually starts"; the model reconcile closed (`opus[1m]` pinned); the Fable vault entry un-stuck from RESTRICTED and its free-window material marked expired. No project work advanced — the queue below is unchanged apart from the prunes.
+**Last:** 2026-09-20. **Output-shape fix landed**: Vince's standing complaint (a 2-line question returning 50 lines while he multitasks) is fixed durably by the `Sage Dialog` output style — always on, no invocation, active from this session's start. `claude plugin eval` used for the first time against the superseded interim skill and **parked** (net-zero delta, one real regression; the first paid run was invalid because the control arm never answered). Local-inference track opened: M5 Ultra Mac Studio (256GB) arrives December — planning only, detail in `CLAUDE.local.md`. Atlas overview refreshed; Homecrew repo URL confirmed. Two memories banked.
+
+**Prior:** 2026-09-18. **Housekeeping pass after a ~10-week idle gap** (no commits 2026-07-05 → 2026-09-18). Every expired date-gated item cleared: the Fable-5 bootstrap-window section in `CLAUDE.local.md` replaced by a plain priority list; the June-2026 iOS skill window re-gated to "when the Mum-stories app actually starts"; the model reconcile closed (`opus[1m]` pinned); the Fable vault entry un-stuck from RESTRICTED and its free-window material marked expired. No project work advanced — the queue below is unchanged apart from the prunes.
 
 **Prior:** 2026-07-05. Vince reported **inception built the coding harness and it's PROVEN OUT on `tvo-skyline`** (tvo-skyline was the test bed) — inception is unstalled and producing; Vince's next focus on tvo-skyline is **optimizing the UI work**. Evaluated `apoorvjain25/frontier` (21-craft quality-loop skill, incl. a Design craft) for that UI work — **ruled out** (reasoning in archaeology). First real AgentMail triage: **Homecrew** (open-source package manager for agent skills) logged to the skill watchlist; AgentNews #15 checklist distilled to `inbox/`; both threads archived. That session ran on Fable 5 (access restored 2026-07-05). **Model state since settled:** this project pins `opus[1m]` in `.claude/settings.local.json`.
 
 **Open items going into next session:**
 
-*PRIORITY (opened 2026-09-20) — FIX LANDED, needs live validation:*
+*PRIORITY — FIX LANDED 2026-09-20, now in live validation:*
 - **Sage communication shape.** Vince's complaint: a 2-line question returns 50 lines; he is usually multitasking and wants dialog, not essays. **Durable fix in place:** output style `Sage Dialog` (`~/.claude/output-styles/sage-dialog.md`), activated for this project only via `outputStyle` in `.claude/settings.local.json`. Always on, no invocation, survives cold start. Three rules: one thing per turn; ask instead of pre-answering the forks; **long-form goes to a file and chat carries the pointer** (on-demand routing applied to conversation). Open: confirm it holds over a few real sessions, then decide whether to promote it to `~/.claude/settings.json` portfolio-wide.
 - `action-first-dialog` skill = superseded as the interim measure; it shapes monologues, not turn-taking. Eval parked at net-zero delta with one real regression (see archaeology).
+
+*From 2026-09-20 (held for action):*
+- **Local-inference track — planning only until December.** M5 Ultra Mac Studio (256GB, headless, always-on) arrives then. Positions already taken, don't relitigate: the box is Sage's ingestion/retrieval backend not a second Sage; models are chosen last; one project named for the service, not the technology. **Next and highest-value: the cross-portfolio workload inventory** — needs Vince. Full detail: `CLAUDE.local.md` → Local-inference track. Memory [[project-local-inference-track]].
+- **Homecrew trust pass still open.** Repo URL now confirmed (`github.com/with-logic/crew`, site `crew.logic.inc`, by Logic Inc.) — the source audit per the MCP-hardening pattern has NOT been done, and that is what gates any team recommendation.
+- Eval suite for `action-first-dialog` is parked at `~/.claude/skills/action-first-dialog/evals/` (5 cases, graders written). If resumed, rewrite the cases against Sage's real traffic — architectural advice and research synthesis — not generic coding prompts, and raise runs-per-case above 3.
 
 *From the 2026-07-05 session (held for action):*
 - **Model pin — CLOSED 2026-09-18.** Vince's call: **follow the global default**. The `model` key is deleted from `.claude/settings.local.json`; Sage now runs whatever `/model` is set to globally, with no project-level override. Don't reintroduce a pin here without an explicit ask. Memory [[project-fable5-pulled-opus48-standard]] carries the "'needs Fable' is not a valid blocker" guard — still stands.
@@ -135,7 +142,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - Task #4 (optional description optimization + package) — pending.
 
 **Next session — pick up here:**
-1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. Model pin is settled (`opus[1m]`); no reconcile step needed.
+1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. No model pin (follows the global default). **The `Sage Dialog` output style is active — short turns, one thing per turn, long-form to files.** Watch whether it holds; that is the live validation.
 2. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
 3. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
 4. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.

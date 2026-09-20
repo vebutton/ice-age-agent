@@ -42,11 +42,21 @@ Vince has bought an M5 Ultra Mac Studio, arriving December. Planning conversatio
 
 7 unread found, 3 acted on: the Claude Code newsletter carrying the plugin-eval feature (used, above); Global AI Weekly #167 with Perplexity's **Lily** — a Rust+Metal inference engine that skips PyTorch and MLX to hand-optimise one model on one hardware family, trading generality for speed; and two items relevant to always-on agent work — a credential-stealing weakness in the new MCP spec, and AWS open-sourcing an agent built on the premise that watching an agent work defeats the point of delegating. A fourth thread ("agentic docs") arrived with its forwarded content missing and only Vince's question attached; flagged back to him rather than guessed at.
 
+### Thread D: Atlas overview refresh + one open question closed
+
+- `.atlas/overview.md` refreshed (gitignored): two accomplishments added — the output-shape fix and the plugin-eval methodology finding — todos reordered with the output-style validation and the local-inference host on top, and two new entries in *Context not in the repo* covering the communication constraint and the local-inference positions.
+- **Homecrew repo URL confirmed**: `github.com/with-logic/crew` (site `crew.logic.inc`, Logic Inc.). The July newsletter linked through tracking redirects so the real URL had never been captured. Corrected in `local/skill-watchlist.md`. The **trust pass itself remains open** — knowing the repo is not auditing it.
+
 ### Decisions Vince articulated this session (durable)
 
 - **Follow the global model default** — project-level model pin deleted, not to be reintroduced without an explicit ask.
 - **Output style scoped to this project for now**, not portfolio-wide.
 - **Park the eval**, fix the communication problem first.
+
+### Memories banked
+
+- `feedback_output_shape_dialog` — dialog not essays; the three rules and the mechanism.
+- `project_local_inference_track` — the December machine, the motivations, and the positions already taken.
 
 ## What got done — 2026-09-18 session
 
