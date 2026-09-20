@@ -4,11 +4,49 @@
 
 ---
 
-**Last session:** 2026-09-18. Housekeeping pass after a ~10-week gap (no commits between 2026-07-05 and 2026-09-18) — cleared every expired date-gated item across the brief, the local file, the watchlist, the vault entry + INDEX row, and the model memory. No project work advanced; the queue is unchanged apart from the prunes.
+**Last session:** 2026-09-20. Communication-shape fix landed (output style `Sage Dialog`), `claude plugin eval` exercised against the interim skill and parked, first-pass planning for the local-inference track (detail in gitignored `CLAUDE.local.md`).
+
+**Prior session:** 2026-09-18. Housekeeping pass after a ~10-week gap (no commits between 2026-07-05 and 2026-09-18) — cleared every expired date-gated item across the brief, the local file, the watchlist, the vault entry + INDEX row, and the model memory. No project work advanced; the queue is unchanged apart from the prunes.
 
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-09-20 session
+
+### Thread A: Communication shape — Vince's complaint and the durable fix
+
+- **The complaint, verbatim in substance:** "I cannot type a 2 line sentence and have you output 50 lines every time. You are my AI assistant so our communication should be more like a dialog." Context: he is usually multitasking. Opened as a **priority task** in the CLAUDE.md brief.
+- **Interim measure:** he had already authored an `action-first-dialog` skill (global, `~/.claude/skills/`) and asked for it to be loaded. Loaded and active for the session.
+- **Diagnosis that decided the fix:** the skill shapes a *monologue* — make the paragraph actionable. The complaint is about *turn-taking*. A perfectly action-first 50-line answer still fails the actual ask. Different problem, so a different mechanism was needed.
+- **Durable fix:** Claude Code's **output style** mechanism — `~/.claude/output-styles/sage-dialog.md`, activated by `outputStyle` in this project's `.claude/settings.local.json`. Chosen over a skill because it modifies the system prompt persistently: always on, no invocation, survives cold start. The skill's own text concedes its persistence section "is not a mechanism". Scoped to this project only at Vince's direction; promotion to `~/.claude/settings.json` deferred until it proves out.
+- **The three rules**, in priority order: (1) one thing per turn — answer the question asked, not the adjacent ones noticed while answering; (2) ask instead of pre-answering the forks — the single biggest source of over-long output; (3) **long-form goes to a file, chat carries the pointer** — this is the project's own on-demand routing applied to conversation rather than to session state. Sage's work product is knowledge artifacts, so a long analysis typed into chat is a vault entry thrown away.
+
+### Thread B: `claude plugin eval` — first use, and what it cost to learn
+
+Vince surfaced the feature from a Claude Code newsletter and asked for the interim skill to be tested "to make sure it is doing more good than harm". Capped at $5 on his instruction.
+
+- **Early-access gate.** The command is gated; enabled with `CLAUDE_CODE_WALNUT_SPIRE=1`. The CLI explicitly warns against putting it in a repo's `.claude/settings.json` — shell or `~/.claude/settings.json` only. Not added to global settings; passed per-command.
+- **Three failed invocations before any model call, all $0.** (1) Targeting by name from inside the skill directory resolves as a relative path. (2) A loose skill in `~/.claude/skills/` is not an installed plugin, so name resolution falls through to path resolution again. (3) With a path target, ablation fails outright: a skills-style directory with only a `SKILL.md` is **not auto-detected** as a plugin. Fix: declare `plugins: ["<abs path>"]` in each case's frontmatter.
+- **Run 1 ($3.15) was invalid and the JSON did not say so.** Every case prompt opened with `/action-first-dialog` to force the skill to load. In the no-plugin arm that slash command does not resolve — all 15 baseline runs returned `Unknown command` and ended at **0 turns**. Deltas of +1.00 looked like a triumph; the control had simply died. **Lesson worth keeping: check the baseline arm actually answered before reading any delta.**
+- **Run 2 ($4.98, 20 min, 3 runs/case) was valid.** Mean delta **0.00**. Two cases improved (+0.33 each), two unchanged, one regressed (**−0.67**).
+- **The one real finding:** on "what are my options", baseline passed 3/3; under the skill, 1 pass / 1 fail / 1 timeout. The failing run replaced the options list with a decision heuristic ("two questions decide almost everything…"). The skill's own rules already forbid this — its §5 says an options question gets 2–4 ranked options — and the model read that and did it anyway. A wording problem in the skill, not grounds to abandon it. The −0.67 is inflated by the timeout (300s, 0 turns, infrastructure not behavior).
+- **Two limits on the exercise, stated rather than glossed:** n=3 cannot resolve deltas that small — one run flipping moves a case by 0.33, larger than most deltas measured. And the cases were generic coding prompts, not Sage's actual traffic (architectural advice, research synthesis, cross-project knowledge), so the eval measured the skill against someone else's workload.
+- **Parked** at Vince's direction in favour of the communication fix. A grader flaw was also found and fixed mid-run: "first line must be an action" penalised a correct caveat about missing project files, scoring a genuinely good response 0.00.
+
+### Thread C: Local-inference track — planning only
+
+Vince has bought an M5 Ultra Mac Studio, arriving December. Planning conversation only; no artifacts committed. **Detail lives in gitignored `CLAUDE.local.md`** under the personal-track priorities, per the standing rule on keeping purchase/monetisation context out of committed content. Hardware and routing findings that are portable will become a vault entry once there is evidence behind them — deliberately not written yet, since a routing rule promoted off hardware specs and secondary blog coverage would be exactly the thin-evidence elevation Vince has corrected before.
+
+### Inbox triage (AgentMail)
+
+7 unread found, 3 acted on: the Claude Code newsletter carrying the plugin-eval feature (used, above); Global AI Weekly #167 with Perplexity's **Lily** — a Rust+Metal inference engine that skips PyTorch and MLX to hand-optimise one model on one hardware family, trading generality for speed; and two items relevant to always-on agent work — a credential-stealing weakness in the new MCP spec, and AWS open-sourcing an agent built on the premise that watching an agent work defeats the point of delegating. A fourth thread ("agentic docs") arrived with its forwarded content missing and only Vince's question attached; flagged back to him rather than guessed at.
+
+### Decisions Vince articulated this session (durable)
+
+- **Follow the global model default** — project-level model pin deleted, not to be reintroduced without an explicit ask.
+- **Output style scoped to this project for now**, not portfolio-wide.
+- **Park the eval**, fix the communication problem first.
 
 ## What got done — 2026-09-18 session
 
