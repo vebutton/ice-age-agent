@@ -4,13 +4,122 @@
 
 ---
 
-**Last session:** 2026-09-20. Communication-shape fix landed (output style `Sage Dialog`), `claude plugin eval` exercised against the interim skill and parked, first-pass planning for the local-inference track (detail in gitignored `CLAUDE.local.md`).
+**Last session:** 2026-10-03. Short, single-thread: opened the **spec-standard-for-AI-coding** topic. Read five design docs from a work repo (**Engineering's practice, browsed for learnings — not Vince's**), extracted a three-genre model of design documentation, and landed the sharper finding that **spec density scales inversely with executor capability**. Full analysis in gitignored `local/spec-standard-for-ai-coding-20261003.md`. One memory banked, one commit.
+
+**Prior session:** 2026-09-20. Communication-shape fix landed (output style `Sage Dialog`), `claude plugin eval` exercised against the interim skill and parked, first-pass planning for the local-inference track (detail in gitignored `CLAUDE.local.md`).
 
 **Prior session:** 2026-09-18. Housekeeping pass after a ~10-week gap (no commits between 2026-07-05 and 2026-09-18) — cleared every expired date-gated item across the brief, the local file, the watchlist, the vault entry + INDEX row, and the model memory. No project work advanced; the queue is unchanged apart from the prunes.
 
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-03 session
+
+### Thread A: vibe coding vs spec-driven development — what to generate before coding
+
+Vince opened a new topic for the guest-agent build (platform specifics in `CLAUDE.local.md`): he has written specs, but "in no
+way to the extent that product have", and asked whether there is a good standard to follow and
+what he and Claude should generate **before** coding to make AI-driven work go best. He offered
+to upload engineering examples and linked one by URL.
+
+**Framing given, and why.** The vibe-vs-spec dichotomy was declined rather than answered. The
+SWE-bench scaffolding study (254 submissions — differences between top coding agents are often
+not statistically significant, while scaffolding changes outweigh swapping top models) says the
+leverage is in repo-specific scaffolding, not in which spec ritual is followed. External
+standards (GitHub Spec Kit, Kiro, BMAD) were named and set aside as waterfall rebranded;
+`vault/2026-06-02-pocock-7-step-engineering-workflow.md` is already the lighter alternative in
+the vault, and `vault/2026-09-25-adopt-the-runtime-own-the-scaffolding.md` already says the
+domain-scaffolding layer is the part nobody else will build.
+
+**Rather than hand over a generic artefact list, offered to read his actual sources first.** He
+chose "pull some and read 3-4". Five were fetched to scratchpad via the work PAT (`unset
+GITHUB_TOKEN` prefix still required — the stale-variable gotcha from 2026-10-02 is live in any
+already-running shell). The one he had linked turned out to live on a feature branch, not the
+default branch.
+
+**The finding: that folder is three document genres, not one.**
+
+1. **Design discussion** — written before any decision; explicitly states that no implementation
+   decision has been made; carries Approaches Considered with tradeoffs, Open Decisions, a
+   suggested path forward marked *one perspective, not a decision*, and Out of Scope. **This is
+   the only genre that is a pre-coding artefact.**
+2. **Approach doc** — decision made, build not started. Background → Principles → chosen shape →
+   phased implementation plan → migration. The contract an agent builds against.
+3. **As-built audit / digest** — written during or after the build. Carries a deviation table
+   (*What the requirement says · What ships · Where · Why*), inline marks where the draft was
+   departed from, a numbered decision register, and a "requirement text to update" list.
+
+The document Vince had linked as "perhaps this is one" is genre 3 — which is exactly why it did
+not feel like an answer to his question. It is a handoff and requirement-correction record, and
+a very good one; it is the wrong input for a fresh build.
+
+**Shapes worth borrowing:** an **"Invariants — the whole design in six lines"** section (the
+highest-value artefact in the folder for agent work); explicit **out-of-scope / deviation
+tables** (two more worked examples for `vault/2026-06-10-negative-space-documentation.md` —
+enough to firm that entry up); a **numbered decision register** with one line of reason each;
+**matrices** where behaviour is multi-dimensional; a status/date header so an agent knows whether
+the doc is live; and **ruled-out approaches preserved** so an agent does not re-propose them.
+
+**Two gaps for agent-driven coding.** (a) No machine-checkable **verification contract** — one
+doc has a test plan, none states up front the commands that must pass and the observable
+conditions that prove the feature works. That is the difference between a loop that terminates
+and one that declares victory. (b) The docs are too big to load (103KB / 72KB / 66KB) and one
+embeds several hundred lines of implementation code inline, which forked from the real code
+immediately — an agent handed stale inline code treats it as authoritative. The `-DIGEST`
+convention already in that folder is the right instinct and is `vault/2026-06-09-on-demand-context-routing.md`
+applied to design docs; the fix for the second is to reference code by path, never paste it.
+
+### Thread B: two corrections from Vince, and the sharper finding one of them produced
+
+1. **"That approach is not mine, it is Engineering's. We're just browsing it for learnings."**
+   The analysis had been written as if describing his own house practice. Corrected throughout
+   the local file and in the CLAUDE.md TODO — the material is borrowed, and attributing borrowed
+   practice as existing practice would have misled a future cold start.
+2. **"They aren't using local LLMs."** This one changed the substance. Engineering codes against
+   frontier models, so their practice is a data point from the wrong side of Vince's actual
+   problem. The answer their practice cannot give is already measured in this project's own
+   session state: in the 51-run comparison, a local 27B executor scored **42/42 on full-code
+   handoff, 9/9 on seeded-bug debugging, and 0/3 when given only an interface and rules**.
+   Therefore **spec density scales inversely with executor capability** — a local model needs
+   *more* constraint, not less — and the two load-bearing artefacts are the **invariants** and
+   the **verification contract**, because those are what convert "thinking" into "well-specified
+   work". Strongest vault candidate of the session, and the one genuinely Vince's rather than
+   borrowed.
+3. **"We don't want to do overkill — my projects are not going to be Million LOC any time soon."**
+   Accepted and applied: the recommended pre-coding set was re-cut into a two-item core
+   (`INVARIANTS.md` + verification contract) with the approach doc demoted to supporting and
+   capped at one to three pages. Banked as a feedback memory.
+
+### Thread C: deferred — scan community sources for repo examples
+
+Vince asked for good examples of repos sourced from reddit, Global AI Weekly and Hacker News,
+and explicitly deferred it: *"That's for later though."* This supersedes the question that had
+been put to him (inference-tooling projects vs projects documenting small-model specs) — he
+answered it by naming the **sources** rather than the category. Recorded as an open item, not
+actioned.
+
+## Decisions Vince articulated this session (durable)
+
+- **Engineering's design-doc practice is borrowed material, not his own** — attribution matters
+  for how a future session reads the analysis.
+- **Right-size to project scale.** Take the shape of enterprise practice, drop the volume. Banked
+  as `feedback_right_size_to_project_scale`.
+- **Community sources are the next search surface** for spec/repo examples — reddit, Global AI
+  Weekly, Hacker News — deferred to a later session.
+
+## New memories banked this session
+
+- `feedback_right_size_to_project_scale`.
+
+## Commits this session
+
+- Session-close commit: CLAUDE.md TODO block + Session State brief refresh + this archaeology
+  entry. (Local analysis file is gitignored under `local/`.)
+
+## Inbox saved this session
+
+None new.
 
 ## What got done — 2026-09-20 session
 
