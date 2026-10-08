@@ -100,15 +100,24 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-10-03. **Spec-standard topic opened** for the guest-agent build (platform specifics in `CLAUDE.local.md`) (vibe vs spec-driven). Read five design docs from a work repo — **Engineering's practice, browsed for learnings, explicitly not Vince's** — and extracted a three-genre model: design *discussion* (pre-coding), *approach* (decision made), as-built *digest* (handoff record). The sharper finding came from Vince's correction that Engineering does not code against local models: this project's own 51-run measurement says **spec density scales inversely with executor capability**, making **invariants + a verification contract** the two load-bearing artefacts. Scale guard set: no overkill. One memory banked (`feedback_right_size_to_project_scale`). Full analysis: `local/spec-standard-for-ai-coding-20261003.md`.
+**Last:** 2026-10-04 → 10-08 (one session spanning several days). **Research sweeps + M4 trial narrowed.** Two inbox/reddit/HN sweeps (`inbox/20261004-sweep.md`, `inbox/20261006-sweep.md`, gitignored). The M4 trial stack is narrowed to one pick per layer (`local/m4-stack-week-20261006.md`) and is **Vince's next task — it keeps slipping, start it first**. First triage sheets built (`reminders/`, gitignored). One memory banked (`feedback_reddit_comment_voice`; context in `CLAUDE.local.md` → Reddit).
+
+**Prior:** 2026-10-03. **Spec-standard topic opened** for the guest-agent build (platform specifics in `CLAUDE.local.md`) (vibe vs spec-driven). Read five design docs from a work repo — **Engineering's practice, browsed for learnings, explicitly not Vince's** — and extracted a three-genre model: design *discussion* (pre-coding), *approach* (decision made), as-built *digest* (handoff record). The sharper finding came from Vince's correction that Engineering does not code against local models: this project's own 51-run measurement says **spec density scales inversely with executor capability**, making **invariants + a verification contract** the two load-bearing artefacts. Scale guard set: no overkill. One memory banked (`feedback_right_size_to_project_scale`). Full analysis: `local/spec-standard-for-ai-coding-20261003.md`.
 
 **Prior:** 2026-09-20. **Output-shape fix landed**: Vince's standing complaint (a 2-line question returning 50 lines while he multitasks) is fixed durably by the `Sage Dialog` output style — always on, no invocation, active from this session's start. `claude plugin eval` used for the first time against the superseded interim skill and **parked** (net-zero delta, one real regression; the first paid run was invalid because the control arm never answered). Local-inference track opened: M5 Ultra Mac Studio (256GB) arrives December — planning only, detail in `CLAUDE.local.md`. Atlas overview refreshed; Homecrew repo URL confirmed. Two memories banked.
 
-**Prior:** 2026-09-18. **Housekeeping pass after a ~10-week idle gap** (no commits 2026-07-05 → 2026-09-18). Every expired date-gated item cleared: the Fable-5 bootstrap-window section in `CLAUDE.local.md` replaced by a plain priority list; the June-2026 iOS skill window re-gated to "when the Mum-stories app actually starts"; the model reconcile closed (`opus[1m]` pinned); the Fable vault entry un-stuck from RESTRICTED and its free-window material marked expired. No project work advanced — the queue below is unchanged apart from the prunes.
-
-**Prior:** 2026-07-05. Vince reported **inception built the coding harness and it's PROVEN OUT on `tvo-skyline`** (tvo-skyline was the test bed) — inception is unstalled and producing; Vince's next focus on tvo-skyline is **optimizing the UI work**. Evaluated `apoorvjain25/frontier` (21-craft quality-loop skill, incl. a Design craft) for that UI work — **ruled out** (reasoning in archaeology). First real AgentMail triage: **Homecrew** (open-source package manager for agent skills) logged to the skill watchlist; AgentNews #15 checklist distilled to `inbox/`; both threads archived. That session ran on Fable 5 (access restored 2026-07-05). **Model state since settled:** this project pins `opus[1m]` in `.claude/settings.local.json`.
-
 **Open items going into next session:**
+
+*FROM THE 2026-10-04 → 10-08 SESSION:*
+- **M4 TRIAL IS NEXT — Vince asked for it first.** Stack: Ollama → oMLX swap, qwen3.5:9b (fallback gemma4:e4b), OpenCode. Sitting 1 = tool calling only. Prereqs done (full Xcode; external SSD → single unencrypted APFS volume, models only). Plan: `local/m4-stack-week-20261006.md`.
+- **Studio prep downloads** (to the SSD, MLX 4-bit): Qwen3.8-27B, Qwen3.8-Flash-Next, GLM 5.3 Flash, Gemma 4 26B-A4B. Don't hoard — Qwen 4 and Mistral Large 4 are due end of October.
+- **Ship-date mismatch (?):** notes say Nov 16 – Dec 1; Vince mentioned "early November" elsewhere on 10-06. Ask which is current.
+- **Discussion owed to Vince (from his Voyage forward):** vector/graph DBs for local always-on assistants, and importing Robin/Del learnings vs building fresh. Voyage rerank-3 is hosted-only, so a privacy-first local stack needs a local reranker.
+- **Hermes memory-model posts re-found** (his lost links) — six candidates in `inbox/20261006-sweep.md`; best is r/hermesagent 1wxu98g (copying Muse's memory setup). Relevant to harvesting memory into OpenClaw for Robin.
+- **New decision-model candidates:** strands-decider (1.9B, Apache-2.0, calibrated; fits beside the 9b on the M4) and brier (calibration for open models). A label-smoothing post shows calibration can be broken by training — test confidence, not just accuracy.
+- **Dress rehearsal gains a concurrency test:** 2–4 parallel sessions. Family-sharing consensus is one engine + LiteLLM + Open WebUI; an M5U user saw oMLX run 2 batched slower than 1.
+- **Reddit access changed:** old.reddit redirects the headless browser to login; direct `.json` now 403s — load a www page first, then fetch `.json` from inside it. Other reddit context: `CLAUDE.local.md` → Reddit.
+- **Inbox:** only `sage-needs-vince` left that's genuinely owed is the 09-01 "agentic docs" resend (plus the Mozilla report URL if he wants it read). Cloudflare verified; the TM/SSD thread is closed.
 
 *ARRIVED 2026-09-25 — the use cases landed; the standing reminder is retired:*
 - **Workload inventory received and analysed.** Vince's starter list of Mac Studio projects, plus his direction-setting options. This unblocks the local-inference track's highest-value prep item. **The full analysis, the strategic read and the parked decision are in `CLAUDE.local.md` → Local-inference track → Workload inventory** (kept out of this file because it carries personal and commercial context). Read it before advising on Studio sequencing or direction.
@@ -134,7 +143,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - **M5 Ultra reviews are out** — MacStories ("The Dream Mac for Local AI Agents", 269 pts), Tom's Hardware ("Outpaces DGX Spark and Threadripper").
 - **AgentNews #30 — the best agent-ops evidence yet.** An agent was given a real business for four weeks (card, phone number, inbox, payments): **spent ~$3,000, earned $75.** Four named failure modes, all directly applicable to an unattended fleet: no way to mark a prerequisite **blocked** (eight days generating leads nobody could buy); **no minimum sample or review date** before declaring an experiment failed (a customer paid eight hours after "offer failed" was recorded); **no output boundary** — model text piped straight to text-to-speech, so it read its own instructions aloud on 197 calls; and a **self-grading feedback loop** that wrote conclusions into the same file as raw observations, so one wrong call contaminated every later session. What worked: error reclassification, fast-feedback iteration, payment-before-delivery, out-of-band escalation. **Vault candidate.**
 - **`.env.local` hygiene — fixed 2026-10-02, worth not repeating.** A bare value (no `export KEY=`) makes `source` execute it and echo the secret into terminal output and transcripts; and a **stale token variable silently overrides a working `gh auth` keyring login**, so every command fails on auth even though the keyring is fine. Both now documented in `.env.local.example`. The stale variable persists in an already-running session's environment — prefix `unset GITHUB_TOKEN` until the next launch.
-- **Subscriptions:** Sage **is** subscribed to Global AI Weekly (confirmed — issue 169 arrived direct), but direct delivery is a plain-text stub; extract the webview link and fetch it. **Cloudflare account is created but the address is UNVERIFIED** — the blog will not deliver until Vince clicks the verification mail.
+- **Subscriptions:** Sage **is** subscribed to Global AI Weekly (confirmed — issue 169 arrived direct), but direct delivery is a plain-text stub; extract the webview link and fetch it. **Cloudflare account verified** (Vince confirmed 2026-10-04); no blog mail yet as of then — likely just no new posts.
 - **Inbox labelling convention adopted** (Vince's request): `sage-processed` = read and extracted; `archived` = processed with nothing outstanding; **`sage-needs-vince` = processed but something is owed by Vince, left in the inbox deliberately**. Still `unread` = genuinely untouched. Convention recorded in `CLAUDE.local.md`.
 
 *FROM THE 2026-09-23 INBOX TRIAGE (full note: `inbox/20260923-inbox-triage.md`, gitignored):*
@@ -166,8 +175,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
   already shipped to the work AI channel. Read the spec change, then decide: new section or companion entry.
 - **Answers owed to Vince:** reddit is fetchable as public web content (per-thread, on demand) but discord
   needs an MCP + trust pass — and his real want looks like continuous monitoring of LLM community channels,
-  which is a design question; Sage is NOT subscribed to Global AI Weekly (decide whether to subscribe the
-  AgentMail address directly); and the 2026-09-01 "agentic docs / apply to atlas?" email has **no link or
+  which is a design question; Global AI Weekly is now subscribed directly (settled 10-02); and the 2026-09-01 "agentic docs / apply to atlas?" email has **no link or
   attachment** — the referent is missing and he needs to re-send it.
 
 
@@ -208,11 +216,12 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. No model pin (follows the global default). **The `Sage Dialog` output style is active — short turns, one thing per turn, long-form to files.** Watch whether it holds; that is the live validation.
-2. **Spec standard / guest-agent** — the live thread. Either draft `INVARIANTS.md` + the verification contract (doesn't need anything from Vince), or, if he asks for it, run the deferred reddit / Global AI Weekly / Hacker News repo search. Context: `local/spec-standard-for-ai-coding-20261003.md`.
-3. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
-4. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
-5. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
-6. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
+2. **M4 trial — sitting 1 (tool calling).** Vince's explicit first priority; it keeps slipping. `local/m4-stack-week-20261006.md`. Then ask the ship-date question.
+3. **Spec standard / guest-agent** — the live thread. Either draft `INVARIANTS.md` + the verification contract (doesn't need anything from Vince), or, if he asks for it, run the deferred reddit / Global AI Weekly / Hacker News repo search. Context: `local/spec-standard-for-ai-coding-20261003.md`.
+4. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
+5. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
+6. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
+7. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 

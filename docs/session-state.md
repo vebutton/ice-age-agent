@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-03. Short, single-thread: opened the **spec-standard-for-AI-coding** topic. Read five design docs from a work repo (**Engineering's practice, browsed for learnings — not Vince's**), extracted a three-genre model of design documentation, and landed the sharper finding that **spec density scales inversely with executor capability**. Full analysis in gitignored `local/spec-standard-for-ai-coding-20261003.md`. One memory banked, one commit.
+**Last session:** 2026-10-04 → 10-08 (one session across several days). Research sweeps (inbox, reddit, HN, Weekly Claw ep. 32, two Vince-supplied links), the M4 trial narrowed to one pick per layer, first two triage sheets, Studio prep (model downloads, SSD format), and a reddit-comment voice rule after a removal. One memory banked, one commit.
+
+**Prior session:** 2026-10-03. Short, single-thread: opened the **spec-standard-for-AI-coding** topic. Read five design docs from a work repo (**Engineering's practice, browsed for learnings — not Vince's**), extracted a three-genre model of design documentation, and landed the sharper finding that **spec density scales inversely with executor capability**. Full analysis in gitignored `local/spec-standard-for-ai-coding-20261003.md`. One memory banked, one commit.
 
 **Prior session:** 2026-09-20. Communication-shape fix landed (output style `Sage Dialog`), `claude plugin eval` exercised against the interim skill and parked, first-pass planning for the local-inference track (detail in gitignored `CLAUDE.local.md`).
 
@@ -13,6 +15,56 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-04 → 10-08 session
+
+### Thread A: research sweeps
+Two sweeps, run as parallel sub-agents (inbox / HN + newsletter + links / reddit via the pinned
+Playwright browser), consolidated to gitignored `inbox/20261004-sweep.md` and `inbox/20261006-sweep.md`.
+- **Vince's two links assessed, neither changes the stack.** TensorFold (single-maintainer MLX server,
+  pre-1.0, exact speculative decoding) overlaps oMLX 0.7.0, which shipped the same feature; its GLM
+  draft head is non-commercial. DwarfStar 4 / ds4 (antirez, MIT, C engine, narrow model list, 96GB+ on
+  Metal) is a specialist endpoint behind the gateway at most — the Lily slot.
+- **Family-sharing a Studio:** community consensus is one engine + gateway + a chat front end with
+  per-user keys, not one agent container per person. Concurrency is the risk — an M5 Ultra user saw two
+  batched requests run slower than one. Added a 2–4 parallel-session test to the dress rehearsal.
+- **YouTube ingestion:** captions first, local transcription only as fallback; YouTube blocks VPN and
+  cloud IP ranges, which makes a home-connection always-on box a better ingestion host than a VPS.
+- **Decision models:** brier (calibration for open models) and strands-decider (1.9B, Apache-2.0,
+  calibrated) join the category; a separate post shows label smoothing can wreck a model's confidence,
+  so the triage trial must test calibration, not just accuracy.
+- **Agent-ops evidence:** a file lock keyed on a session name rather than a process let two agents claim
+  one job and one overwrote the other's result; worktrees fail visibly instead.
+- **Inbox:** convention applied; the verify and SSD threads closed after Vince confirmed both settled.
+  Gotcha found: the key's surrounding quotes must be stripped when grepped out of the env file.
+
+### Thread B: M4 trial narrowed
+Vince asked (by email) to narrow the stack. Answer, one pick per layer to keep a single variable:
+Ollama then a deliberate swap to oMLX; qwen3.5:9b with gemma4:e4b as the tool-calling fallback;
+OpenCode only. Sitting 1 tests tool calling and nothing else. Full Xcode confirmed. **Not started —
+Vince keeps getting pulled away and wants it first next session.**
+
+### Thread C: Studio prep
+Bigger models to pre-download (MLX 4-bit, for oMLX): Qwen3.8-27B, Qwen3.8-Flash-Next, GLM 5.3 Flash,
+Gemma 4 26B-A4B — chosen from the only measured data available (tool-use benchmarks and real oMLX
+numbers on the target hardware). Hoarding discouraged; major releases are due end of October.
+External SSD: one unencrypted APFS volume on a GUID map, models only — encryption would add an unlock
+step on every reboot of a headless box and the weights are public; backups go to a separate drive later.
+
+### Thread D: triage sheets
+Built the first one-page printable triage sheets (ReportLab, embedded fonts; gitignored `reminders/`).
+Found and resolved a source disagreement on the model pin: the local file still claimed a project pin,
+but the settings file has none — the brief was right.
+
+### Thread E: community commenting voice
+Comment drafts for a community account read as AI-written and one target post was removed. Vince set
+two rules: comments must sound human and short, and must give no technical advice on anything not
+actually tried. Banked as memory `feedback_reddit_comment_voice`.
+
+### Decisions
+- One harness and one model for the M4 trial; everything else is out until it lands.
+- Models SSD unencrypted; backups separate.
+- No technical advice in community comments on untried tooling.
 
 ## What got done — 2026-10-03 session
 
