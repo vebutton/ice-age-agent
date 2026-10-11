@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-04 → 10-08 (one session across several days). Research sweeps (inbox, reddit, HN, Weekly Claw ep. 32, two Vince-supplied links), the M4 trial narrowed to one pick per layer, first two triage sheets, Studio prep (model downloads, SSD format), and a reddit-comment voice rule after a removal. One memory banked, one commit.
+**Last session:** 2026-10-09 → 10-10. M4 trial sitting 1 completed in a Podman-sandboxed OpenCode against native Ollama; several hands-on lessons about how local inference behaves (thinking cost, KV cache, verbose stats); GPU-monitor review and a monitoring decision; sitting 2 specified. No memories banked, one commit.
+
+**Prior session:** 2026-10-04 → 10-08 (one session across several days). Research sweeps (inbox, reddit, HN, Weekly Claw ep. 32, two Vince-supplied links), the M4 trial narrowed to one pick per layer, first two triage sheets, Studio prep (model downloads, SSD format), and a reddit-comment voice rule after a removal. One memory banked, one commit.
 
 **Prior session:** 2026-10-03. Short, single-thread: opened the **spec-standard-for-AI-coding** topic. Read five design docs from a work repo (**Engineering's practice, browsed for learnings — not Vince's**), extracted a three-genre model of design documentation, and landed the sharper finding that **spec density scales inversely with executor capability**. Full analysis in gitignored `local/spec-standard-for-ai-coding-20261003.md`. One memory banked, one commit.
 
@@ -15,6 +17,77 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-09 → 10-10 session
+
+### Thread A: sandboxing the harness
+Vince asked what installing OpenCode does to a Mac used for both work and home. Answer: a coding harness
+runs as the user and can reach work repos, SSH keys, env files and logged-in CLIs, whatever model is
+behind it. Sandboxing doesn't work against the trial's goal, since tool calling can be tested just as well
+in a sandbox. Options offered: a separate macOS user, or a container. Vince chose a container on
+**Podman** for long-term reasons (rootless, free, an easy path to Kubernetes YAML; background in
+gitignored `collateral/podman-project-kickoff.md`).
+- **Shape:** Ollama native on the host keeps the Metal GPU, and only the harness goes in the container.
+  Containers on macOS can't reach Metal, and this shape doesn't need them to.
+- **The gotcha caught before it bit:** `podman machine` mounts all of `/Users` into its VM by default. A
+  separate `opencode-lab` machine was created with only the workspace mounted; the year-old default
+  machine was left alone because it may hold images from another project. Verified: `/Users` doesn't
+  exist in the VM. Brew-installed Podman kept and upgraded (6.1.3), not replaced. Autostart, rootful mode
+  and the Docker-socket helper were declined, along with the telemetry, kubectl and compose extensions.
+- **Reachability verified:** a container reaches Ollama's default `127.0.0.1` binding through
+  `host.containers.internal`, so there's no need to widen `OLLAMA_HOST`.
+- **Models moved to the external SSD** via `OLLAMA_MODELS` (brew service). A folder-name mismatch between
+  the shell and the service was caught and resolved. Context raised to 32K.
+
+### Thread B: learning how local inference behaves (before adding the harness)
+Done at Vince's request, using `ollama run --verbose`:
+- Thinking was about 90% of output tokens; generation speed (about 25–28 tok/s) is identical with thinking
+  on or off, so thinking costs time only through token count. Overthinking produced a wrong
+  self-identification that the thinking-off run got right.
+- `--verbose` stats are Ollama's own measurements. `--think=false` is turned into tokens the model sees
+  through the chat template, so it's a convention the model follows rather than an engine switch.
+- KV cache explained. **A correction made on the record:** the first explanation of the partial cache
+  hits (dropped thinking tokens) was disproved by the thinking-off run. The runner appears to cache only
+  text it has read in, not text it generated.
+- Ollama 0.40.2 runs qwen3.5:9b on its **MLX runner**, which reduces how much the planned oMLX swap is a
+  speed comparison. It remains a test that only the endpoint config changes.
+
+### Thread C: GPU monitor review
+Screenshots from Vince's own Whisper-era monitor. It shows GPU busy time only (100% even when generation
+is limited by memory bandwidth; power is the better signal), and its Processing Rate depends on when a
+poll happens to run, so it catches some replies and misses others. Under load: 1.6 GHz, about 13.4 W.
+Report in gitignored `local/gpu-monitor-ollama-review-20261010.md`. **Decision: macmon (hardware JSON
+stream) + a metrics proxy in front of the engine (per-request tokens), because the Studio will be
+headless.** The proxy also survives the engine swap.
+
+### Thread D: sitting 1, tool calling
+Image: `node:22-bookworm-slim` + `opencode-ai@1.19.0` (pinned), config baked in; files live outside
+the repo in Vince's lab tree. Every config key was checked against OpenCode's docs before use.
+- **Tool calling works:** five correctly formed parallel Glob calls plus bash. The first turn takes
+  about 1.5 minutes to read OpenCode's ~8K-token prompt; later turns take seconds (the cache works).
+- **Permission prompts work** for edit and bash, but approving bash effectively approves any write
+  (the model wrote files through a heredoc).
+- **A finding found by checking, not by design:** `/etc/opencode/opencode.json` is OpenCode's Linux
+  *managed* config, which takes the highest priority, so nothing in the workspace can override the
+  permissions. The image already put it there; it's now kept there deliberately.
+- Added: a context `limit` (OpenCode had shown 0% used), `share: disabled` (Share session uploads to
+  OpenCode's servers), and a `nothink` variant (`reasoningEffort: "none"`) switched with `ctrl+t`.
+  Verified working.
+- **Small-model failures:** an invented `.opencode/config.json` with settings OpenCode doesn't have,
+  later read back and reported as its real configuration (self-contamination; matches the AgentNews #30
+  failure mode); a guessed context limit; trying `history` in a fresh shell instead of reading its own
+  conversation; the final answer sometimes ending up inside the thinking block. OpenCode itself
+  installed plugin packages into that invented folder, so it was deleted.
+
+### Thread E: sitting 2 specified
+A parser for Ollama's `--verbose` stats, driven by failing tests and using real fixtures from the
+session. It matches the full-intent-plus-failing-test shape that local models are measured to handle,
+and it's the first piece of the metrics proxy. Spec in `local/m4-stack-week-20261006.md` → *Sitting 2*.
+
+### Artefacts
+- Lab cheat sheet (outside the repo): `~/Development/Lab/m4pro/opencode-image/opencode-help.md`.
+- Gitignored: `local/m4-stack-week-20261006.md` (Sandbox, Sitting 1 parts 1–4, Sitting 2),
+  `local/gpu-monitor-ollama-review-20261010.md`, triage sheet v3 in `reminders/`.
 
 ## What got done — 2026-10-04 → 10-08 session
 
