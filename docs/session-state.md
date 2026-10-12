@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-09 → 10-10. M4 trial sitting 1 completed in a Podman-sandboxed OpenCode against native Ollama; several hands-on lessons about how local inference behaves (thinking cost, KV cache, verbose stats); GPU-monitor review and a monitoring decision; sitting 2 specified. No memories banked, one commit.
+**Last session:** 2026-10-11. M4 trial **sitting 2 done**: first ATDD run on a local model (Claude-drafted acceptance tests, qwen3.5:9b in OpenCode implements). Thinking on passed 14/14; thinking off failed. Permissions pre-approved in the managed config, and the "don't edit the tests" rule turned out to need an OS-level read-only mount. Model revision log, OptiQ question, OpenCode prompt anatomy, metrics-proxy shape (launchd). No memories banked, one commit.
+
+**Prior session:** 2026-10-09 → 10-10. M4 trial sitting 1 completed in a Podman-sandboxed OpenCode against native Ollama; several hands-on lessons about how local inference behaves (thinking cost, KV cache, verbose stats); GPU-monitor review and a monitoring decision; sitting 2 specified. No memories banked, one commit.
 
 **Prior session:** 2026-10-04 → 10-08 (one session across several days). Research sweeps (inbox, reddit, HN, Weekly Claw ep. 32, two Vince-supplied links), the M4 trial narrowed to one pick per layer, first two triage sheets, Studio prep (model downloads, SSD format), and a reddit-comment voice rule after a removal. One memory banked, one commit.
 
@@ -17,6 +19,49 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-11 session
+
+### Thread A: Studio models, OptiQ, revision pinning
+Four MLX models downloaded to the SSD (`--local-dir`, so `hf cache` can't see them). One is an
+**OptiQ** quant (from `mlx-optiq`: a different bit width per layer, chosen by a sensitivity test).
+oMLX and mlx-lm load it; Ollama support unconfirmed, so it belongs to the oMLX sittings. A YouTube
+summary Vince watched argued for pinning model revisions (files change under the same name);
+a **revision log** with commit SHAs for all five models now lives in the M4 notes. The M4 notes
+were also refreshed end to end (status, sandbox as built, sitting 1 condensed).
+
+### Thread B: what OpenCode's ~8K-token prompt is
+Read from OpenCode 1.19.0 source: Qwen matches no tailored prompt so gets the generic one
+(~2.1K tokens); tool descriptions + schemas are roughly half the total. Several tools the trial
+never uses are a lever for first-turn time. A real capture is the metrics proxy's first job.
+
+### Thread C: metrics proxy shape
+Agreed: its own always-on **launchd LaunchAgent**, separate from Ollama, listening on its own port,
+JSONL log, and it is the token feed for GPU Monitor (the GPU Monitor handoff becomes "read the
+proxy's feed"). Candidate sitting-3 task, built the same ATDD way.
+
+### Thread D: sitting 2 — ATDD on a local model
+Vince learned the shape by asking: the test file is a runnable spec; the implementer writes the
+missing module; "don't edit" applies to the tests only. Named: closest to **ATDD / specification
+by example**. Claude drafted 14 tests in a separate context from real fixtures; Vince reviewed
+(strict types kept, `µs` left out).
+- **Run 1, thinking on: 14/14 in ~17–19 min.** OpenCode truncated pytest output so the model
+  debugged blind until it found `2>&1 | head -80` itself. First compaction ~5 min.
+- **Run 2, thinking off: best 7/14, stopped at 30 min** (laptop battery draining on its charger).
+  Fell into the planted `ms`-as-minutes trap, invented a non-existent test case, rewrote the file
+  14 times. Verdict: keep thinking on for coding with this model.
+
+### Thread E: permissions, and the boundary lesson
+"Allow always" is session-only (source-verified). Approvals moved into the managed config with
+bash/edit allowlists and a deny on the tests. First deny didn't match (path pattern); second one
+matched — **and the model immediately overwrote the spec via `echo >` in bash.** Fix: tests and
+fixtures mounted read-only into the container; verified with a raw `podman exec` write
+("Read-only file system"). The sha256 check caught both tamperings; the spec was recovered from
+the drafting agent's transcript and a golden copy kept.
+
+### Outputs (all gitignored)
+`local/atdd-handoff-20261011.md` (Vince's learning handoff), M4 notes updated throughout,
+proxy task in `local/gpu-monitor-ollama-review-20261010.md`.
 
 ## What got done — 2026-10-09 → 10-10 session
 
