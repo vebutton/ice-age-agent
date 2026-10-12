@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-11. M4 trial **sitting 2 done**: first ATDD run on a local model (Claude-drafted acceptance tests, qwen3.5:9b in OpenCode implements). Thinking on passed 14/14; thinking off failed. Permissions pre-approved in the managed config, and the "don't edit the tests" rule turned out to need an OS-level read-only mount. Model revision log, OptiQ question, OpenCode prompt anatomy, metrics-proxy shape (launchd). No memories banked, one commit.
+**Last session:** 2026-10-12 (short, ~1 hour, skills refresh). Sitting 2 rerun on a non-Qwen model: **gemma4:12b passed 14/14 in ~26 min**, needing two "continue" nudges. A false start ran silently on OpenCode's cloud default because SELinux blocked the mounted config. Lessons added to the ATDD handoff and the cheat sheet. Atlas overview refreshed. No memories banked, one commit.
+
+**Prior session:** 2026-10-11. M4 trial **sitting 2 done**: first ATDD run on a local model (Claude-drafted acceptance tests, qwen3.5:9b in OpenCode implements). Thinking on passed 14/14; thinking off failed. Permissions pre-approved in the managed config, and the "don't edit the tests" rule turned out to need an OS-level read-only mount. Model revision log, OptiQ question, OpenCode prompt anatomy, metrics-proxy shape (launchd). No memories banked, one commit.
 
 **Prior session:** 2026-10-09 → 10-10. M4 trial sitting 1 completed in a Podman-sandboxed OpenCode against native Ollama; several hands-on lessons about how local inference behaves (thinking cost, KV cache, verbose stats); GPU-monitor review and a monitoring decision; sitting 2 specified. No memories banked, one commit.
 
@@ -19,6 +21,18 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-12 session
+
+**Thread A — sitting 2 rerun with gemma4:12b.** Vince wanted a non-Qwen model for a refresher run. Picked gemma4:12b (88% / 9.2 GiB on the measured DevOps benchmark; different family) and pulled it. **No new image:** mounted an alternate config (`opencode-gemma.json`) over `/etc/opencode/opencode.json`, so `opencode-lab:1.19.0` stays untouched. The Podman VM can't see the Mac home folder, so the file is copied into the VM over `podman machine ssh`. (A build `COPY` works because the build context is sent to the VM; a run-time `-v` reads the VM's filesystem.)
+
+**Thread B — the silent cloud fallback.** First attempt "passed" in 14s on **Big Pickle (OpenCode Zen, cloud)**. Cause, which Vince found by mounting the file at a second path: **SELinux** in the VM blocked the container from reading the unlabelled file (`??????????`), so OpenCode silently ran on built-in defaults with no permission rules. The fix is `:ro,Z`. Became **lesson 7** of `local/atdd-handoff-20261011.md`, plus a pre-flight checklist line (check the footer model and that the config is readable). Suggested `"disabled_providers": ["opencode"]` so a fallback can't reach the cloud. Not yet applied.
+
+**Thread C — the gemma result.** 14/14 in ~26 min, 8 tool calls, 2 writes, 1 compaction. It works in the opposite style to qwen: long planning turns (369s, 422s) and few actions. **It stopped twice mid-sentence:** its reasoning reaches OpenCode as plain text and fills the 8,192 output limit. "continue" resumed it. It avoided the `ms` trap. Its code is fragile but passes. Verdict: qwen3.5:9b (thinking on) stays the M4 default. Logged as run 3 in `local/m4-stack-week-20261006.md`. Gemma mount command plus warnings added to `opencode-help.md`.
+
+**Thread D — Atlas overview refreshed** (trial accomplishment, sitting-3 + ATDD-vault todos, trial lessons in context; vault count 15).
+
+---
 
 ## What got done — 2026-10-11 session
 
