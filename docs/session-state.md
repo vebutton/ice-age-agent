@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-12 (short, ~1 hour, skills refresh). Sitting 2 rerun on a non-Qwen model: **gemma4:12b passed 14/14 in ~26 min**, needing two "continue" nudges. A false start ran silently on OpenCode's cloud default because SELinux blocked the mounted config. Lessons added to the ATDD handoff and the cheat sheet. Atlas overview refreshed. No memories banked, one commit.
+**Last session:** 2026-10-12 evening. M4 trial sitting 3 run 1 (metrics proxy, ATDD) — failed 9/24; `disabled_providers` applied and found not to cover the unreadable-config case; Ollama `timings` discovered. No memories banked, one commit.
+
+**Prior session:** 2026-10-12 (short, ~1 hour, skills refresh). Sitting 2 rerun on a non-Qwen model: **gemma4:12b passed 14/14 in ~26 min**, needing two "continue" nudges. A false start ran silently on OpenCode's cloud default because SELinux blocked the mounted config. Lessons added to the ATDD handoff and the cheat sheet. Atlas overview refreshed. No memories banked, one commit.
 
 **Prior session:** 2026-10-11. M4 trial **sitting 2 done**: first ATDD run on a local model (Claude-drafted acceptance tests, qwen3.5:9b in OpenCode implements). Thinking on passed 14/14; thinking off failed. Permissions pre-approved in the managed config, and the "don't edit the tests" rule turned out to need an OS-level read-only mount. Model revision log, OptiQ question, OpenCode prompt anatomy, metrics-proxy shape (launchd). No memories banked, one commit.
 
@@ -21,6 +23,20 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-12 evening session
+
+**Thread A — `disabled_providers`.** Vince added `"disabled_providers": ["opencode"]` to both OpenCode configs, rebuilt, copied both to the VM (qwen default). Test: `:ro,Z` mount → right model, no providers; without `:Z` → still Big Pickle *with* providers. The guard lives in the file that failed to load, so it can't protect that case. Sage first recorded the result backwards and corrected it. Vince's call: document and move on. Rule stays: always `:ro,Z`, check the footer. Durable options noted (layer via `OPENCODE_CONFIG`; block container egress).
+
+**Thread B — sitting 3 intent.** Proxy on 11435 → Ollama 11434, JSONL log. Sage claimed the OpenAI endpoint has no prefill/gen split; a live capture showed Ollama's usage chunk carries `timings` (prompt_ms, prompt_per_second, predicted_ms, predicted_per_second) once `stream_options.include_usage` is set. Non-stream replies have `usage` but no `timings`. **Decisions (Vince):** option (b) inject `include_usage`; **strip** the usage chunk on the way back if the client didn't ask for it. Also clarified: `--verbose` is a CLI flag over native `/api/chat` fields, not a server mode.
+
+**Thread C — tests.** Five real captures → a separate Claude context drafted `test_proxy.py`: 24 tests (8 prepare, 6 stream filter, 3 log, 7 end-to-end with a fake upstream replaying fixtures), stdlib only. Reference impl 24/24; a buffering impl failed only the no-buffering test. Copied to `opencode-ws`, golden read-only in `runs/`, hash `b6efad34…`. Raw capture dir deleted after byte-compare.
+
+**Thread D — run 1 (qwen3.5:9b, thinking on, 32K).** 1h19, 5 compactions (first ~9 min, last ~4 min), one GPU stall needing "continue". **Final: 9/24**, `make_server` missing. Root causes: `-x` in every pytest run masked the true count (looked like 23/24); `json.loads` on raw SSE lines without stripping `data: `; whole-file writes via bash heredocs got truncated; last edit added an `UnboundLocalError`. Permissions: nearly all prompts were bash writes; one Allow-always on a multi-line python command produced junk patterns incl. `python3 *`. Git probes = the model hunting for an undo. Export + final file: `~/Development/Lab/m4pro/runs/s3-run1-think/`; screenshots `collateral/opencode-1050-proxy/`. **Read:** consistent with the 51-run finding — local executes small, well-specified units; decompose for the retry.
+
+**Not done:** Atlas overview refresh (skipped at this close).
+
+---
 
 ## What got done — 2026-10-12 session
 
