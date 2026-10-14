@@ -117,6 +117,13 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - **ATDD vault candidate** — "acceptance tests are the spec for a local executor" + "the spec must be locked by the OS, not by asking". Single task so far; write once a second task (the proxy) confirms it.
 - **TODO — rebuild the GPU monitor or adopt an open-source one** (Vince's tool from the Whisper project). The Ollama view shows only GPU busy time; it has no token data, its Processing Rate is broken, and it can't separate prompt reading from generation. **Design input: the Studio is headless**, so the data must be served over the network or work in a terminal over SSH. **Decided 2026-10-10: macmon (hardware) + a metrics proxy (tokens); don't fix the old monitor.** Its Processing Rate depends on when a poll happens to run, so it catches some replies and misses others. Full report and prioritised feature list: `local/gpu-monitor-ollama-review-20261010.md`.
 
+*FROM THE 2026-10-13 → 10-14 SESSION (reddit research):*
+- **REA (`morluto/rea`) trial — DEFERRED to M5U arrival (Vince, 10-14).** MCP for reverse engineering (Hopper/Ghidra/IDA, Electron/JS, .NET); MIT, single-maintainer, setup rewrites agent configs → **trust pass first**. Trial shape agreed: Claude+REA reverse-engineers the **data layer** of Vince's out-of-support Mac app (Mac = source of truth; iOS binaries are encrypted; sync out of scope) into a spec + acceptance tests; local model builds the reader/exporter. Claude-specs/local-builds = clean-room shape. **Work RE ideas are flagged legal** (EULA/competitor RE = counsel's call); detail in `CLAUDE.local.md`.
+- **Subscription change (claude -p / SDK / 3rd-party harnesses on sub limits + Max API credits):** Vince won't retire the cost rule on it — **test on the M5U once local fallback exists.** Memory flagged.
+- **Decision models (Clef-flash / Decision 3.0 / strands-decider):** on file, **sequenced after oMLX on the M4**.
+- **Arrival checklist additions:** IP-KVM (Vince adding); Remote Login ON before first FileVault reboot (Tahoe SSH unlock); pin both host keys. Studio has AppleCare.
+- **DSH = DeepSeek-published** → excluded for work. Research notes: `inbox/20261013-reddit-research.md`, `inbox/20261014-reddit-sweep.md`.
+
 *FROM THE 2026-10-04 → 10-08 SESSION:*
 - **Studio prep downloads DONE 2026-10-11** (4 MLX models on the SSD, revisions logged in the M4 notes). Don't add more before Qwen 4 / Mistral Large 4 land (end of October).
 - **Ship-date mismatch (?):** notes say Nov 16 – Dec 1; Vince mentioned "early November" elsewhere on 10-06. Ask which is current.
