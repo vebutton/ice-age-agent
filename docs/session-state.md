@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-12 evening. M4 trial sitting 3 run 1 (metrics proxy, ATDD) — failed 9/24; `disabled_providers` applied and found not to cover the unreadable-config case; Ollama `timings` discovered. No memories banked, one commit.
+**Last session:** 2026-10-13 → 10-14 (paused overnight mid-run). Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
+
+**Prior session:** 2026-10-12 evening. M4 trial sitting 3 run 1 (metrics proxy, ATDD) — failed 9/24; `disabled_providers` applied and found not to cover the unreadable-config case; Ollama `timings` discovered. No memories banked, one commit.
 
 **Prior session:** 2026-10-12 (short, ~1 hour, skills refresh). Sitting 2 rerun on a non-Qwen model: **gemma4:12b passed 14/14 in ~26 min**, needing two "continue" nudges. A false start ran silently on OpenCode's cloud default because SELinux blocked the mounted config. Lessons added to the ATDD handoff and the cheat sheet. Atlas overview refreshed. No memories banked, one commit.
 
@@ -23,6 +25,28 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-13 → 10-14 session
+
+**Thread A: Vince's reddit drops** (`inbox/20261013-reddit-research.md`). Six threads + MS Alumni + GAIW 170 Temporal Graph-RAG. Headlines: airbench (harness matters as much as model; opencode most robust, openclaw worst for local coding); a third practitioner of Claude-plans/local-executes; headless needs IP-KVM. MS Alumni: page gated; Vince found no Azure credits → pass on Visual Studio.
+
+**Thread B: follow-ups.** macOS Tahoe 26 natively unlocks FileVault over SSH (Remote Login must be on before the reboot; separate pre-boot host key). DSH = `deepseek-ai/deepseek-harness` (MIT, ~250k stars) → excluded for work under Vince's harness-origin rule.
+
+**Thread C: Sage's own sweep** (`inbox/20261014-reddit-sweep.md`). Reddit listing **and** thread `.json` now 403; HTML + `/svc/shreddit/...` partials work (route documented in the file). Findings: Anthropic help article says `claude -p` / SDK / third-party apps draw from subscription limits, and Max/Team get monthly API credits from 10-07. **Vince: don't retire the cost rule; test on the M5U with local fallback.** Memory `feedback_cc_subscription_vs_api_cost` flagged, rule unchanged. Also: Decision 3.0, Ekbasis consequence oracle, the "shut down my Hermes agent" / "3 weeks into OpenClaw" lessons, OpenClaw upgrade fragility, OpenClaw realtime Talk, M5U return (IOGPU panics; Vince has AppleCare), KV-cache cost per token. Addendum: M5U oMLX numbers (Flash-Next 132 tok/s at 120K, ~1s warm TTFT, raise the GPU wired limit).
+
+**Thread D: REA.** `morluto/rea` (RE MCP over Hopper/Ghidra/IDA). Trial shape agreed: Claude+REA specs the data layer of Vince's out-of-support Mac app, a local model builds the reader (clean-room split). Work RE ideas flagged legal (EULA/competitor = counsel). **Deferred, then reclassified as opportunistic** alongside harness remote access.
+
+**Thread E: email.** GAIW 171 (Mistral Large 4, Microsoft-Decision-1, Copilot local + MXC sandbox, Anthropic eval incidents, AgentMonBench), model-factory hack-night forward (Flyte/Union; OpenShift AI covers it natively). `inbox/20261014-email-triage.md`.
+
+**Thread F: reddit account.** Sage's reddit account is shadowbanned site-wide (owner sees nothing; logged out shows "banned"). No ban email. Vince submitted an appeal disclosing the AI drafting. No drafts until it clears; no replacement account.
+
+**Thread G: sitting 3 retry** (`local/m4-stack-week-20261006.md` → *Sitting 3, retry*). Config fix (dropped `python3 *` etc. from allow). Group 1 prepare 8/8 in 11m25 (edit tool, zero bash writes), though its first edit sketched the whole module, so log_record 3/3 came free. **Group 2 StreamFilter at 32K: 4/6, stopped at 1h10** (3 compactions, a stall after each, rules lost from summaries, `/tmp/fix.py` write). **At 48K: 6/6, 0 compactions, 3 self-initiated subagents.** Prompt `-k` slip compensated by the model. Group 4 running at 48K at pause (1 heredoc rewrite denied, 1 compaction + rules re-stated, VPN-caused GPU stall). Learnings consolidated in `local/coding-agent-handoff-20261014.md` for inception.
+
+**Decisions Vince articulated:** subscription change → test on M5U, not adopt; decision models after oMLX on the M4; REA + remote access opportunistic; the stop rule was relaxed into "observation" for group 2 at 32K.
+
+**Memories:** new `feedback_surface_file_learnings` (Vince forgets file-held conversations; every file gets a raise-when trigger in CLAUDE.md, raised unprompted). Updated `feedback_cc_subscription_vs_api_cost` (policy-change flag).
+
+**Commits:** `7d5811a` (research outcomes), `ce807ea` (opportunistic items), plus this session-close commit.
 
 ## What got done — 2026-10-12 evening session
 
