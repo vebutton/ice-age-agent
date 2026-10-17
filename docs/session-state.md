@@ -4,7 +4,7 @@
 
 ---
 
-**Last session:** 2026-10-13 → 10-14 (paused overnight mid-run). Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
+**Last session:** 2026-10-13 → 10-16 (one session, four days). Closed with sitting 3 at 24/24 with scaffolding and a new vault entry. Earlier part: Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
 
 **Prior session:** 2026-10-12 evening. M4 trial sitting 3 run 1 (metrics proxy, ATDD) — failed 9/24; `disabled_providers` applied and found not to cover the unreadable-config case; Ollama `timings` discovered. No memories banked, one commit.
 
@@ -46,7 +46,13 @@
 
 **Memories:** new `feedback_surface_file_learnings` (Vince forgets file-held conversations; every file gets a raise-when trigger in CLAUDE.md, raised unprompted). Updated `feedback_cc_subscription_vs_api_cost` (policy-change flag).
 
-**Commits:** `7d5811a` (research outcomes), `ce807ea` (opportunistic items), plus this session-close commit.
+**Thread H (10-15 → 10-16): sitting 3 completion.** Group 4 unscaffolded at 48K: **0/7**, stopped after ~168 min of turn time (hangs, then wrong signatures wrapping `ThreadingHTTPServer`). Sage's diagnosis: inversion of control (the framework constructs the handler, so config must reach it indirectly) + silent failure (bad streaming framing hangs instead of erroring). Vince chose a skeleton run. Sage built `local/sitting3-skeleton/` (`server_skeleton.py` with construction, connection-close framing and helpers done, one `handle_proxy()` stub; `splice.py`; README), validated on the Mac: 17/7 fail-fast as shipped, 24/24 with a correct handler. Run: 0→3/7 before any permission change; mid-run Vince always-allowed `/tmp`, python and misc bash (the model switched from heredocs to the write tool once `/tmp` was sanctioned); one compaction with no stall (first ever); a final stall at 6/7 cleared with the full prompt + naming the last test → **7/7, suite 24/24, no changes outside the stub**. Vince corrected an overclaim: the permission changes don't explain the earlier failure, and 0→3 is cleanly the skeleton.
+
+**Thread I: vault entry.** `vault/2026-10-16-frontier-scaffolds-local-fills.md`: the four things a weak local executor must be handed (tests, OS lock, skeleton for wiring, a context floor), negative space, and how to apply. Seed (observed: one model, two tasks).
+
+**Also:** queued config change (pre-allow container `/tmp`), the "Python allowed" experiment effectively started inside the skeleton run, and a restart-the-container note so always-allows don't carry over. Vince's observation that file-held conversations get forgotten → memory `feedback_surface_file_learnings` + raise-when triggers in CLAUDE.md.
+
+**Commits (whole session):** `7d5811a`, `ce807ea`, `caa56d6`, `b62d9e7`, `85f357f`, `ccc070b`, plus the session-close commit.
 
 ## What got done — 2026-10-12 evening session
 
