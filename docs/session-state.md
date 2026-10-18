@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-13 → 10-16 (one session, four days). Closed with sitting 3 at 24/24 with scaffolding and a new vault entry. Earlier part: Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
+**Last session:** 2026-10-18. M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. Decision models picked as the next M4 thread. No memories banked, one commit.
+
+**Prior session:** 2026-10-13 → 10-16 (one session, four days). Closed with sitting 3 at 24/24 with scaffolding and a new vault entry. Earlier part: Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
 
 **Prior session:** 2026-10-12 evening. M4 trial sitting 3 run 1 (metrics proxy, ATDD) — failed 9/24; `disabled_providers` applied and found not to cover the unreadable-config case; Ollama `timings` discovered. No memories banked, one commit.
 
@@ -25,6 +27,42 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-10-18 session
+
+### Thread A: oMLX install and trust pass
+Read the Homebrew formula before installing. It pins the source tarball and the core MLX pieces, but
+resolves most PyPI dependencies as unpinned ranges at install time, bundles an audio/TTS stack that
+can't be opted out of, needs Rust to build, and ad-hoc re-signs the custom-kernel libraries after
+install to work around an upstream load bug. The tap tracks the newest tag, which was a release
+candidate. Verdict: fine for a loopback lab run; not yet cleared as an always-on service. Vince chose
+the rc via brew. Install built cleanly; all custom kernels load; a pip freeze was recorded.
+
+### Thread B: sitting 4, the engine swap
+The OpenCode change was endpoint plus model ID only, and the container reached oMLX first time
+(loopback works, same as Ollama). The first request was refused by oMLX's memory guard: its
+"balanced" tier counts only truly free pages, not reclaimable file cache, so on 16GB it computed a
+ceiling just under the model's size. An explicit ceiling fixed it. oMLX also doesn't truncate
+context the way Ollama's environment setting does, so the harness's own context limit is now the
+only thing holding the 48K line. Rerun of the StreamFilter group passed 6/6 in about half an hour:
+one compaction with no stall, the edit-tool rule survived it, and no subagents (the Ollama run used
+three). It didn't stop at its own pass condition and hung on the out-of-scope end-to-end tests.
+
+### Thread C: engine benchmark
+Wrote a standard-library benchmark script with two modes. Cold mode prefixes each prompt with a
+random ID so no cache can help: oMLX prefilled about 10–15% faster, Ollama generated about 30–37%
+faster (different 4-bit weights, so not purely the engine). Loop mode grows one conversation over
+eight turns with byte-identical prompts on both engines: per-turn wait stayed flat on both, and the
+totals were within 10%. Ollama's in-memory prefix cache works fully inside a live session, so oMLX's
+SSD cache only matters across unloads, restarts and concurrent sessions, which is untested.
+
+### Decisions
+- rc1 via brew is acceptable for the lab run.
+- Decision models go ahead of the guest-agent spec work.
+- The M4 trial is complete against its done-when list; the OptiQ 26B moves to the Studio.
+
+### Commits
+- This session's close commit.
 
 ## What got done — 2026-10-13 → 10-14 session
 
