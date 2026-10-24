@@ -201,7 +201,9 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
   hand-building the always-on host's supervision layer.
 - **Claude Code Projects (beta)** — one conversation splits into threads, each a cloud session on its own
   branch, with a Working/Idle/Resolved pane. Aimed at exactly Vince's many-simultaneous-instances problem.
-  Check account access; join the waitlist if absent.
+  **Access requested 10-24 (Vince); beta is Pro/Max only, not Enterprise.** Not for local-LLM work (threads run
+  in the cloud; the coordinator can't reach local tools/MCP yet). Cowork Projects are unchanged; the reddit
+  "replaced claude.ai Projects" claim is overstated. Work repos in cloud threads = a boundary call.
 - **MCP spec now has a handle-hijacking / credential-exposure surface** the four-step package audit does not
   cover. Affects `vault/2026-05-20-third-party-mcp-wireup-pattern.md` and therefore the MCP Hardening SPEC
   already shipped to the work AI channel. Read the spec change, then decide: new section or companion entry.
