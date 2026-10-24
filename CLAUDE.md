@@ -248,12 +248,13 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. No model pin (follows the global default). **The `Sage Dialog` output style is active — short turns, one thing per turn, long-form to files.** Watch whether it holds; that is the live validation.
-2. **Decision models on the M4** (Clef-flash / strands-decider; test calibration, not just accuracy) — start from the starter kit in `inbox/20261018-sources-sweep.md`. The M4 trial itself is complete. First check oMLX `/admin` (does it make the metrics proxy redundant?). Lab commands: `~/Development/Lab/m4pro/opencode-image/opencode-help.md`.
-3. **Spec standard / guest-agent** — queued behind decision models (Vince, 10-18). Either draft `INVARIANTS.md` + the verification contract (doesn't need anything from Vince), or, if he asks for it, run the deferred reddit / Global AI Weekly / Hacker News repo search. Context: `local/spec-standard-for-ai-coding-20261003.md`.
-4. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
-5. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
-6. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
-7. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
+2. **FIRST (Vince, 10-24): MTP rerun of the engine benchmark.** Build `Qwen3.5-9B-oQ4e-mtp` locally with oMLX's quantizer from the official `Qwen/Qwen3.5-9B` (Preserve MTP weights on), turn on Lightning MTP, clear the SSD cache, rerun both `engine-bench.py` modes. Check whether Ollama's `qwen3.5:9b` uses MTP (`ollama show`) for fairness. Steps: `local/m4-stack-week-20261006.md` → *MTP follow-up*. Plug in the SSD first (it was unmounted on 10-24).
+3. **Then decision models on the M4** (Clef-flash / strands-decider; test calibration, not just accuracy) — start from the starter kit in `inbox/20261018-sources-sweep.md`. The M4 trial itself is complete. First check oMLX `/admin` (does it make the metrics proxy redundant?). Lab commands: `~/Development/Lab/m4pro/opencode-image/opencode-help.md`.
+4. **Spec standard / guest-agent** — queued behind decision models (Vince, 10-18). Either draft `INVARIANTS.md` + the verification contract (doesn't need anything from Vince), or, if he asks for it, run the deferred reddit / Global AI Weekly / Hacker News repo search. Context: `local/spec-standard-for-ai-coding-20261003.md`.
+5. **tvo-skyline — optimize the UI work.** Harness proven there 2026-07-05; this is the new top thread.
+6. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
+7. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
+8. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
 
 **Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
 
