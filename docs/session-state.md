@@ -81,6 +81,13 @@ SSD cache only matters across unloads, restarts and concurrent sessions, which i
 - **Decision models:** three downloaded alongside the existing chat-model baseline, revisions logged.
 - **Small closes:** hosted-key exposure check (unaffected), coding-projects beta access requested
   (not a fit for local models), a running list of non-agent uses for the Studio started.
+- **MTP rerun (10-25):** the fairness check found the other engine's model already drafts three
+  tokens ahead (MTP) on a different 4-bit format, so the first benchmark compared MTP-on against
+  MTP-off. Built an MTP-preserving quant locally with the engine's own quantizer. The first attempt
+  failed in calibration on memory; raising the engine's memory ceiling by 1GB fixed it (~18 min build).
+  Result: generation up 51–66% and ahead of the other engine; prefill now a tie; short-reply agent
+  loops still roughly even. Side effect: setting an admin key turned on inference auth, so clients
+  now need the key or auth disabled on loopback.
 - **Memory banked:** glanceable native monitors over browser dashboards.
 
 ## What got done — 2026-10-13 → 10-14 session
