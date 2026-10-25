@@ -4,7 +4,7 @@
 
 ---
 
-**Last session:** 2026-10-18. M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. Decision models picked as the next M4 thread. No memories banked, one commit.
+**Last session:** 2026-10-18 → 10-25 (reopened after its close). M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. After the close: research sweep, MTP hypothesis queued, SRE-promises vault entry, engine soft-pinned for the Studio, decision models downloaded. One memory banked, about a dozen commits.
 
 **Prior session:** 2026-10-13 → 10-16 (one session, four days). Closed with sitting 3 at 24/24 with scaffolding and a new vault entry. Earlier part: Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
 
@@ -63,6 +63,25 @@ SSD cache only matters across unloads, restarts and concurrent sessions, which i
 
 ### Commits
 - This session's close commit.
+
+### After the close (10-18 → 10-25)
+- **Sweep:** no new mail. Two parallel research sweeps (reddit, and Hacker News/GitHub/vendor sources)
+  went to gitignored inbox notes and were folded into the brief as raise-when triggers. A
+  decision-model starter kit came out of it.
+- **Monitoring:** the always-on native GPU app's value is that it works like an "On Air" sign.
+  Vince's sequence is the terminal hardware monitor plus metrics proxy first, then improve the app.
+  A first attempt recorded the app as superseding that plan; corrected in the next commit.
+- **Decode gap:** the sweep's hypothesis is that the slower engine ran without multi-token
+  prediction. No maintainer-published 9B MTP build exists, so the plan is to build one with the
+  engine's own quantizer from the official weights. It runs before the decision models.
+- **Vault:** new seed entry on promises and synthetic probes for unattended agents, from an AI SRE
+  event Vince attended, tied to the silent failures in the trial.
+- **Engine version:** soft-pinned at 0.7.0 for the Studio because of an open prefill-guard
+  regression in the release candidate; revisit before arrival.
+- **Decision models:** three downloaded alongside the existing chat-model baseline, revisions logged.
+- **Small closes:** hosted-key exposure check (unaffected), coding-projects beta access requested
+  (not a fit for local models), a running list of non-agent uses for the Studio started.
+- **Memory banked:** glanceable native monitors over browser dashboards.
 
 ## What got done — 2026-10-13 → 10-14 session
 
