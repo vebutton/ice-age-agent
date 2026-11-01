@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-10-18 → 10-25 (reopened after its close). M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. After the close: research sweep, MTP hypothesis queued, SRE-promises vault entry, engine soft-pinned for the Studio, decision models downloaded. One memory banked, about a dozen commits.
+**Last session:** 2026-11-01 (short, information only). Opened the **local transcription** track: oMLX speech briefing written for the live-transcript project, and the Macalla project's recommendation (oMLX as the single local speech engine) folded into the todos. No memories banked.
+
+**Prior session:** 2026-10-18 → 10-25 (reopened after its close). M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. After the close: research sweep, MTP hypothesis queued, SRE-promises vault entry, engine soft-pinned for the Studio, decision models downloaded. One memory banked, about a dozen commits.
 
 **Prior session:** 2026-10-13 → 10-16 (one session, four days). Closed with sitting 3 at 24/24 with scaffolding and a new vault entry. Earlier part: Reddit research (Vince's drops + Sage's own sweep), DSH provenance, FileVault SSH unlock, REA logged, subscription-terms change found, email triage, Sage's reddit account found shadowbanned + appeal, and **sitting 3 retry**: 17/24 with group 4 running; **StreamFilter 32K fail → 48K pass**. Coding-agent handoff for inception. One memory banked (+1 updated), two commits.
 
@@ -27,6 +29,34 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-01 session
+
+### Thread A: oMLX speech briefing for the live-transcript project
+Vince asked what batch and real-time transcription could look like using only Ollama or oMLX, so he
+could brief his new live-transcript project (which knew only the old transcribe-audio Whisper project).
+Read the installed oMLX 0.7.1rc1 package (read-only, outside the repo) rather than answering from memory.
+Found: oMLX bundles mlx-audio 0.4.3 and serves `POST /v1/audio/transcriptions` (batch, OpenAI-style),
+a realtime WebSocket at `/v1/audio/transcriptions/realtime` (PCM16 mono 16kHz in, committed text deltas
+out), plus TTS. Roughly fifteen speech model families load (Whisper, Parakeet, Canary, Voxtral, Qwen3-ASR
+among them), MLX folders only. Realtime has two backends: Voxtral-realtime streams natively; everything
+else uses a sliding-window re-decode that emits only stable text. One realtime session per loaded model.
+Ollama 0.40.2 contains a transcription route string, but which models it serves is unverified, so it was
+recorded as unproven for speech. Briefing: `local/20261101-voice-transcription-briefing.md`. The whisper
+project's three setup questions (tool, model + format, SSD location) were Vince's to answer; Sage had no
+record of them.
+
+### Thread B: new track — local transcription
+The Macalla project (Vince's from-source build of the Anarlog meeting recorder) used that briefing plus a
+whisper setup summary to write `collateral/20261101-transcription-model-recommendation.md`. Decision:
+**oMLX as the single local speech engine, long term**; Macalla keeps its built-in Parakeet (CoreML, in
+process) until a small adapter change lets it reach an OpenAI-style server. Sage's part is the Mac Studio
+project's step: pick and test the shared MLX speech model(s) on oMLX (M4 first), prototype realtime, hand
+over endpoint + model IDs. **Vince's sequencing call: Macalla is not blocked, so decision models stay
+first; the transcription test follows.** Open: whether the Studio's pinned oMLX 0.7.0 has the realtime
+endpoint.
+
+**Commits:** session-state update only.
 
 ## What got done — 2026-10-18 session
 
