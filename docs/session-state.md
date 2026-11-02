@@ -4,7 +4,7 @@
 
 ---
 
-**Last session:** 2026-11-01 (short, information only). Opened the **local transcription** track: oMLX speech briefing written for the live-transcript project, and the Macalla project's recommendation (oMLX as the single local speech engine) folded into the todos. No memories banked.
+**Last session:** 2026-11-01. Opened the **local transcription** track (oMLX as the single local speech engine), then a research run: Vince's links, mail, HN/GitHub and reddit sweeps via four parallel agents. M4 oMLX upgraded to 0.7.3; LiteLLM dropped from the day-one Studio stack; elephant-1 added to the decision-model lineup; Macalla's next need re-prioritised to summarisation. No memories banked, three commits.
 
 **Prior session:** 2026-10-18 → 10-25 (reopened after its close). M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. After the close: research sweep, MTP hypothesis queued, SRE-promises vault entry, engine soft-pinned for the Studio, decision models downloaded. One memory banked, about a dozen commits.
 
@@ -56,7 +56,39 @@ over endpoint + model IDs. **Vince's sequencing call: Macalla is not blocked, so
 first; the transcription test follows.** Open: whether the Studio's pinned oMLX 0.7.0 has the realtime
 endpoint.
 
-**Commits:** session-state update only.
+**Commits:** `5fbafe8` (track opened).
+
+### Thread C: research run (links, mail, sources)
+Four background agents in parallel: voice tools + Vince's links (no browser), AgentMail triage, HN/GitHub
+sweep (no browser), reddit sweep (sole Playwright user, headless Firefox). Files in `inbox/20261101-*`.
+Mail: 4 threads (Global AI Weekly #172/#173, AgentNews #034, AI Tinkerers #49), all `sage-processed` +
+`archived`, nothing owed. Headlines: Wispr Flow / ElevenLabs are cloud-only on every tier; Kyutai Pocket
+TTS small is tiny English voice cloning; pocketweb.tools ignores its chip/RAM parameters (a sales page);
+"Qwen for Noobs" is about a 27B, but its context-left-per-turn tip targets the M4 compaction stalls. One
+correction made to the reddit agent: it said there was no evidence oMLX serves transcription; Sage had
+verified it from source that morning.
+
+### Thread D: decisions Vince made on the findings
+- **Upgrade the M4 to oMLX 0.7.3.** Formula diff reviewed first (benign: mlx-audio moves into oMLX's
+  `[audio]` extra; better Metal-compiler check). `brew upgrade` kept `--with-custom-kernel`.
+- **Backdoored Claude Code extension check:** Vince ran both checks (`authorized_keys`, LaunchAgent
+  plist); both empty.
+- **LiteLLM:** Vince asked what "pin by digest" means (install one exact build identified by content
+  hash) and judged it unsafe; Sage recommended dropping it from the day-one Studio stack since oMLX serves
+  both APIs. Recorded in `CLAUDE.local.md`.
+- **REA:** Claude reportedly refuses it now; Vince: other models will, and it has valid uses.
+- **elephant-1 added.** Finding while staging it: oMLX can't serve it (slot readout + block-bidirectional
+  attention, CUDA-only upstream runtime). Mac ports ship their own serving scripts; `0x36` 4-bit picked
+  for the M4, scripts to be read before running. SSD was not mounted, so not downloaded.
+- **Studio pin** moves from "soft 0.7.0" to "lean 0.7.3" for the November review (sweep evidence that
+  #4561 is not a regression and 0.7.0 has its own guard bug).
+
+### Thread E: Macalla re-prioritised to summarisation
+Vince reported Macalla fully working for transcription; its native macOS summariser (4K context) failed
+on a 48-min transcript. Meetings run 30–90 min, about 18–25K tokens, and the model must live on the M4.
+Vince put summarisation ahead of live transcription. Sage recommended testing the on-disk
+`Qwen3.5-9B-oQ4e-mtp` first (ran at 48K on oMLX), with a faithfulness spot-check weighted to the last
+third of the meeting and thinking on vs off; alternatives researched only if it disappoints.
 
 ## What got done — 2026-10-18 session
 
