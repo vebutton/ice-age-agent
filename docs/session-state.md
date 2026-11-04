@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-01. Opened the **local transcription** track (oMLX as the single local speech engine), then a research run: Vince's links, mail, HN/GitHub and reddit sweeps via four parallel agents. M4 oMLX upgraded to 0.7.3; LiteLLM dropped from the day-one Studio stack; elephant-1 added to the decision-model lineup; Macalla's next need re-prioritised to summarisation. No memories banked, three commits.
+**Last session:** 2026-11-04 (short). Mail triage after Vince fixed his forwarding filters: 4 threads (Global AI Weekly #174, AgentNews #35, AI Tinkerers #51, a Cloudflare recap), all `sage-processed` + `archived`, nothing owed. Forwarding verdicts set. Top find: NVIDIA Nemotron 3.5 Transcribe as a batch speech candidate. No memories banked, one commit.
+
+**Prior session:** 2026-11-01. Opened the **local transcription** track (oMLX as the single local speech engine), then a research run: Vince's links, mail, HN/GitHub and reddit sweeps via four parallel agents. M4 oMLX upgraded to 0.7.3; LiteLLM dropped from the day-one Studio stack; elephant-1 added to the decision-model lineup; Macalla's next need re-prioritised to summarisation. No memories banked, three commits.
 
 **Prior session:** 2026-10-18 → 10-25 (reopened after its close). M4 sitting 4: oMLX installed (formula trust pass first), engine swap passed with config-only changes, StreamFilter rerun 6/6, and a two-mode engine benchmark (cold prefill + agent loop) that came out a tie within a live session. Ship date settled. After the close: research sweep, MTP hypothesis queued, SRE-promises vault entry, engine soft-pinned for the Studio, decision models downloaded. One memory banked, about a dozen commits.
 
@@ -29,6 +31,19 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-04 session
+
+### Thread A: forwarding filters + mail triage
+Vince asked which emails Sage expected forwarded; his filters had been wrong, and he hand-forwarded three.
+Sage had no formal list: the sources seen so far were AgentNews, AI Tinkerers Top AI Demos, Weekly Claw and
+Cloudflare; Global AI Weekly arrives direct. Verdicts: AgentNews and AI Tinkerers yes (both reliably useful;
+Vince says AgentNews now forwards by filter), Cloudflare marketing mail no (recap only, Clef already known).
+Recorded in `CLAUDE.local.md` → Subscriptions. Triage note: `inbox/20261104-inbox-triage.md` (gitignored).
+Keepers: Nemotron 3.5 Transcribe (open weights, top open English ASR, speaker ID, batch only, MLX unknown);
+AgentMail Agent Armor (inbound prompt-injection screen) and per-inbox calendars; OpenAPPA (data-flow
+guardrail); a one-engineer FreeBSD port with Claude + Codex built on 91 one-page plans; Skiller (skills as
+form apps for non-technical staff).
 
 ## What got done — 2026-11-01 session
 
