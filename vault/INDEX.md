@@ -13,6 +13,8 @@ Format: `- [YYYY-MM-DD — Title](YYYY-MM-DD-slug.md) — one-line hook. *Status
 - [2026-05-20 — Third-party MCP wireup pattern: env-var token, version pin, audit-then-trust](2026-05-20-third-party-mcp-wireup-pattern.md) — `${VAR}` from gitignored `.env.local` + pin (never `@latest`) + four-step audit + binary-vs-source caveat. Worked example: Slack MCP `1.3.0`. *Status: seed*
 - [2026-06-09 — Skills are extracted from demonstrated reuse, not anticipated reuse](2026-06-09-skills-extracted-not-anticipated.md) — build capabilities concretely; recognize skill-shape only when a second project needs the same thing; extract then. Rule-of-three discipline applied to skill creation. Worked examples: `handoff`, `access-openstack`. Anti-pattern: skill-ifying for the sake of skill-ifying. *Status: seed (single-source)*
 
+- [2026-11-07 — Trust pass for an untrusted repo: clean room, diff against upstream, check your own config](2026-11-07-untrusted-repo-trust-pass.md) — instruction files persuade, settings files execute and persist; read both from a credential-free workspace, read only what differs from upstream, grep for endpoint overrides / install commands / hidden text, then check `~/.claude` didn't move. Source: the Oct 2026 AGENTS.md/CLAUDE.md hijack (Codex ~90%, Claude Code ~50% in tests). *Status: seed*
+
 *(other seeds named in `prompts/system_prompt.md` "Patterns Vince has already named" still to capture: skills-complement-MCPs, master-agents-self-architect, Context-Seven)*
 
 ## Tooling & External References
