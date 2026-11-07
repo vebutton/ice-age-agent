@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-06 (evening, after the reboot). Finished the **Macalla summarisation test**: Gemma 4 12B reruns at a 12 GB ceiling (passes 48 min both modes, fails 76 min both), then LFM2-2.6B-Transcript downloaded and tested in two prompt formats (fails, invents decisions/owners). Results table written up for reddit. No memories banked, one commit.
+**Last session:** 2026-11-07. Closed the **Macalla summarisation** track: a prompt-sensitivity rerun ruled out the Macalla prompt as the cause of the long-meeting misses, Vince dropped chunking, and Macalla was wired to oMLX (LFM2 interface test). Transcription stays on Parakeet. oMLX set up as a Homebrew login service with an internal model folder; ceiling back to 11 GB. One memory banked, two commits.
+
+**Prior session:** 2026-11-06 (evening, after the reboot). Finished the **Macalla summarisation test**: Gemma 4 12B reruns at a 12 GB ceiling (passes 48 min both modes, fails 76 min both), then LFM2-2.6B-Transcript downloaded and tested in two prompt formats (fails, invents decisions/owners). Results table written up for reddit. No memories banked, one commit.
 
 **Prior session:** 2026-11-06 (afternoon). Downloads (elephant-1, Parakeet TDT v3, Whisper large-v3-turbo, Qwen3-ASR-1.7B, Gemma 4 12B oQ4e-mtp) and the first **Macalla summarisation test on oMLX**: Qwen3.5-9B failed both meetings; Gemma 4 12B passed one run before hitting the memory guard. Closed mid-test for a reboot. No memories banked, one commit.
 
@@ -35,6 +37,57 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-07 session
+
+### Thread A: where the reference facts came from, and the LFM2 prompt
+- Vince asked whether the 10 facts per meeting were made with the Macalla prompt. No: from his
+  recollection, checked against the transcript, written before any model output.
+- Saved LFM2's native-format prompt (request params, system, user; transcript elided) to
+  `local/summary-test/20261107-lfm2-prompt.md`. Caveat: its user prompt combines three of the
+  model card's prompts, and the decisions / action-items wording is what invited invention.
+
+### Thread B: prompt-sensitivity check
+- Vince's question: did the Macalla prompt ("main topics", "remove filler") cause the misses rather
+  than the model? Evidence for: all three models missed the same operational asides. Evidence
+  against: the length rule never binds (~5K chars output vs 58K cap; 7 of 8 sections).
+- Test: Gemma, the 76-min meeting, thinking off, baseline settings + one sentence asking for operational
+  issues, blockers and environment/access status (`--extra` flag added to the runner).
+  Run `20261107-062850`: **5.5/10 vs 6/10 baseline**; demo-app-down and CLI still missed; output
+  shorter; same reversed owner. Conclusion: not the prompt.
+
+### Thread C: Macalla handoff and outcomes
+- Wrote `output/20261107-macalla-omlx-lfm2-handoff.md` (plumbing-only test with LFM2). One claim
+  was wrong: the localhost→Deepgram adapter blocker applies only to transcription; summaries use
+  Macalla's built-in Custom (OpenAI-compatible) provider. Macalla's report:
+  `collateral/20261107-omlx-report-to-sage.md` (streaming works; validator reads only the first
+  ~30 chars; no `max_tokens` sent).
+- **Decisions (Vince):** no chunking; short meetings/quick looks local, long meetings needing a
+  trusted summary go off-machine. Agreed with Macalla: keep Parakeet TDT v3 (speaker labels,
+  already fast); oMLX transcription → Unscheduled consolidation idea.
+- Model choice for Vince's Macalla experiments: Gemma too close to the ceiling for daily use;
+  **Qwen3.5-9B** over LFM2 (better scores, LFM2 invents decisions/owners). Sage first suggested
+  forcing thinking off server-side; Vince declined (Macalla can send the field when needed). Data:
+  thinking on is better on 48 min (7 vs 6), worse on owners at 76 min, and ~2x slower.
+
+### Thread D: oMLX housekeeping
+- `Structured output requires xgrammar` log line explained: optional `--with-grammar` brew flag
+  (~2 GB torch); not installed, schema not enforced. Vince: fine for now. Reinstall command
+  (keep `--with-custom-kernel`) noted on the decision-models item.
+- **Login service:** `brew services start jundot/omlx/omlx` (LaunchAgent `sh.brew.omlx`, KeepAlive,
+  runs bare `omlx serve`, reads `~/.omlx/settings.json`). Source checked: a missing model folder is
+  skipped with a warning. `model_dirs` = `~/.omlx/models` (Qwen moved there, 5.8 GB, diff-verified)
+  then the SSD folder; SSD copy parked in `mlx-m4-moved/`; settings backed up. Ceiling 12.5 → 11 GB.
+- Sage triggered a macOS Automation prompt (Terminal → System Events) by listing login items via
+  osascript; Vince asked what it was. Advised Don't Allow; avoid permission-prompting commands
+  without asking.
+
+### Memories banked
+- `feedback_keep_shared_server_defaults_stock.md`.
+
+### Commits
+- `554f38a` session state: close summarisation track, oMLX login service.
+- Session-close commit (this update).
 
 ## What got done — 2026-11-06 evening session
 
