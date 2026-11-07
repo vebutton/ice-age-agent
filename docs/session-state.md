@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-06. Downloads (elephant-1, Parakeet TDT v3, Whisper large-v3-turbo, Qwen3-ASR-1.7B, Gemma 4 12B oQ4e-mtp) and the first **Macalla summarisation test on oMLX**: Qwen3.5-9B failed both meetings; Gemma 4 12B passed one run before hitting the memory guard. Closed mid-test for a reboot. No memories banked, one commit.
+**Last session:** 2026-11-06 (evening, after the reboot). Finished the **Macalla summarisation test**: Gemma 4 12B reruns at a 12 GB ceiling (passes 48 min both modes, fails 76 min both), then LFM2-2.6B-Transcript downloaded and tested in two prompt formats (fails, invents decisions/owners). Results table written up for reddit. No memories banked, one commit.
+
+**Prior session:** 2026-11-06 (afternoon). Downloads (elephant-1, Parakeet TDT v3, Whisper large-v3-turbo, Qwen3-ASR-1.7B, Gemma 4 12B oQ4e-mtp) and the first **Macalla summarisation test on oMLX**: Qwen3.5-9B failed both meetings; Gemma 4 12B passed one run before hitting the memory guard. Closed mid-test for a reboot. No memories banked, one commit.
 
 **Prior session:** 2026-11-04 (short). Mail triage after Vince fixed his forwarding filters: 4 threads (Global AI Weekly #174, AgentNews #35, AI Tinkerers #51, a Cloudflare recap), all `sage-processed` + `archived`, nothing owed. Forwarding verdicts set. Top find: NVIDIA Nemotron 3.5 Transcribe as a batch speech candidate. No memories banked, one commit.
 
@@ -34,7 +36,35 @@
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
 
-## What got done — 2026-11-06 session
+## What got done — 2026-11-06 evening session
+
+### Thread A: Gemma 4 12B reruns
+- Fresh oMLX after the reboot, 11 GB ceiling: 76-min thinking-off run **passed prefill** this time
+  (the leftover-cache theory was half right) but was aborted ~22 s into generation at 10.8 GB.
+- Vince raised the custom ceiling (entered 12.5 GB, oMLX saved 12.0 GB). All three reruns completed:
+  76 min off 6/10, 48 min on **8.5/10 PASS**, 76 min on 5.5/10. Swap reached ~1 GB.
+- Gemma verdict: passes 48 min in both modes, fails 76 min in both. Cleaner than Qwen on owners
+  (thinking on invented none), but the long-meeting misses are the same items as Qwen's.
+
+### Thread B: LFM2-2.6B-Transcript
+- Vince asked what else to try. Web search found no head-to-head benchmark; leads were
+  LFM2-2.6B-Transcript (purpose-built), Gemma 4 E4B, Qwen 3.5 14B (too big for the M4).
+- Downloaded `mlx-community/LFM2-2.6B-Transcript-8bit` rev `7f7fdcd` (2.5 GB, LFM Open License v1.0,
+  no custom code). oMLX needed `POST /admin/api/reload` (admin key as Bearer) to see it.
+- Macalla prompt: 5.5 / 4, ignored the format. Native format (new `--prompt lfm` runner option,
+  model card's system prompt + header + `**Speaker**:` lines): 7.5 / 4, but invents owners on every
+  action item and invents decisions; on the 76-min meeting it framed the internal session as a customer meeting.
+  Sage recommends dropping it.
+
+### Thread C: write-up
+- `output/20261106-local-meeting-summary-test.md` (gitignored): goals, setup, scoring method,
+  results table, takeaways. Scrubbed of employer, customer and product names for a reddit post.
+
+### Decisions / observations
+- Working hypothesis (untested): on 16K-token meetings the single pass is the limit, not the model.
+  Chunked summarisation is the proposed next test.
+
+## What got done — 2026-11-06 afternoon session
 
 ### Thread A: downloads
 Pulled into `/Volumes/LLM-2TB/` via `hf download --revision --local-dir` (revision read from the
