@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-04 (short). Mail triage after Vince fixed his forwarding filters: 4 threads (Global AI Weekly #174, AgentNews #35, AI Tinkerers #51, a Cloudflare recap), all `sage-processed` + `archived`, nothing owed. Forwarding verdicts set. Top find: NVIDIA Nemotron 3.5 Transcribe as a batch speech candidate. No memories banked, one commit.
+**Last session:** 2026-11-06. Downloads (elephant-1, Parakeet TDT v3, Whisper large-v3-turbo, Qwen3-ASR-1.7B, Gemma 4 12B oQ4e-mtp) and the first **Macalla summarisation test on oMLX**: Qwen3.5-9B failed both meetings; Gemma 4 12B passed one run before hitting the memory guard. Closed mid-test for a reboot. No memories banked, one commit.
+
+**Prior session:** 2026-11-04 (short). Mail triage after Vince fixed his forwarding filters: 4 threads (Global AI Weekly #174, AgentNews #35, AI Tinkerers #51, a Cloudflare recap), all `sage-processed` + `archived`, nothing owed. Forwarding verdicts set. Top find: NVIDIA Nemotron 3.5 Transcribe as a batch speech candidate. No memories banked, one commit.
 
 **Prior session:** 2026-11-01. Opened the **local transcription** track (oMLX as the single local speech engine), then a research run: Vince's links, mail, HN/GitHub and reddit sweeps via four parallel agents. M4 oMLX upgraded to 0.7.3; LiteLLM dropped from the day-one Studio stack; elephant-1 added to the decision-model lineup; Macalla's next need re-prioritised to summarisation. No memories banked, three commits.
 
@@ -31,6 +33,46 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-06 session
+
+### Thread A: downloads
+Pulled into `/Volumes/LLM-2TB/` via `hf download --revision --local-dir` (revision read from the
+`.cache/huggingface/download/*.metadata` first line), all logged in `local/m4-stack-week-20261006.md`:
+elephant-1-9B-MLX-4bit (own folder, outside `mlx-m4/`), Parakeet TDT 0.6b v3, Whisper large-v3-turbo,
+Qwen3-ASR-1.7B-8bit (listed by oMLX `/v1/models`; serving unverified), and later Gemma 4 12B oQ4e-mtp
+(7.5GB, Apache-2.0). strands-decider re-pulled: same digest; the "0.2.0" in the sweep was strands'
+serve tool, not the model tag (Sage had misread it). Read elephant-1's `serve.py` + `decision_mlx.py`:
+FastAPI `/v1/systemone`, `/v1/models`, `/health`, default 127.0.0.1:8000 (clashes with oMLX, so run it
+on 8100), no calibration file shipped.
+
+### Thread B: summarisation test harness
+Vince supplied a hand-rendered sample of Macalla's enhance prompt (Jinja-built in the app) and two real
+work-meeting transcripts (48 and 76 min; the planned 90-min one was deleted). Sage wrote a stdlib-only
+runner (`local/summary-test/run_summary.py`, gitignored) that rebuilds the prompt exactly, including the
+app's length rule, adds a nonce so oMLX's SSD prefix cache can't help, streams the reply, splits out
+reasoning, and auto-checks format. Vince asked for the plain-curl mechanism first: it is a single
+`/v1/chat/completions` POST of system prompt + transcript, nothing more.
+Grading: 10 reference facts per meeting, at least 4 from the last third, drafted by Sage from Vince's
+recollections plus the transcript (`*-facts.md`). Pass = 8/10, no invented action items.
+
+### Thread C: results
+- **Qwen3.5-9B-oQ4e-mtp: no pass.** 48 min: 6/10 (thinking off, 4 errors) and 7/10 (on). 76 min: 5.5/10
+  both ways; thinking on invented owners and a deadline. Both modes miss mid-meeting asides.
+- **Gemma 4 12B oQ4e-mtp:** 48 min, thinking off: **8/10 PASS**, 161 s, 15 tok/s generation. The other
+  three runs were stopped by oMLX's memory guard (11GB custom ceiling): thinking on was aborted at the
+  10.7GB hard mark, and both 76-min runs were refused at prefill ("~11.90 GB peak, limit 10.45 GB").
+  Sage's earlier "~9GB fits" estimate was wrong.
+- oMLX scans models only at startup: a new folder needs a restart (the first Gemma attempt 404'd).
+
+### Mistakes worth not repeating
+- Printing `~/.omlx/settings.json` through a filter that missed the nested `auth` block put the API and
+  secret keys in the transcript. Vince was told and advised to rotate (loopback-only, low risk).
+- The `has_next_steps` check needed a prefix match ("# Next Steps and Roadmap").
+
+### Open at close
+Vince is rebooting to clear memory. Next: rerun the failed Gemma runs on a fresh oMLX before raising the
+ceiling (see the CLAUDE.md brief, next-session item 4).
 
 ## What got done — 2026-11-04 session
 
