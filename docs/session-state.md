@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-07. Closed the **Macalla summarisation** track: a prompt-sensitivity rerun ruled out the Macalla prompt as the cause of the long-meeting misses, Vince dropped chunking, and Macalla was wired to oMLX (LFM2 interface test). Transcription stays on Parakeet. oMLX set up as a Homebrew login service with an internal model folder; ceiling back to 11 GB. One memory banked, two commits.
+**Last session:** 2026-11-07 (evening, short). Security thread from a Robin-surfaced post on the October CLAUDE.md / AGENTS.md hijack: sources verified, trust-pass checklist vaulted, podman-on-the-M4 chosen for trust passes, Studio tenancy question opened. No memories banked, two commits, both pushed.
+
+**Prior session:** 2026-11-07. Closed the **Macalla summarisation** track: a prompt-sensitivity rerun ruled out the Macalla prompt as the cause of the long-meeting misses, Vince dropped chunking, and Macalla was wired to oMLX (LFM2 interface test). Transcription stays on Parakeet. oMLX set up as a Homebrew login service with an internal model folder; ceiling back to 11 GB. One memory banked, two commits.
 
 **Prior session:** 2026-11-06 (evening, after the reboot). Finished the **Macalla summarisation test**: Gemma 4 12B reruns at a 12 GB ceiling (passes 48 min both modes, fails 76 min both), then LFM2-2.6B-Transcript downloaded and tested in two prompt formats (fails, invents decisions/owners). Results table written up for reddit. No memories banked, one commit.
 
@@ -37,6 +39,41 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-07 evening session
+
+### Thread A: verifying Robin's hijack post
+- Robin's summary claimed an in-the-wild CLAUDE.md attack with persistence via MCP config and silent
+  website-triggered downloads. Checked BleepingComputer, the CSA research note (2026-10-27) and CSO.
+- **What holds:** a real incident, but it was Codex reading an AGENTS.md in a customer's `~/Downloads`,
+  blocked before execution. Controlled tests: Codex ~90%; Claude Code redirected to a researcher server
+  ~50% of the time, OAuth token replayed against the real API.
+- **What was overstated:** cross-project persistence via MCP config was not shown (the CSA note
+  describes the instruction-file → settings-file chain in general); the website download needs the
+  user to then launch an agent in Downloads. The cited Aviatrix source could not be found.
+- Robin's `find -maxdepth 3` check misses deep files and all settings files (`.claude/`, `.mcp.json`).
+
+### Thread B: exposure read and where to run trust passes
+- Exposure: M4 OpenCode small (container, `:ro,Z`, local oMLX); this Mac's Claude Code is the real
+  exposure (subscription login); Studio is the worst fit (unattended, config drift unseen).
+- Macalla (forked) brought 1 extra CLAUDE.md and 26 AGENTS.md. Claude Code mostly ignores AGENTS.md;
+  OpenCode reads it. The diff against upstream is what matters.
+- **Ruled out:** running trust passes from Sage, because this session holds AgentMail, GitHub, Slack
+  and Playwright. A bare workspace on the same macOS user still leaves the Claude and `gh` logins
+  on the machine.
+- **Decision (Vince):** trust passes run in a podman container on the M4. Not today.
+
+### Thread C: Studio tenancy question opened
+- Vince leans podman; a contact runs Proxmox with one VM per app on a PC. Proxmox doesn't run on
+  Apple Silicon. Starting view: engine native (MLX needs Metal), tenants in podman reaching it over
+  the network. Logged as an open design question in the brief.
+
+### Memories banked
+- None.
+
+### Commits
+- `18d71c6` — trust-pass vault entry, INDEX row, CLAUDE.md items. Pushed (also pushed `554f38a`, `16b8e24`).
+- Session close commit (this one).
 
 ## What got done — 2026-11-07 session
 

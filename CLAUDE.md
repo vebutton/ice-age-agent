@@ -101,15 +101,13 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-11-07. **Summarisation track closed; oMLX is now a login service.** Prompt-sensitivity rerun (Gemma + one line asking for operational asides) scored 5.5 vs 6: the Macalla prompt isn't the cause. Vince dropped chunking (long meetings → off-machine model). Macalla wired to oMLX via its Custom provider and tested with LFM2 (plumbing works; report in `collateral/20261107-omlx-report-to-sage.md`). Transcription stays on Parakeet in Macalla. Vince is now playing with prompts/models in Macalla, default **Qwen3.5-9B** (on internal disk), ceiling **11 GB**.
+**Last:** 2026-11-07 (evening, short). **Security: the Oct CLAUDE.md/AGENTS.md hijack reports Robin surfaced.** Verified against the sources (real incident = Codex + AGENTS.md in `~/Downloads`, blocked; Claude Code ~50% in controlled tests, login replayed). Vaulted a trust-pass checklist (`vault/2026-11-07-untrusted-repo-trust-pass.md`). Vince decided trust passes run in a **podman container on the M4**, not built yet; Macalla's 27 extra instruction files wait on it. Opened the **Studio tenancy** design question. Commit `18d71c6`, pushed.
 
-**Prior:** 2026-11-06. Summarisation tests: Qwen3.5-9B fails both meetings; Gemma 4 12B passes 48 min only and needs a 12 GB ceiling; LFM2-2.6B-Transcript fails and invents. Downloads: elephant-1 + three speech models. Results: `local/summary-test/results.md`; write-up `output/20261106-local-meeting-summary-test.md`.
-
-**Prior:** 2026-11-04 (short). Mail triage after Vince fixed his forwarding filters: 4 threads, all archived, nothing owed. Forwarding verdicts in `CLAUDE.local.md` → Subscriptions (AgentNews + AI Tinkerers yes, Cloudflare promo no). Top find: **NVIDIA Nemotron 3.5 Transcribe** joins the batch speech candidates. Triggers under *SWEEP 2026-11-04* below.
+**Prior:** 2026-11-07. **Summarisation track closed; oMLX is now a login service.** Prompt-sensitivity rerun (Gemma + one line asking for operational asides) scored 5.5 vs 6: the Macalla prompt isn't the cause. Vince dropped chunking (long meetings → off-machine model). Macalla wired to oMLX via its Custom provider and tested with LFM2 (plumbing works; report in `collateral/20261107-omlx-report-to-sage.md`). Transcription stays on Parakeet in Macalla. Vince is now playing with prompts/models in Macalla, default **Qwen3.5-9B** (on internal disk), ceiling **11 GB**.
 
 **Prior:** 2026-11-01. **New track: local transcription** (oMLX = single local speech engine; decision from the Macalla project, `collateral/20261101-transcription-model-recommendation.md`; oMLX speech facts in `local/20261101-voice-transcription-briefing.md`). **Late update from Vince: Macalla now transcribes fully; what it still needs is post-meeting summarisation (ahead of live transcription)**, because its native macOS summariser has a 4K context and failed on a 48-min transcript. Research run: voice tools (Wispr Flow / ElevenLabs / Kyutai Pocket TTS), mail (4 threads, nothing owed), HN/GitHub and reddit sweeps. Outcomes: **M4 oMLX upgraded 0.7.1rc1 → 0.7.3**; Studio pin now leans 0.7.3; **LiteLLM dropped from the day-one Studio stack** (backdoored release); elephant-1 added to the decision-model lineup; Claude Code extension backdoor checked clean (both checks empty).
 
-**Prior (older priors in `docs/session-state.md`):** 2026-10-18 → 10-25. M4 sitting 4 done: oMLX swap passed config-only; StreamFilter 6/6 at 48K; engine benchmark ties in an agent loop; MTP rerun put a self-built oQ4e-mtp 15–22% ahead of Ollama on generation; oMLX soft-pinned at 0.7.0 for the Studio; decision models downloaded; SRE-promises vault entry. Detail: `local/m4-stack-week-20261006.md` → *Sitting 4* / *MTP follow-up*.
+**Prior (older priors, incl. 11-04 and 11-06, in `docs/session-state.md`):** 2026-10-18 → 10-25. M4 sitting 4 done: oMLX swap passed config-only; StreamFilter 6/6 at 48K; engine benchmark ties in an agent loop; MTP rerun put a self-built oQ4e-mtp 15–22% ahead of Ollama on generation; oMLX soft-pinned at 0.7.0 for the Studio; decision models downloaded; SRE-promises vault entry. Detail: `local/m4-stack-week-20261006.md` → *Sitting 4* / *MTP follow-up*.
 
 **Open items going into next session:**
 
@@ -289,16 +287,8 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 7. **Inception — generalize from the win:** it built the harness that tvo-skyline validated; next is turning that into the reusable scaffolding deliverable (`grill-with-docs` in progress there).
 8. Homecrew trust pass (`local/skill-watchlist.md` → Ecosystem tooling), then decide whether to surface it to the team.
 9. Shared work skills repo — continue uploads (`CLAUDE.local.md` → Skill upload candidates).
+10. **Trust-pass container (podman, M4)** — when Vince builds it, run the Macalla pass first, using `vault/2026-11-07-untrusted-repo-trust-pass.md`. Until then, don't open Macalla in OpenCode.
 
-**Session continuity:** Vince closes sessions and never re-enters. Next session is a cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md` before doing anything (per Vince's global rule).
+**Launch:** `source .env.local && claude` from the project root. Planned: ansible-vault the env file and run `ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass eval "$(ansible-vault view .env.local.vault)"` first.
 
-Launch from project root:
-```bash
-source .env.local && claude
-```
-Once the PAT is approved and ansible-vaulted, launch becomes:
-```bash
-ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass eval "$(ansible-vault view .env.local.vault)"
-source .env.local
-claude
-```
+Full archaeology: `docs/session-state.md` — consult when prior-thread depth, decision reasoning, or ruled-out paths are needed.
