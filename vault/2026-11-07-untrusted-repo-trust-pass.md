@@ -13,7 +13,37 @@
 
 - An empty directory, **not** under any folder holding an untrusted CLAUDE.md. Launch Claude Code there; give it the target repo as a path. **Never launch an agent with the target repo as its working directory** until the pass is done.
 - No `.env.local`, no `.mcp.json`, launched without `source .env.local`. No Slack, AgentMail, Playwright or GitHub token in reach of the session.
-- Honest limit: on the same macOS user, the Claude Code login and the `gh` keyring login are still on the machine. For anything you will *run* (not just read), use a container or VM (the OpenCode `:ro,Z` container shape) or a separate macOS user.
+- Honest limit: on the same macOS user, the Claude Code login and the `gh` keyring login are still on the machine. For anything you will *run* (not just read), use a container or VM (the OpenCode `:ro,Z` container shape) or a separate macOS user. **Vince's setup is the container below.**
+
+## Container setup (decided 2026-11-08: podman on the M4, Claude does the reading)
+
+Why Claude rather than local Qwen: judging the intent of prose ("is this instruction aimed at the agent?") is the core of the pass, and a 9B is weak at it. The cost is that a Claude credential enters the container, and that credential is exactly what the measured attack steals. Hence three walls.
+
+**Wall 1: a dedicated podman machine that sees only the drop folder.**
+- On macOS the default podman machine mounts all of `/Users` into its VM. Create a separate one that mounts only a drop folder:
+  `podman machine init trustpass --volume $HOME/trust-pass:$HOME/trust-pass`
+- Check with `podman machine inspect trustpass` that `/Users` is **not** in the mounts (passing `--volume` should replace the default; verify, don't assume).
+- Podman on macOS runs one machine at a time: stop the OpenCode machine first, select this one with `--connection trustpass` or `podman system connection default trustpass`.
+- **Prepare the repo on the host, before the pass:** clone into `~/trust-pass/<repo>`, add the upstream remote and `git fetch upstream`. The container then needs no GitHub access, and step 3 (diff against upstream) works offline. Fetching doesn't run repo content.
+
+**Wall 2: no reusable credential inside.**
+- Don't mount `~/.claude`, `~/.claude.json`, `.env.local`, `~/.ssh` or anything with a `gh` login. Container `HOME` starts empty each run (`--rm`).
+- Authenticate with a token from `claude setup-token` on the host (stays on the subscription, not API billing), passed in as `CLAUDE_CODE_OAUTH_TOKEN`. **Revoke it after each pass** (or each batch of passes).
+- Set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` so the allow-list below can stay at one host.
+
+**Wall 3: outbound traffic to `api.anthropic.com` only.** This is the wall that defeats the measured attack: a hijacked `ANTHROPIC_BASE_URL` has nowhere to send the token.
+- Preferred shape: put the Claude container on an **internal** podman network (`podman network create --internal tp-internal`, no route out), plus a small proxy container on both that network and the default one, allowing only `api.anthropic.com:443`. Point the Claude container at it with `HTTPS_PROXY`. Unsetting the proxy variable gets the agent nothing, because there is no other route.
+- Weaker alternative: iptables inside the Claude container (Anthropic's reference devcontainer `init-firewall.sh` does default-deny + allowed domains). It needs `NET_ADMIN`, so the container could undo its own rules. Use it only if the proxy shape is too fiddly, and drop the capability after the rules load.
+- If Claude Code fails to connect, read the proxy log for the blocked host **before** widening the list, and record any host you add.
+
+**Running the pass inside:**
+- Mount the target repo read-only: `-v $HOME/trust-pass/<repo>:/target:ro,Z`. Launch `claude` from an empty working dir (e.g. `/work`), never from `/target`, and give it `/target` as a path.
+- Image needs: `git`, `ripgrep`, `perl` (for the hidden-character grep), Node + Claude Code pinned to a known version.
+- Inside the box, permission prompts are not the defence; the walls are. Still don't grant it a writable mount.
+
+**After the pass, before the container is discarded:**
+- Look at the container's own `~/.claude/settings.json` and `~/.claude.json`. If anything changed there (base URL, `apiKeyHelper`, new `mcpServers`), the repo tried a hijack: that is itself the verdict (*don't use*) and evidence worth keeping.
+- Revoke the setup token. Check the proxy log for refused hosts: a refused attempt to reach an unknown host is a finding.
 
 ## The pass
 
@@ -47,7 +77,7 @@ Check that your own config didn't move:
 
 ## Status
 
-*seed (single incident + controlled tests + CSA framing).* Not yet run end to end. First worked example due: the Macalla fork (1 extra CLAUDE.md, 26 AGENTS.md).
+*seed (single incident + controlled tests + CSA framing).* Container setup added 2026-11-08; Vince is building it in a separate trust-pass project. Not yet run end to end. First worked example due: the Macalla fork (1 extra CLAUDE.md, 26 AGENTS.md).
 
 ## Related
 
