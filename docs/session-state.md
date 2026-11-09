@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-07 (evening, short). Security thread from a Robin-surfaced post on the October CLAUDE.md / AGENTS.md hijack: sources verified, trust-pass checklist vaulted, podman-on-the-M4 chosen for trust passes, Studio tenancy question opened. No memories banked, two commits, both pushed.
+**Last session:** 2026-11-08. Three short threads: an OpenCode-vs-curl GPU test read from screenshots, the trust-pass container design (added to the vault entry), and the pre-Black-Friday Studio remote access + UPS research (subagent, gitignored local file). No memories banked, two commits, both pushed.
+
+**Prior session:** 2026-11-07 (evening, short). Security thread from a Robin-surfaced post on the October CLAUDE.md / AGENTS.md hijack: sources verified, trust-pass checklist vaulted, podman-on-the-M4 chosen for trust passes, Studio tenancy question opened. No memories banked, two commits, both pushed.
 
 **Prior session:** 2026-11-07. Closed the **Macalla summarisation** track: a prompt-sensitivity rerun ruled out the Macalla prompt as the cause of the long-meeting misses, Vince dropped chunking, and Macalla was wired to oMLX (LFM2 interface test). Transcription stays on Parakeet. oMLX set up as a Homebrew login service with an internal model folder; ceiling back to 11 GB. One memory banked, two commits.
 
@@ -39,6 +41,26 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-08 session
+
+### Thread A: OpenCode vs curl on oMLX (Vince's screenshots, `collateral/20261108 opencode vs curl/`)
+- Same summary task on `Qwen3.5-9B-oQ4e-mtp`: OpenCode (podman) 15.7s cold, 13.0s warm; bare curl ~40s twice.
+- After a **cold** OpenCode session the GPU stayed at 100% for ~2 min past the answer; warm turns didn't. Vince saw it with "hi" as the first message too.
+- Sage's hypotheses (not verified, log not read; it's outside the project dir): (1) curl is slower because thinking is on by default server-side and `jq '.choices[0].message.content'` throws away `reasoning_content`, so a long hidden think looks like dead time; OpenCode's system prompt seems to keep the think short. (2) The post-answer GPU load is OpenCode's background **session-title** request (first message only), running long with thinking on and no `max_tokens`. Fix belongs in OpenCode config (`small_model` with thinking off), not server defaults, per the keep-server-defaults-stock rule.
+- Verification steps given: `.usage` + reasoning length on the curl; a second request in `omlx.log` right after the answer.
+
+### Thread B: trust-pass container design
+- Vince: dedicated podman machine mounting the dirs to analyse, Claude Code in a container. Confirmed, with two adjustments: macOS podman's default machine mounts all of `/Users`, so a dedicated machine is a real second wall; and Claude Code in the container brings the credential the measured attack steals.
+- **Decided: Claude does the reading** (the 9B is weak at judging intent in prose).
+- Added a *Container setup* section to `vault/2026-11-07-untrusted-repo-trust-pass.md`: three walls (dedicated machine mounting only `~/trust-pass/`; no reusable credential, revocable `claude setup-token` per pass, nothing from the host's `~/.claude`/`gh`/`.ssh`/`.env.local`; egress to `api.anthropic.com` only via an `--internal` network + allow-list proxy, iptables-with-NET_ADMIN as the weaker fallback). Also: prepare clone + upstream fetch on the host, `:ro,Z` mount, launch from an empty dir, inspect the container's own `~/.claude` for tampering before discarding. Untested; check that `--volume` really replaces the default mount, and log any extra host Claude Code needs.
+- Vince takes it to a new trust-pass project and reports back. Commit `2f6e36c`.
+
+### Thread C: Studio remote access + UPS (due before Black Friday, Nov 27)
+- Vince's inputs: ISP gateway only today (model in `CLAUDE.local.md`), role "advise", budget under $300 for both.
+- Subagent research → `local/20261108-studio-remote-access-ups.md`. Outcome: keep the ISP gateway; Tailscale in three independent places (open-source `tailscaled` on the Studio, the only Mac variant that runs pre-login; the Comet KVM's built-in Tailscale; a GL.iNet Brume 2 on the LAN as subnet router + exit node). The Brume's key job: Tahoe's FileVault SSH unlock is LAN-only and the Studio's Tailscale isn't up until unlock. Hosted Tailscale + Tailnet Lock over Headscale. UPS: CyberPower CP1500PFCLCD (pure sine), target ≤$190; CP1000 too tight at peak.
+- Unverified / arrival-day tests: headless UPS shutdown with nobody logged in, power-on after an outage that the UPS rides through, KVM keyboard at the FileVault prompt, per-user services (oMLX, OpenClaw) not starting after an unattended reboot.
+- Vince: GL.iNet accepted. Still open: FileVault on? Comet bought? Commit `f85991f` (ISP/gateway detail moved to the gitignored local file before commit).
 
 ## What got done — 2026-11-07 evening session
 
