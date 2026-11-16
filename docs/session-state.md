@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-08. Three short threads: an OpenCode-vs-curl GPU test read from screenshots, the trust-pass container design (added to the vault entry), and the pre-Black-Friday Studio remote access + UPS research (subagent, gitignored local file). No memories banked, two commits, both pushed.
+**Last session:** 2026-11-15 → 11-16. Pre-arrival sweep and two transcript digests (Kiro Crew talk, Code with Claude London), the "Harness, Loop, Graph" X post fetched via fxtwitter, repo scans dropped as off-mission, Studio arrival moved to ~11-23, Plane on the VPS advised against, a draft task-file template for Claude-plans / local-implements, and a draft headless arrival checklist. One memory banked, five commits, all pushed.
+
+**Prior session:** 2026-11-08. Three short threads: an OpenCode-vs-curl GPU test read from screenshots, the trust-pass container design (added to the vault entry), and the pre-Black-Friday Studio remote access + UPS research (subagent, gitignored local file). No memories banked, two commits, both pushed.
 
 **Prior session:** 2026-11-07 (evening, short). Security thread from a Robin-surfaced post on the October CLAUDE.md / AGENTS.md hijack: sources verified, trust-pass checklist vaulted, podman-on-the-M4 chosen for trust passes, Studio tenancy question opened. No memories banked, two commits, both pushed.
 
@@ -41,6 +43,28 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-15 → 11-16 session
+
+### Thread A: pre-arrival sweep + transcripts
+- Sweep file `inbox/20261115-sweep.md` (5 mail threads, all archived). Added the AWS "Beyond the Claw" talk: Kiro Crew = Apache-2.0 workspace but a proprietary default agent billed in credits; its starter recipe (scheduled job, sandbox on, autopilot off) went into the Robin service-design trigger.
+- Vince's "3-hour Anthropic class" turned out to be the Code with Claude London transcript (8 sessions). Digest `inbox/20261115-code-with-claude-london.md`: three kinds of eval case, remove old-model prompt patches (keep the reason beside each defensive line), generate → evaluate → repair, short prompt + skills + bash/read/write with MCP last, subagents only for parallelism or a fresh reviewer, verification built into the artifact (DOM state contract, invariants, probes, recorded evidence), Routines, CMA memory stores + "dreaming", team norms. Raise-when triggers in CLAUDE.md.
+- "What's in a Harness" X post: WebFetch gets 402 on X; with Vince's approval, curl to api.fxtwitter.com worked. Saved with Sage's read as `inbox/20261115-harness-loop-graph.md` (contract with `done_when`, write it twice, loop on evidence, EXPECTED/SAW + DEAD ENDS, freeze passed nodes, **gate humans on the cost of undo, not on confidence**).
+- Commits `94eca9e`, `1f942d3`.
+
+### Thread B: scope correction
+- Sage had proposed scanning Vince's repos for committed `settings.local.json` and a CI supply-chain IOC. Vince: off-mission; Sage's goal is helping him use the Studio and pick tools; trust-pass covers untrusted code. Scans dropped. **Memory banked:** `feedback_stay_on_studio_mission.md`.
+- Status from Vince: FileVault will be on; Comet waits on the Black Friday sales; trust-pass container not started (sidetracked by n8n containers, possibly Plane on a Hetzner VPS); the 09-01 "agentic docs" email DROPPED (he doesn't recall it).
+
+### Thread C: Claude plans / Studio implements
+- Studio arrival moved to ~Mon 11-23 (was 11-19).
+- Plane (Jira-like) on the VPS: Sage advised skipping it. More learning plus a server to maintain; Issues + files in git are enough until there's an agent fleet or non-git clients. Vince weighing it.
+- Coordination answer: GitHub Issues = the queue only, a task file in the repo = the instructions, a test = done.
+- Draft v0 `local/20261115-task-file-template.md`: survey (Spec Kit, Kiro specs, OpenAI ExecPlan, Anthropic feature-list harness, Pocock issues, Aider architect/editor, plus counter-evidence that mixed planner/executor pairs gained nothing in one study), why ours needs more for a weaker executor (skeleton, locked tests + hash, context floor, re-injected rules, exits), the template, open questions. Vince: not set in stone, wants to see what others do. Next: try on one real task. Commit `6680445`.
+
+### Thread D: headless arrival checklist
+- Draft v0 `local/20261116-studio-headless-arrival-checklist.md`, three phases because the BF hardware lands after the Studio: before arrival, day one with a screen (Remote Login before the first FileVault reboot, auto-updates off, `tailscaled` daemon, wired limit, oMLX 0.7.3 with internal SSD cache), and when the UPS / Brume / Comet arrive (unattended shutdown, power-on trap, external SSH unlock, KVM at the FileVault prompt). Done-when: from the phone, off-network, after a power pull: unlock, SSH, oMLX replies.
+- Vince decided: screen available for day one; Apple ID on the Studio (so choose a recovery key over Apple ID unlock, Find My on, Desktop & Documents sync off); one admin user to start. Commit `8f50614`.
 
 ## What got done — 2026-11-08 session
 
