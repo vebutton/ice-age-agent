@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-15 → 11-16. Pre-arrival sweep and two transcript digests (Kiro Crew talk, Code with Claude London), the "Harness, Loop, Graph" X post fetched via fxtwitter, repo scans dropped as off-mission, Studio arrival moved to ~11-23, Plane on the VPS advised against, a draft task-file template for Claude-plans / local-implements, and a draft headless arrival checklist. One memory banked, five commits, all pushed.
+**Last session:** 2026-11-18 (short). Lab update from Vince: podman machines and images are being standardised under `~/Development/Lab/m4pro/podmanager/`; `opencode-lab` is going away and the new machine is `opencode`. OpenCode JSON model overrides live at `podmanager/images/opencode/overrides`; `podmanager/images/opencode/run.md` probably replaces the old `opencode-image/opencode-help.md` (Vince unsure, not read yet). Recorded in the CLAUDE.md pickup step 3 and the M4 notes header. Commit `a763684`, pushed.
+
+**Prior session:** 2026-11-15 → 11-16. Pre-arrival sweep and two transcript digests (Kiro Crew talk, Code with Claude London), the "Harness, Loop, Graph" X post fetched via fxtwitter, repo scans dropped as off-mission, Studio arrival moved to ~11-23, Plane on the VPS advised against, a draft task-file template for Claude-plans / local-implements, and a draft headless arrival checklist. One memory banked, five commits, all pushed.
 
 **Prior session:** 2026-11-08. Three short threads: an OpenCode-vs-curl GPU test read from screenshots, the trust-pass container design (added to the vault entry), and the pre-Black-Friday Studio remote access + UPS research (subagent, gitignored local file). No memories banked, two commits, both pushed.
 

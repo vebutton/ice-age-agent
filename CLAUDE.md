@@ -101,11 +101,11 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-11-15 → 11-16. **Pre-arrival prep.** Sweep + two transcript digests (Kiro Crew, Code with Claude London) + the "Harness, Loop, Graph" post; repo scans dropped as off-mission; Studio now due ~11-23; Plane on the VPS advised against; **draft task-file template** (Claude plans / Studio implements) and **draft headless arrival checklist**, both v0 in `local/`. Commits `94eca9e`, `1f942d3`, `6680445`, `8f50614`, pushed.
+**Last:** 2026-11-18 (short). OpenCode lab moved to the podmanager layout: machine `opencode` (not `opencode-lab`), model overrides + `run.md` paths in pickup step 3. Commit `a763684`, pushed.
 
-**Prior:** 2026-11-08. Trust-pass container designed (in the vault entry; Vince builds it); Studio remote access + UPS researched (buy list in open items).
+**Prior:** 2026-11-15 → 11-16. **Pre-arrival prep.** Sweep + two transcript digests (Kiro Crew, Code with Claude London) + the "Harness, Loop, Graph" post; repo scans dropped as off-mission; Studio now due ~11-23; Plane on the VPS advised against; **draft task-file template** (Claude plans / Studio implements) and **draft headless arrival checklist**, both v0 in `local/`. Commits `94eca9e`, `1f942d3`, `6680445`, `8f50614`, pushed.
 
-**Prior (older priors, incl. 11-01, 11-04, 11-06 and both 11-07 sessions, in `docs/session-state.md`):** 2026-10-18 → 10-25. M4 sitting 4 done: oMLX swap passed config-only; StreamFilter 6/6 at 48K; engine benchmark ties in an agent loop; MTP rerun put a self-built oQ4e-mtp 15–22% ahead of Ollama on generation; oMLX soft-pinned at 0.7.0 for the Studio; decision models downloaded; SRE-promises vault entry. Detail: `local/m4-stack-week-20261006.md` → *Sitting 4* / *MTP follow-up*.
+**Prior (older priors, incl. 11-01, 11-04, 11-06, both 11-07 sessions and 11-08, in `docs/session-state.md`):** 2026-10-18 → 10-25. M4 sitting 4 done: oMLX swap passed config-only; StreamFilter 6/6 at 48K; engine benchmark ties in an agent loop; MTP rerun put a self-built oQ4e-mtp 15–22% ahead of Ollama on generation; oMLX soft-pinned at 0.7.0 for the Studio; decision models downloaded; SRE-promises vault entry. Detail: `local/m4-stack-week-20261006.md` → *Sitting 4* / *MTP follow-up*.
 
 **Open items going into next session:**
 
