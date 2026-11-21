@@ -101,7 +101,9 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-11-19 → 11-21. **Decision models closed: committed to oMLX** (d3-mini leads on real traffic; Ollama, strands-decider, elephant-1 out). Metrics proxy redundant for oMLX. Guest-agent invariants + verification drafted. Confidence-gated escalation vaulted. Commit `8c1984f` + session state, pushed.
+**Last:** 2026-11-21 (short). **The Studio has ARRIVED** (Vince, 11-21). Unboxing and headless setup is next, from the arrival checklist Phase 1.
+
+**Prior:** 2026-11-19 → 11-21. **Decision models closed: committed to oMLX** (d3-mini leads on real traffic; Ollama, strands-decider, elephant-1 out). Metrics proxy redundant for oMLX. Guest-agent invariants + verification drafted. Confidence-gated escalation vaulted. Commit `8c1984f` + session state, pushed.
 
 **Prior:** 2026-11-18 (short). OpenCode lab moved to the podmanager layout (pickup step 3).
 
@@ -296,7 +298,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 **Next session — pick up here:**
 1. Cold start — re-read `CLAUDE.md` AND `CLAUDE.local.md`; consult `docs/session-state.md` on demand. No model pin (follows the global default). **The `Sage Dialog` output style is active — short turns, one thing per turn, long-form to files.** Watch whether it holds; that is the live validation.
-1b. **Studio: Vince said 11-19 it was supposedly arriving that day; confirm whether it has.** work through `local/20261116-studio-headless-arrival-checklist.md` (Phase 0 now; Phase 1 on day one with the borrowed screen; Phase 2 when the BF hardware lands). Then try the task-file template (`local/20261115-task-file-template.md`) on one real task and revise it.
+1b. **STUDIO ARRIVED 2026-11-21 — unboxing + setup is the next session.** Work through `local/20261116-studio-headless-arrival-checklist.md` (Phase 0 leftovers first, then Phase 1 with the borrowed screen: Remote Login ON before the first FileVault reboot, pin host keys, oMLX **0.7.3** with SSD cache on the **internal** disk; Phase 2 when the BF hardware lands). Still before setup: upgrade Claude Code (2.1.302 → 2.1.321+). Then try the task-file template (`local/20261115-task-file-template.md`) on one real task and revise it.
 2. **Buy on Black Friday (Nov 27):** CyberPower CP1500PFCLCD (≤$190) + GL.iNet Brume 2 (~$60); Comet KVM if not owned. Detail `local/20261108-studio-remote-access-ups.md`. FileVault will be on; Comet waits on the sales. Trust-pass container not started yet.
 2b. ~~MTP rerun~~ **DONE 10-25: MTP closed the generation gap.** Self-built `Qwen3.5-9B-oQ4e-mtp` (oMLX quantizer, ceiling raised to 11GB to get past calibration): generation +51–66% over plain oMLX and 15–22% ahead of Ollama (which already uses MTP); prefill now ties Ollama; short-reply agent loops still roughly even. Detail: M4 notes → *MTP follow-up*.
 3. **Decision models: CLOSED 11-21, oMLX chosen** (see open items). oMLX is a login service (`brew services stop|start jundot/omlx/omlx`). Structured output is still not enforced on the M4 (xgrammar not installed; `brew reinstall omlx --with-custom-kernel --with-grammar` if schema-valid JSON is ever needed, then re-check settings.json ceiling + auth). Lab (11-18): podman machine is now **`opencode`** (machines/images under `~/Development/Lab/m4pro/podmanager/`); OpenCode JSON overrides at `~/Development/Lab/m4pro/podmanager/images/opencode/overrides`; run commands in `~/Development/Lab/m4pro/podmanager/images/opencode/run.md` (likely replaces `opencode-image/opencode-help.md`; Vince unsure).

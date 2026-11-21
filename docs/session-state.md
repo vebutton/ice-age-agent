@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-19 → 11-21. **Decision models closed: oMLX chosen.** All four open decision models plus a plain-chat baseline run on the Typed Decisions test split, then on a new HN pre-filter test built from past sweeps; Vince committed to oMLX (d3-mini / clef-flash), with Ollama, strands-decider and elephant-1 out. Metrics proxy found redundant for oMLX. Reddit post drafted. Guest-agent `INVARIANTS.md` + verification contract drafted (gitignored). Confidence-gated escalation vault entry written. No memories banked; commit `8c1984f` + this session-state commit, pushed.
+**Last session:** 2026-11-21 (short). Vince reported the **M5 Ultra Studio has arrived**; unboxing and headless setup are next. Session state updated only; no other work, no memories banked.
+
+**Prior session:** 2026-11-19 → 11-21. **Decision models closed: oMLX chosen.** All four open decision models plus a plain-chat baseline run on the Typed Decisions test split, then on a new HN pre-filter test built from past sweeps; Vince committed to oMLX (d3-mini / clef-flash), with Ollama, strands-decider and elephant-1 out. Metrics proxy found redundant for oMLX. Reddit post drafted. Guest-agent `INVARIANTS.md` + verification contract drafted (gitignored). Confidence-gated escalation vault entry written. No memories banked; commit `8c1984f` + this session-state commit, pushed.
 
 **Prior session:** 2026-11-18 (short). Lab update from Vince: podman machines and images are being standardised under `~/Development/Lab/m4pro/podmanager/`; `opencode-lab` is going away and the new machine is `opencode`. OpenCode JSON model overrides live at `podmanager/images/opencode/overrides`; `podmanager/images/opencode/run.md` probably replaces the old `opencode-image/opencode-help.md` (Vince unsure, not read yet). Recorded in the CLAUDE.md pickup step 3 and the M4 notes header. Commit `a763684`, pushed.
 
