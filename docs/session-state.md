@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-18 (short). Lab update from Vince: podman machines and images are being standardised under `~/Development/Lab/m4pro/podmanager/`; `opencode-lab` is going away and the new machine is `opencode`. OpenCode JSON model overrides live at `podmanager/images/opencode/overrides`; `podmanager/images/opencode/run.md` probably replaces the old `opencode-image/opencode-help.md` (Vince unsure, not read yet). Recorded in the CLAUDE.md pickup step 3 and the M4 notes header. Commit `a763684`, pushed.
+**Last session:** 2026-11-19 → 11-21. **Decision models closed: oMLX chosen.** All four open decision models plus a plain-chat baseline run on the Typed Decisions test split, then on a new HN pre-filter test built from past sweeps; Vince committed to oMLX (d3-mini / clef-flash), with Ollama, strands-decider and elephant-1 out. Metrics proxy found redundant for oMLX. Reddit post drafted. Guest-agent `INVARIANTS.md` + verification contract drafted (gitignored). Confidence-gated escalation vault entry written. No memories banked; commit `8c1984f` + this session-state commit, pushed.
+
+**Prior session:** 2026-11-18 (short). Lab update from Vince: podman machines and images are being standardised under `~/Development/Lab/m4pro/podmanager/`; `opencode-lab` is going away and the new machine is `opencode`. OpenCode JSON model overrides live at `podmanager/images/opencode/overrides`; `podmanager/images/opencode/run.md` probably replaces the old `opencode-image/opencode-help.md` (Vince unsure, not read yet). Recorded in the CLAUDE.md pickup step 3 and the M4 notes header. Commit `a763684`, pushed.
 
 **Prior session:** 2026-11-15 → 11-16. Pre-arrival sweep and two transcript digests (Kiro Crew talk, Code with Claude London), the "Harness, Loop, Graph" X post fetched via fxtwitter, repo scans dropped as off-mission, Studio arrival moved to ~11-23, Plane on the VPS advised against, a draft task-file template for Claude-plans / local-implements, and a draft headless arrival checklist. One memory banked, five commits, all pushed.
 
@@ -45,6 +47,31 @@
 **Prior session:** 2026-07-05. Vince reported **inception built the coding harness and proved it out on tvo-skyline** (tvo-skyline = test bed; inception unstalled; UI-work optimization is the next tvo-skyline phase). Evaluated **frontier** for UI work — ruled out. First real AgentMail triage: **Homecrew** logged (watchlist + local pointer), **AgentNews #15** distilled to `inbox/`, both threads archived. Session ran on **Fable 5** (access restored); model reconcile flagged. Two memories updated, one commit.
 
 **Prior sessions:** 2026-06-26 (in-repo coding harness vaulted + Inception scaffolding spec; work skills repo confirmed live; Atlas overview created; Fable 5 restricted → Opus 4.8 standard; inception decomposition plan accepted; three commits) · 2026-06-10 evening (two new work repos scanned + review closed; scrub rule broadened; AI-call outcome resolved; negative-space documentation vaulted; git-commit skill retired to a global rule; five commits) · 2026-06-10 midday (short; on-demand routing → bootstrapping agent; Fable 5 research + model pin; commits `51858c6`, `dc4a7e2`) · 2026-06-05..09 (multi-day, eight threads, two memories banked). Threads retained below under *Earlier archaeology*.
+
+## What got done — 2026-11-19 → 11-21 session
+
+### Thread A: oMLX admin check + engine setup
+- Studio: Vince said on 11-19 that it was supposedly arriving that day, so Phase 0 of the arrival checklist was too late. Arrival not confirmed in-session.
+- Vince's oMLX dashboard screenshot (`collateral/20261119/omlx-ui.png`): usage by day/hour, active models, SSD cache. Per-request timing is in `omlx.log` (prompt tokens, output tokens, tok/s, TTFT), so prefill = prompt / TTFT. **The metrics proxy is redundant on the oMLX path.**
+- clef-flash missing from `/v1/models`: the login-service oMLX had started before the SSD was mounted (`Permission denied: '/Volumes/LLM-2TB'`). Restart after mounting fixed it. The permanent fix (TCC / removable-volume permission for the LaunchAgent) is deferred by Vince ("we'll discuss #2 later").
+
+### Thread B: Typed Decisions benchmark
+- Runner `local/decision-test/run_typed_decisions.py` (+ `run.sh` wrapper; zsh doesn't word-split `$R`). Same maths as the dataset's scorer, plus reading oMLX/Ollama's scalar `noul` as P(true) (without it, noul answers scored as empty).
+- Results (acc / ECE): elephant-1 0.749 / 0.108, d3-mini 0.727 / 0.042, clef-flash 0.695 / 0.013, strands-decider 0.605 / 0.101, Qwen3.5-9B plain-chat baseline 0.558 / 0.146. Our builds match the published numbers within ~1.5 points. strands' vendor ECE (0.064) did not hold. Agent-trace observability is the weakest workflow for every model.
+- elephant-1's `serve.py` needs `python -E -s` (`-I` drops its own directory from the import path). Write-up: `local/decision-test/20261120-typed-decisions-results.md`.
+
+### Thread C: HN pre-filter test (real traffic)
+- AgentMail inbox ruled out as the main test (46 threads, 4 positives). Built `local/decision-test/hn-set/` instead: `fetch_hn.py` (Algolia, >150 pts, three sweep windows, 1,088 stories), `match.py` (candidate labels), `build_and_run.py` (58 hand-reviewed positives; reader profile from the CLAUDE.md tracks, not from the positives).
+- AUC / skip at 90% recall: d3-mini 0.933 / 84%, elephant-1 0.931 / 78%, strands 0.908 / 72% (0.39s p50), clef-flash 0.894 / 72%. **Benchmark calibration did not predict the real-traffic ranking.** All four missed "Jev meets the Trolley Problem".
+- **Decision (Vince, 11-20): commit to oMLX. Ollama and strands-decider out; elephant-1 out (11-21, needs its own server).** elephant-1 and strands were then run on HN anyway "for the fun of it" / a reddit post.
+- Reddit post drafted: `local/20261120-reddit-post-decision-models.md`, says Claude did the sweeps (Vince's call). Vince posts later from his own account.
+
+### Thread D: spec standard → guest-agent drafts
+- Drafted `local/20261121-guest-agent/INVARIANTS.md` (8 rules + out of scope) and `VERIFICATION.md` (10 checks V1–V10, each tied to a rule; V1–V3 = minimum before coding; evidence line per run).
+- Vince decided: **a backup that can't be app-consistent fails** (no silent fallback; unenrolling returns a VM to agentless behaviour); **no retries**; freeze cap `QUIESCE_MAX` = **10 s**; failure reason in **job status** for now (UI/alerts later).
+
+### Thread E: vault
+- `vault/2026-11-21-confidence-gated-escalation.md` (seed, multi-source: Proceda, Hightouch, own M4 runs). Two rules: pick the threshold on your own labels; gate humans on the cost of undo. Adds a random sample of below-threshold items as the blind-spot check. Commit `8c1984f`.
 
 ## What got done — 2026-11-15 → 11-16 session
 
