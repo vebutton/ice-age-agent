@@ -4,7 +4,7 @@
 
 ---
 
-**Last session:** 2026-11-21 (short). Vince reported the **M5 Ultra Studio has arrived**; unboxing and headless setup are next. Session state updated only; no other work, no memories banked.
+**Last session:** 2026-11-21 (short). Vince reported the **M5 Ultra Studio has arrived**; unboxing and headless setup are next. Triage sheet v8 rendered (one page; settled since v7: decision models on oMLX, guest-agent drafts, escalation vault entry, remote-access research, task-file template + checklist). Claude Code upgraded to 2.1.328 (Vince). **Decision (Vince challenged it, Sage agreed): Phase 0 of the arrival checklist closed.** Its leftovers were day-one steps, not pre-arrival ones: the DHCP reservation needs the Studio's MAC (now Phase 1 step 1), the Tailscale account went into step 8, and the Black Friday orders are date-driven, so they stay in CLAUDE.md pickup step 2 only. No memories banked. Commits `210a025`, `785b338` + this close, all pushed.
 
 **Prior session:** 2026-11-19 → 11-21. **Decision models closed: oMLX chosen.** All four open decision models plus a plain-chat baseline run on the Typed Decisions test split, then on a new HN pre-filter test built from past sweeps; Vince committed to oMLX (d3-mini / clef-flash), with Ollama, strands-decider and elephant-1 out. Metrics proxy found redundant for oMLX. Reddit post drafted. Guest-agent `INVARIANTS.md` + verification contract drafted (gitignored). Confidence-gated escalation vault entry written. No memories banked; commit `8c1984f` + this session-state commit, pushed.
 

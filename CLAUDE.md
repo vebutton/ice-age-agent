@@ -101,7 +101,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 
 > Forward-looking operating context only. Backward-looking archaeology (what got done thread-by-thread, decisions articulated, commits) lives in `docs/session-state.md` — consult on demand.
 
-**Last:** 2026-11-21 (short). **The Studio has ARRIVED** (Vince, 11-21). Unboxing and headless setup is next, from the arrival checklist Phase 1.
+**Last:** 2026-11-21 (short). **The Studio has ARRIVED** (Vince, 11-21). Unboxing and headless setup is next: start at arrival checklist **Phase 1** (Phase 0 closed; Claude Code now 2.1.328). Triage sheet v8 printed (`reminders/`). Commits `210a025`, `785b338` + close, pushed.
 
 **Prior:** 2026-11-19 → 11-21. **Decision models closed: committed to oMLX** (d3-mini leads on real traffic; Ollama, strands-decider, elephant-1 out). Metrics proxy redundant for oMLX. Guest-agent invariants + verification drafted. Confidence-gated escalation vaulted. Commit `8c1984f` + session state, pushed.
 
