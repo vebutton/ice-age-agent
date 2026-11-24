@@ -280,6 +280,7 @@ Primarily prompt-driven — Sage's intelligence lives in `prompts/system_prompt.
 - AgentNews #15 note is background only (`inbox/20260604-agentnews15-ai-employees-checklist.md`, gitignored — deliberately uncommitted); becomes actionable if the work AI initiative moves from sharing skills to deploying agents.
 
 *Carried from earlier sessions:*
+- **Refresh the home tailnet diagram (not urgent, Vince 11-23).** `collateral/Home-Tailnet-Diagram.pdf` came from an early voice chat and is now out of date: Tailscale "up at boot" is wrong under FileVault; Comet replaces the Brume; Tailnet Lock is already on; access rules are the stricter Studio-ports set plus `tcp:443` for Serve; oMLX on 8000, not Ollama 11434. Corrections listed in `local/20261108-studio-remote-access-ups.md` header. **Raise when** the Comet joins the tailnet (~Dec 9), Hetzner joins, or the network shape next changes.
 - Shared work skills repo LIVE (3 skills shipped: `handoff`, `access-openstack`, `share-skill-with-team`). Continue uploading validated candidates — `CLAUDE.local.md` → Skill upload candidates.
 - Apply `grill-with-docs` to a second personal-track project (in progress on **inception**).
 - Atlas overview (`.atlas/`, gitignored): refresh at session-end, deliverables + key todos only — no minutia (refreshed 2026-07-05).
