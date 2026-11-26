@@ -4,7 +4,9 @@
 
 ---
 
-**Last session:** 2026-11-24 (short follow-up). Vince reported the work VPN client (Tunnelblick) flags Tailscale's MagicDNS servers as wrongly in use for the VPN ("does not support multiple active network interfaces"). Logged as a later task in CLAUDE.md carried items with two starting fixes (Tailscale DNS off while on VPN, or split DNS); for now he switches between them. No memories banked. One commit, pushed.
+**Last session:** 2026-11-26 (short). Vince added his MacBook Air to the tailnet (it reaches the Studio) and asked what firewall ports to open so the Air can reach the M4. Answer: none. The macOS firewall on the M4 is off and filters by app, not port. The blockers were that nothing was listening (Remote Login off) and possibly the tailnet access rules. Vince turned Remote Login on, and port 22 now listens. The M4 still shows the Air as offline, last seen a day earlier, with no reply to `tailscale ping`, so the tailnet path is unresolved. Suspects: the work VPN DNS clash or a stale client. Vince SSHes over `.local` on the LAN for now and deferred hardening; it's logged in CLAUDE.md carried items. Flagged in passing: personal Air → work Mac is the same boundary question as Macalla. No memories banked. One commit (this close), pushed.
+
+**Prior session:** 2026-11-24 (short follow-up). Vince reported the work VPN client (Tunnelblick) flags Tailscale's MagicDNS servers as wrongly in use for the VPN ("does not support multiple active network interfaces"). Logged as a later task in CLAUDE.md carried items with two starting fixes (Tailscale DNS off while on VPN, or split DNS); for now he switches between them. No memories banked. One commit, pushed.
 
 **Prior session:** 2026-11-24. **GPU visibility part 1 (macmon live over the tailnet) and Sage's restricted SSH key; four Studio quirks diagnosed and written into a new troubleshooting PDF.** Compared macmon vs mactop vs mlxtop from their READMEs; searched for an iOS client (none, so Vince will build one). No memories banked (the "Vince does the steps, Sage troubleshoots" rule went into CLAUDE.md pickup 1a). One commit (this close), pushed.
 
